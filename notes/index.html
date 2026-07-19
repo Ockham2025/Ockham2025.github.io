@@ -1,1 +1,502 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Нотатки — FRANCO</title>
+<link rel="icon" type="image/png" href="/images/franco-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #000000;
+    color: #f2f2f2;
+    font-family: 'Manrope', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  header img {
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+  }
+  header a { display: inline-block; }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  nav a:hover { color: #e63946; }
+  main {
+    flex: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    width: 100%;
+  }
 
+  .page-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .note-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    position: relative;
+  }
+  .note-card.is-hidden { display: none; }
+
+  .note-banner {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+    position: relative;
+  }
+  .note-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .note-card:hover .note-banner img {
+    transform: scale(1.04);
+  }
+  .note-banner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+  }
+
+  .note-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 28px;
+  }
+  .note-date {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #bbb;
+    margin-bottom: 8px;
+  }
+  .note-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+  }
+
+  .show-more-wrap {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .show-more-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    border: 1px solid #f2f2f2;
+    color: #f2f2f2;
+    background: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .show-more-btn:hover {
+    background: #f2f2f2;
+    color: #0d0d0d;
+  }
+  .show-more-btn.is-gone { display: none; }
+
+  footer {
+    padding: 40px 20px 0;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  .footer-top {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+  .footer-socials { display: flex; gap: 20px; }
+  .footer-socials a { color: #f2f2f2; font-size: 20px; text-decoration: none; }
+  .footer-socials a:hover { color: #e63946; }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .footer-links a { color: #f2f2f2; text-decoration: none; font-size: 14px; }
+  .footer-links a:hover { color: #e63946; }
+  .footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 30px 15px; }
+    nav { gap: 20px; }
+    nav a { font-size: 14px; }
+    main { padding: 40px 15px; }
+    .page-title { font-size: 24px; }
+    .note-title { font-size: 16px; }
+    .note-text { padding: 16px 18px; }
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 25px;
+    }
+    .footer-links { align-items: center; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <nav>
+    <a href="/music/">Музика</a>
+    <a href="/videos/">Відео</a>
+    <a href="/notes/">Нотатки</a>
+    <a href="/about/">Про гурт</a>
+  </nav>
+</header>
+<main>
+  <div class="page-title">Нотатки</div>
+
+  <div id="notes-list">
+
+    <a class="note-card" href="/notes/mayak-ne-pratsiuie/">
+      <div class="note-banner"><img src="/images/mayak2.png" alt="Коли світло більше не веде"></div>
+      <div class="note-text">
+        <div class="note-date">01.05.2026</div>
+        <div class="note-title">Коли світло більше не веде</div>
+      </div>
+    </a>
+
+    <a class="note-card" href="/notes/hrim-i-krov/">
+      <div class="note-banner"><img src="/images/FRANCO-PBO2025-scaled.jpg" alt="Нова сторінка в цій історії"></div>
+      <div class="note-text">
+        <div class="note-date">10.10.2025</div>
+        <div class="note-title">Нова сторінка в цій історії</div>
+      </div>
+    </a>
+
+    <a class="note-card" href="/notes/porizano-brytvoiu-okkama/">
+      <div class="note-banner"><img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Після всіх пояснень"></div>
+      <div class="note-text">
+        <div class="note-date">10.10.2025</div>
+        <div class="note-title">Після всіх пояснень</div>
+      </div>
+    </a>
+
+    <a class="note-card" href="/notes/vv-cover/">
+      <div class="note-banner"><img src="/images/franco-zoriana-osin.png" alt="Діалог із минулим"></div>
+      <div class="note-text">
+        <div class="note-date">13.12.2022</div>
+        <div class="note-title">Діалог із минулим</div>
+      </div>
+    </a>
+
+    <a class="note-card" href="/notes/dodomu-ep/">
+      <div class="note-banner"><img src="/images/franco-dodomu.jpg" alt="Світ став іншим. Пісні залишились"></div>
+      <div class="note-text">
+        <div class="note-date">06.05.2022</div>
+        <div class="note-title">Світ став іншим. Пісні залишились</div>
+      </div>
+    </a>
+
+    <a class="note-card" href="/notes/mrpl-city-2021/">
+      <div class="note-banner"><img src="/images/franco-mqriupol-2021-01.jpg" alt="Ми знову вийшли назовні"></div>
+      <div class="note-text">
+        <div class="note-date">07.08.2021</div>
+        <div class="note-title">Ми знову вийшли назовні</div>
+      </div>
+    </a>
+
+    <a class="note-card" href="/notes/teplyy-lampovyy-2021/">
+      <div class="note-banner"><img src="/images/franco-teplyy-lampovyy-2021.jpg" alt="Музика без зайвої відстані"></div>
+      <div class="note-text">
+        <div class="note-date">22.07.2021</div>
+        <div class="note-title">Музика без зайвої відстані</div>
+      </div>
+    </a>
+
+    <a class="note-card" href="/notes/live-2020/">
+      <div class="note-banner"><img src="/images/franco-live-2020.jpg" alt="Те, що залишилось наживо"></div>
+      <div class="note-text">
+        <div class="note-date">14.06.2021</div>
+        <div class="note-title">Те, що залишилось наживо</div>
+      </div>
+    </a>
+
+    <a class="note-card" href="/notes/masha-promin/">
+      <div class="note-banner"><img src="/images/franco-masha-radio-promin-02.jpg" alt="Перша розмова про Машу"></div>
+      <div class="note-text">
+        <div class="note-date">14.03.2021</div>
+        <div class="note-title">Перша розмова про Машу</div>
+      </div>
+    </a>
+
+    <a class="note-card" href="/notes/masha/">
+      <div class="note-banner"><img src="/images/franco-masha.jpg" alt="Кілька хвилин із чужого життя"></div>
+      <div class="note-text">
+        <div class="note-date">04.03.2021</div>
+        <div class="note-title">Кілька хвилин із чужого життя</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/rehearsal-2020/">
+      <div class="note-banner"><img src="/images/franco-rehearsal-2020.jpg" alt="Репетиції в ізоляції"></div>
+      <div class="note-text">
+        <div class="note-date">21.10.2020</div>
+        <div class="note-title">Репетиції в ізоляції</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/soundplant-2019/">
+      <div class="note-banner"><img src="/images/franco-live-at-soundplant-2019.jpeg" alt="Там, де зійшлися звуки"></div>
+      <div class="note-text">
+        <div class="note-date">01.07.2019</div>
+        <div class="note-title">Там, де зійшлися звуки</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/caribbean-club-2019/">
+      <div class="note-banner"><img src="/images/franco-caribbean-kyiv-04.jpg" alt="Місто слухало"></div>
+      <div class="note-text">
+        <div class="note-date">31.01.2019</div>
+        <div class="note-title">Місто слухало</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/tremor-album/">
+      <div class="note-banner"><img src="/images/franco-tremor.png" alt="Точка нестабільності"></div>
+      <div class="note-text">
+        <div class="note-date">30.11.2018</div>
+        <div class="note-title">Точка нестабільності</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/rainy-the-atypical-patient/">
+      <div class="note-banner"><img src="/images/the-atypical-patient-rainy.jpg" alt="Дощ, якого ніхто не передбачив"></div>
+      <div class="note-text">
+        <div class="note-date">31.10.2018</div>
+        <div class="note-title">Дощ, якого ніхто не передбачив</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/mrpl-city-2018/">
+      <div class="note-banner"><img src="/images/franco-about-05.jpg" alt="Музика між містом і водою"></div>
+      <div class="note-text">
+        <div class="note-date">05.08.2018</div>
+        <div class="note-title">Музика між містом і водою</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/youthday-2018/">
+      <div class="note-banner"><img src="/images/youthday-2018-01.jpg" alt="Поки було літо"></div>
+      <div class="note-text">
+        <div class="note-date">24.06.2018</div>
+        <div class="note-title">Поки було літо</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/live-at-shoom/">
+      <div class="note-banner"><img src="/images/franco-live-at-shoom.jpg" alt="Без другого дубля"></div>
+      <div class="note-text">
+        <div class="note-date">18.12.2017</div>
+        <div class="note-title">Без другого дубля</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/the-atypical-patient-mr-jude/">
+      <div class="note-banner"><img src="/images/the-atypical-patient-mr-jude.jpg" alt="Випадок, який не пояснити"></div>
+      <div class="note-text">
+        <div class="note-date">15.08.2017</div>
+        <div class="note-title">Випадок, який не пояснити</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/tuneli-rmx/">
+      <div class="note-banner"><img src="/images/franco-tuneli-rmx.png" alt="Тунелі з іншого боку"></div>
+      <div class="note-text">
+        <div class="note-date">03.05.2017</div>
+        <div class="note-title">Тунелі з іншого боку</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/tuneli-album/">
+      <div class="note-banner"><img src="/images/franco-tuneli.png" alt="Там, де починається темрява"></div>
+      <div class="note-text">
+        <div class="note-date">14.02.2017</div>
+        <div class="note-title">Там, де починається темрява</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/live-2016/">
+      <div class="note-banner"><img src="/images/franco-soundplant-2016.jpeg" alt="Кілька моментів до завтра"></div>
+      <div class="note-text">
+        <div class="note-date">14.09.2016</div>
+        <div class="note-title">Кілька моментів до завтра</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/spyrt-single/">
+      <div class="note-banner"><img src="/images/franco-spyrt.png" alt="Те, що не розбавити"></div>
+      <div class="note-text">
+        <div class="note-date">04.04.2016</div>
+        <div class="note-title">Те, що не розбавити</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/rehina-video/">
+      <div class="note-banner"><img src="/images/franco-rehina.jpg" alt="Коли пісня отримує своє обличчя"></div>
+      <div class="note-text">
+        <div class="note-date">13.12.2015</div>
+        <div class="note-title">Коли пісня отримує своє обличчя</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/mezzanine-2015/">
+      <div class="note-banner"><img src="/images/franco-mezzanine_01.jpg" alt="Ніч у Mezzanine"></div>
+      <div class="note-text">
+        <div class="note-date">21.11.2015</div>
+        <div class="note-title">Ніч у Mezzanine</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/rehearsal-april-2015/">
+      <div class="note-banner"><img src="/images/2015-04-23-21.24.21.jpeg" alt="Чернетка звуку"></div>
+      <div class="note-text">
+        <div class="note-date">23.04.2015</div>
+        <div class="note-title">Чернетка звуку</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/ep-2015/">
+      <div class="note-banner"><img src="/images/franco-ep-2015.png" alt="Перші сліди"></div>
+      <div class="note-text">
+        <div class="note-date">15.04.2015</div>
+        <div class="note-title">Перші сліди</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/single-tanho/">
+      <div class="note-banner"><img src="/images/franco-tanho.jpg" alt="Танго вже не наше"></div>
+      <div class="note-text">
+        <div class="note-date">06.03.2014</div>
+        <div class="note-title">Танго вже не наше</div>
+      </div>
+    </a>
+
+    <a class="note-card is-hidden" href="/notes/first-show-2012/">
+      <div class="note-banner"><img src="/images/franco-first-show-2012.jpg" alt="Коли все ще можна було передумати"></div>
+      <div class="note-text">
+        <div class="note-date">08.03.2012</div>
+        <div class="note-title">Коли все ще можна було передумати</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="show-more-wrap">
+    <button class="show-more-btn" id="show-more-btn" onclick="showMoreNotes()">Показати ще</button>
+  </div>
+</main>
+<footer>
+  <div class="footer-top">
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy-policy/">Політика конфіденційності</a>
+      <a href="/reach-us/">Контакти</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 FRANCO
+  </div>
+</footer>
+
+<script>
+function showMoreNotes() {
+  document.querySelectorAll('.note-card.is-hidden').forEach(function(el) {
+    el.classList.remove('is-hidden');
+  });
+  document.getElementById('show-more-btn').classList.add('is-gone');
+}
+</script>
+</body>
+</html>
