@@ -45,33 +45,15 @@
     margin-top: 20px;
     flex-wrap: wrap;
   }
-nav a {
-  color: #f2f2f2;
-  text-decoration: none;
-  font-family: 'Oswald', sans-serif;
-  font-size: 16px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-nav a:hover { color: #e63946; }
-  nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: #e63946;
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
+  nav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
-  nav a:hover {
-    color: #e63946;
-    letter-spacing: 2px;
-  }
-  nav a:hover::after {
-    width: 100%;
-  }
+  nav a:hover { color: #e63946; }
   main {
     flex: 1;
     max-width: 800px;
@@ -207,7 +189,7 @@ nav a:hover { color: #e63946; }
 </head>
 <body>
 <header>
-  <img src="/images/francologo.png" alt="FRANCO">
+  <img src="images/francologo.png" alt="FRANCO">
   <nav>
     <a href="/music/">Музика</a>
     <a href="/videos/">Відео</a>
