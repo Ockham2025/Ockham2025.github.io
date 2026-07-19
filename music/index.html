@@ -4,24 +4,217 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Музика — FRANCO</title>
+<link rel="icon" type="image/png" href="/images/franco-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0d0d0d; color: #f2f2f2; font-family: Arial, sans-serif; }
-  header { padding: 40px 20px; text-align: center; border-bottom: 1px solid #2a2a2a; }
-  header img { max-width: 250px; width: 70%; height: auto; }
-  nav { display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap; }
-  nav a { color: #f2f2f2; text-decoration: none; font-size: 16px; text-transform: uppercase; letter-spacing: 1px; }
+  html, body { height: 100%; }
+  body {
+    background: #000000;
+    color: #f2f2f2;
+    font-family: 'Manrope', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  header img {
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+  }
+  header a {
+    display: inline-block;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
   nav a:hover { color: #e63946; }
-  main { max-width: 900px; margin: 60px auto; padding: 0 20px; text-align: center; }
-  main h2 { font-size: 28px; margin-bottom: 20px; }
-  main p { font-size: 18px; line-height: 1.6; color: #b3b3b3; }
-  footer { text-align: center; padding: 30px; color: #666; font-size: 14px; }
+  main {
+    flex: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    width: 100%;
+  }
+
+  .page-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .section-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #888;
+    margin: 60px 0 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .section-label:first-of-type { margin-top: 0; }
+
+  .music-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .music-grid.singles {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .music-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .music-item .cover {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    transition: opacity 0.3s ease;
+  }
+  .music-item:hover .cover {
+    opacity: 0.8;
+  }
+  .music-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .music-item .title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .music-item .year {
+    font-size: 13px;
+    color: #888;
+  }
+
+  footer {
+    padding: 40px 20px 0;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  .footer-top {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-socials a {
+    color: #f2f2f2;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .footer-socials a:hover { color: #e63946; }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .footer-links a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer-links a:hover { color: #e63946; }
+  .footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  @media (max-width: 700px) {
+    header { padding: 30px 15px; }
+    nav { gap: 20px; }
+    nav a { font-size: 14px; }
+    main { padding: 40px 15px; }
+    .page-title { font-size: 24px; }
+    .music-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .music-grid.singles {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 25px;
+    }
+    .footer-links {
+      align-items: center;
+    }
+  }
 </style>
 </head>
 <body>
-
 <header>
-  <a href="/"><img src="/images/logo2018.png" alt="FRANCO"></a>
+  <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
   <nav>
     <a href="/music/">Музика</a>
     <a href="/videos/">Відео</a>
@@ -29,12 +222,114 @@
     <a href="/about/">Про гурт</a>
   </nav>
 </header>
-
 <main>
-  <h2>Музика</h2>
-  <p>!!!</p>
-</main>
+  <div class="page-title">Музика</div>
 
-<footer>&copy; 2026 FRANCO</footer>
+  <div class="section-label">Альбоми (LP)</div>
+  <div class="music-grid">
+    <a class="music-item" href="/music/pbo/">
+      <div class="cover"><img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Порізано Бритвою Оккама"></div>
+      <div class="title">Порізано Бритвою Оккама</div>
+      <div class="year">2025</div>
+    </a>
+    <a class="music-item" href="/music/tremor-lp/">
+      <div class="cover"><img src="/images/music/tremor-lp.jpg" alt="Тремор"></div>
+      <div class="title">Тремор</div>
+      <div class="year">2018</div>
+    </a>
+    <a class="music-item" href="/music/tuneli-lp/">
+      <div class="cover"><img src="/images/music/tuneli-lp.jpg" alt="Тунелі"></div>
+      <div class="title">Тунелі</div>
+      <div class="year">2017</div>
+    </a>
+  </div>
+
+  <div class="section-label">Мініальбоми (EP)</div>
+  <div class="music-grid">
+    <a class="music-item" href="https://ffm.to/dodomu-franco" target="_blank">
+      <div class="cover"><img src="/images/music/dodomu.jpg" alt="Додому"></div>
+      <div class="title">Додому</div>
+      <div class="year">2022</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/live2020-franco" target="_blank">
+      <div class="cover"><img src="/images/music/live-2020.jpg" alt="Live 2020"></div>
+      <div class="title">Live 2020</div>
+      <div class="year">2021</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/tuneli-rmx-franco" target="_blank">
+      <div class="cover"><img src="/images/music/tuneli-rmx.jpg" alt="Тунелі Remix"></div>
+      <div class="title">Тунелі Remix</div>
+      <div class="year">2017</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/ep2015-franco" target="_blank">
+      <div class="cover"><img src="/images/music/ep-2015.jpg" alt="EP 2015"></div>
+      <div class="title">EP 2015</div>
+      <div class="year">2015</div>
+    </a>
+  </div>
+
+  <div class="section-label">Сингли</div>
+  <div class="music-grid singles">
+    <a class="music-item" href="https://ffm.to/masha-franco" target="_blank">
+      <div class="cover"><img src="/images/music/masha.jpg" alt="Маша"></div>
+      <div class="title">Маша</div>
+      <div class="year">2021</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/tremor-s-franco" target="_blank">
+      <div class="cover"><img src="/images/music/tremor-single.jpg" alt="Тремор"></div>
+      <div class="title">Тремор</div>
+      <div class="year">2018</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/ty-v-meni-franco" target="_blank">
+      <div class="cover"><img src="/images/music/ty-v-meni.jpg" alt="Ти в мені"></div>
+      <div class="title">Ти в мені</div>
+      <div class="year">2017</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/holova-sertse-franco" target="_blank">
+      <div class="cover"><img src="/images/music/holova-chy-sertse.jpg" alt="Голова чи серце"></div>
+      <div class="title">Голова чи серце</div>
+      <div class="year">2016</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/ptakhy-franco" target="_blank">
+      <div class="cover"><img src="/images/music/ptakhy.jpg" alt="Птахи"></div>
+      <div class="title">Птахи</div>
+      <div class="year">2016</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/spyrt-franco" target="_blank">
+      <div class="cover"><img src="/images/music/spyrt.jpg" alt="Спирт"></div>
+      <div class="title">Спирт</div>
+      <div class="year">2016</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/rehina-franco" target="_blank">
+      <div class="cover"><img src="/images/music/rehina.jpg" alt="Регіна"></div>
+      <div class="title">Регіна</div>
+      <div class="year">2015</div>
+    </a>
+    <a class="music-item" href="https://ffm.to/tanho-franco" target="_blank">
+      <div class="cover"><img src="/images/music/tanho.jpg" alt="Танго"></div>
+      <div class="title">Танго</div>
+      <div class="year">2014</div>
+    </a>
+  </div>
+</main>
+<footer>
+  <div class="footer-top">
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy-policy/">Політика конфіденційності</a>
+      <a href="/reach-us/">Контакти</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 FRANCO
+  </div>
+</footer>
 </body>
 </html>
