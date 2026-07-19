@@ -1,1 +1,469 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тунелі — FRANCO</title>
+<link rel="icon" type="image/png" href="/images/franco-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #000000;
+    color: #f2f2f2;
+    font-family: 'Manrope', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  header img {
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+  }
+  header a {
+    display: inline-block;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  nav a:hover { color: #e63946; }
+  main {
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    width: 100%;
+  }
 
+  .pbo-cover-block {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .pbo-cover {
+    width: 280px;
+    height: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: block;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+  .pbo-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pbo-header {
+    text-align: center;
+    padding-bottom: 32px;
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .pbo-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #444, transparent);
+  }
+  .pbo-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .pbo-meta {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .pbo-desc {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.75;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .pbo-tracklist {
+    margin-bottom: 50px;
+  }
+  .pbo-track {
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .pbo-track:first-child {
+    border-top: 1px solid #2a2a2a;
+  }
+  .pbo-track-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 0;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .pbo-track-row:hover {
+    opacity: 0.7;
+  }
+  .pbo-num {
+    font-size: 13px;
+    color: #666;
+    width: 20px;
+    flex-shrink: 0;
+  }
+  .pbo-tname {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    color: #f2f2f2;
+    flex: 1;
+    letter-spacing: 0.3px;
+  }
+  .pbo-dur {
+    font-size: 13px;
+    color: #666;
+    flex-shrink: 0;
+  }
+  .pbo-arrow {
+    font-size: 12px;
+    color: #888;
+    transition: transform 0.2s;
+    display: inline-block;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+  .pbo-arrow.open {
+    transform: rotate(180deg);
+    color: #e63946;
+  }
+
+  .pbo-lyrics { display: none; }
+  .pbo-lyrics.open {
+    display: block;
+    max-height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .pbo-lyrics-inner {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 2;
+    border-left: 2px solid #e63946;
+    margin-left: 20px;
+    padding: 8px 0 24px 18px;
+  }
+
+  .pbo-platforms {
+    margin-bottom: 50px;
+  }
+  .pbo-platforms-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .pbo-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pbo-link {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    color: #f2f2f2;
+    padding: 10px 22px;
+    border: 1px solid #f2f2f2;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .pbo-link:hover {
+    background: #f2f2f2;
+    color: #0d0d0d;
+  }
+
+  .pbo-credits {
+    padding-top: 40px;
+    position: relative;
+  }
+  .pbo-credits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #444, transparent);
+  }
+  .pbo-credits-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    font-weight: 700;
+  }
+  .pbo-credits-block {
+    margin-bottom: 22px;
+  }
+  .pbo-credits-label {
+    font-size: 11px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .pbo-credits-value {
+    font-size: 15px;
+    color: #f2f2f2;
+    line-height: 1.6;
+  }
+  .pbo-credits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 32px;
+  }
+
+  footer {
+    padding: 40px 20px 0;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  .footer-top {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-socials a {
+    color: #f2f2f2;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .footer-socials a:hover { color: #e63946; }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .footer-links a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer-links a:hover { color: #e63946; }
+  .footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 30px 15px; }
+    nav { gap: 20px; }
+    nav a { font-size: 14px; }
+    main { padding: 40px 15px; }
+    .pbo-cover { width: 200px; height: 200px; }
+    .pbo-title { font-size: 20px; }
+    .pbo-credits-grid { grid-template-columns: 1fr; }
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 25px;
+    }
+    .footer-links {
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <nav>
+    <a href="/music/">Музика</a>
+    <a href="/videos/">Відео</a>
+    <a href="/notes/">Нотатки</a>
+    <a href="/about/">Про гурт</a>
+  </nav>
+</header>
+<main>
+
+  <div class="pbo-cover-block">
+    <div class="pbo-cover">
+      <img src="/images/franco-tuneli.png" alt="Тунелі — FRANCO">
+    </div>
+  </div>
+
+  <div class="pbo-header">
+    <div class="pbo-title">Тунелі</div>
+    <div class="pbo-meta">FRANCO · 2017 · LP · 10 треків</div>
+    <div class="pbo-desc">«Тунелі» — дебютний альбом FRANCO, еклектичний і розірваний, як спроба зібрати сенс у русі, який постійно вислизає. Це ще не сформована мова, а її уламки: тривожні, нервові, іноді майже крихкі, іноді навмисно хаотичні.<br><br>Альбом звучить як подорож крізь внутрішні коридори, де немає нормального світла і нічого не пояснюється до кінця. Тут важливі не відповіді, а стан зависання між ними — коли все знайоме вже зникло, а нове ще не має форми, але вже тисне зсередини.</div>
+  </div>
+
+  <div class="pbo-tracklist" id="tuneli-tracks"></div>
+
+  <div class="pbo-platforms">
+    <div class="pbo-platforms-label">Слухати</div>
+    <div class="pbo-links">
+      <a class="pbo-link" href="https://ffm.to/tuneli-franco" target="_blank">Всі платформи</a>
+      <a class="pbo-link" href="https://open.spotify.com/album/6uncTCfRhZ3WXmW5FhXIyS" target="_blank">Spotify</a>
+      <a class="pbo-link" href="https://music.apple.com/ua/album/тунелі/1745463726?l=uk" target="_blank">Apple Music</a>
+      <a class="pbo-link" href="https://music.youtube.com/playlist?list=OLAK5uy_lnY4kKVr4Jd2bCicq-BsYQhBi0FBpH9yE" target="_blank">YouTube Music</a>
+    </div>
+  </div>
+
+  <div class="pbo-credits">
+    <div class="pbo-credits-title">Credits</div>
+
+    <div class="pbo-credits-grid">
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Музика і тексти</div>
+        <div class="pbo-credits-value">Валентин Федишен</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Запис</div>
+        <div class="pbo-credits-value">Антон Блащук, Ілля Сидоренко (трек 10)</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Арт</div>
+        <div class="pbo-credits-value">Олена Бу Шдід</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Менеджмент</div>
+        <div class="pbo-credits-value">Олексій Рудок</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<footer>
+  <div class="footer-top">
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy-policy/">Політика конфіденційності</a>
+      <a href="/reach-us/">Контакти</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 FRANCO
+  </div>
+</footer>
+
+<script>
+var tuneliTracks = [
+  { num: 1, name: "Тунелі", dur: "2:13", lyrics: "Два тунелі Стук у двері<br>Два тунелі Стук у двері<br>Стук у двері Два тунелі<br>Стук у двері Два тунелі<br><br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?" },
+  { num: 2, name: "Птахи", dur: "3:40", lyrics: "Після шалених доріг<br>Я автостопом біжу<br>Лише сам від себе<br>І джинси на мені<br><br>Знов закидало в траву<br>Моїх невірних птахів<br>Все буде чесно<br>Крига вже скресла<br><br>Лиш я, лиш ти<br>Як ті невірні птахи<br>Лиш я, лиш ти<br>Як ті невірні птахи<br><br>І з кожним днем все не я<br>Забута богом земля<br>Плаче на сцені<br>Та все веселі<br><br>Мої невірні птахи<br>Холодний погляд у них<br>Неба не видно<br>Темно й не мирно<br><br>Лиш я, лиш ти<br>Як ті невірні птахи<br>Лиш я, лиш ти<br>Як ті невірні птахи" },
+  { num: 3, name: "Божоле", dur: "4:25", lyrics: "Як же я усе чесно загубив<br>Ти спитай мене відповідь віків<br><br>Ти мене спитай<br>Де розгубив усе<br>За морями знай<br>Як я хотів тебе<br><br>П'яне божоле п'ю один в один<br>На відстані тебе не чую як завжди<br><br>Ти мене спитай<br>Де розгубив усе<br>За морями знай<br>Як я хотів тебе<br><br>Хотів тебе<br><br>Тебе" },
+  { num: 4, name: "Він серед нас", dur: "3:47", lyrics: "Рання весна<br>Чайка розгублена<br>Чорна вода<br>Море отруєне<br>Бідний моряк<br>Човен вже втрачено<br>Щоб це все значило<br>Різне ми бачили<br><br>Хто серед нас<br><br>Пізня зима<br>Хвиля ховається<br>Вітру нема<br>Якір ламається<br>Бідний моряк<br>Човен вже втрачено<br>Щоб це все значило<br>Різне ми бачили<br><br>Він серед нас<br>Він серед нас<br>Він серед нас<br>Він серед нас<br><br>Він серед нас<br>Він серед нас<br>Він серед нас<br>Він серед нас" },
+  { num: 5, name: "Голова чи серце", dur: "4:23", lyrics: "Зверху і вниз<br>Падай давай<br>Падай давай<br>Швидше давай<br>Падай давай<br><br>Крила знімай<br>Хочеш зрізай<br>Крила знімай<br>Все відпускай<br>Думай і знай<br><br>Сніг пройде<br>І ти знаєш все це<br>Та болить<br>Голова чи серце<br><br>Голова чи серце<br>Голова чи серце<br><br>Більше не спи<br>Довго не спи<br>Рано вставай<br>Рано вставай<br>Чуєш вставай<br><br>За горизонт<br>Сонце кидай<br>Сонце кидай<br>Всіх обганяй<br>Першим ставай<br><br>Сніг пройде<br>І ти знаєш все це<br>Та болить<br>Голова чи серце<br><br>Голова чи серце<br>Голова чи серце<br>Голова чи серце" },
+  { num: 6, name: "Люфт", dur: "1:34", lyrics: "Інструментальний трек" },
+  { num: 7, name: "Ти в мені", dur: "4:23", lyrics: "Я тебе як пізнав<br>То не спав п'ять годин<br>Істина у вині<br>Допивай два ковтки<br><br>Більше говори<br>Розкажи хто я тобі<br>Далі не мовчи<br>Я в тобі а ти в мені<br><br>День за днем німий птах<br>У вікно крила б'є<br>Він без слів він як ти<br>Розгадав все як є<br><br>Більше говори<br>Розкажи хто я тобі<br>Далі не мовчи<br>Я в тобі а ти в мені<br><br>Далі не мовчи<br>Я в тобі а ти в мені" },
+  { num: 8, name: "Баракуда", dur: "3:39", lyrics: "Інструментальний трек" },
+  { num: 9, name: "Дощ", dur: "4:42", lyrics: "Намалюй краплі<br>Намалюй дощ на склі<br>Зранку їх видно<br>Ввечері вже не ті<br><br>Дощ, дощ, дощ<br>Дощ, дощ, дощ<br><br>Замалюй сонце<br>Щоб не світило мені<br>Дихай повільно<br>Дихай на скло а мені<br><br>Дощ, дощ, дощ<br>Дощ, дощ, дощ<br>Дощ, дощ, дощ<br>Дощ, дощ, дощ" },
+  { num: 10, name: "Йога", dur: "3:53", lyrics: "Йога, йога<br>Як тобі не страшно<br>Йога, йога<br>Скільки ми пройшли разом<br>Дві війни підряд разом<br>Я дихав на тебе піском<br><br>Йога, йога<br>Твої очі небо<br>Йога, йога<br>Я таких не знав й не чув<br>Як співає промінь один<br>Моно у вухах<br><br>Йога, йога<br>Разом нам не страшно<br>Знаю лиш як зійде луна мовчиш<br>Може і не друг ти але<br>Я спитаю знов<br><br>Спитаю знов<br><br>Спитаю знов" },
+];
+
+var container = document.getElementById('tuneli-tracks');
+tuneliTracks.forEach(function(t, i) {
+  var div = document.createElement('div');
+  div.className = 'pbo-track';
+  div.innerHTML =
+    '<div class="pbo-track-row" onclick="tuneliToggle(' + i + ')">' +
+    '<span class="pbo-num">' + t.num + '</span>' +
+    '<span class="pbo-tname">' + t.name + '</span>' +
+    '<span class="pbo-dur">' + t.dur + '</span>' +
+    '<span class="pbo-arrow" id="tuneli-arrow-' + i + '">↓</span>' +
+    '</div>' +
+    '<div class="pbo-lyrics" id="tuneli-lyrics-' + i + '">' +
+    '<div class="pbo-lyrics-inner">' + t.lyrics + '</div>' +
+    '</div>';
+  container.appendChild(div);
+});
+
+function tuneliToggle(i) {
+  var lyrics = document.getElementById('tuneli-lyrics-' + i);
+  var arrow = document.getElementById('tuneli-arrow-' + i);
+  var isOpen = lyrics.classList.contains('open');
+  document.querySelectorAll('#tuneli-tracks .pbo-lyrics').forEach(function(el) { el.classList.remove('open'); });
+  document.querySelectorAll('#tuneli-tracks .pbo-arrow').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) { lyrics.classList.add('open'); arrow.classList.add('open'); }
+}
+</script>
+</body>
+</html>
