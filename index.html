@@ -10,9 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body {
-    height: 100%;
-  }
+  html, body { height: 100%; }
   body {
     background: #000000;
     color: #f2f2f2;
@@ -111,6 +109,19 @@
     margin-top: 20px;
     text-transform: uppercase;
   }
+  .album-date {
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+  }
+  .album-desc {
+    max-width: 500px;
+    margin: 25px auto 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: #f2f2f2;
+  }
   .album-cover {
     max-width: 400px;
     width: 100%;
@@ -124,22 +135,21 @@
     height: auto;
     display: block;
   }
-  .album-btn {
-    display: inline-block;
+  .album-streams {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
     margin-top: 30px;
-    padding: 14px 40px;
-    border: 1px solid #f2f2f2;
+  }
+  .album-streams a {
     color: #f2f2f2;
+    font-size: 26px;
     text-decoration: none;
-    font-family: 'Oswald', sans-serif;
-    font-size: 14px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
     transition: all 0.3s ease;
   }
-  .album-btn:hover {
-    background: #f2f2f2;
-    color: #0d0d0d;
+  .album-streams a:hover {
+    color: #e63946;
+    transform: translateY(-2px);
   }
 
   /* Заголовок секції (плашка) */
@@ -155,20 +165,6 @@
     margin-top: 30px;
     margin-bottom: 30px;
   }
- .section-label-left {
-  display: block;
-  text-align: left;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.section-label-right {
-  display: block;
-  text-align: right;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
   /* Відео */
   .video-wrap {
@@ -189,6 +185,14 @@
     width: 100%;
     height: 100%;
     border: 0;
+  }
+  .video-caption {
+    max-width: 500px;
+    margin: 25px auto 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: #f2f2f2;
+    font-style: italic;
   }
 
   footer {
@@ -280,10 +284,16 @@
   <div class="album">
     <div class="album-title">Порізано Бритвою Оккама</div>
     <div class="album-subtitle">Новий альбом</div>
+    <div class="album-date">10.10.2025</div>
+    <p class="album-desc">Після всіх пояснень залишається тільки музика.</p>
     <div class="album-cover">
       <img src="images/porizano-brytvoiu-okkama.jpeg" alt="Порізано Бритвою Оккама">
     </div>
-    <a href="https://ffm.to/pbo" class="album-btn">Слухати</a>
+    <div class="album-streams">
+      <a href="https://open.spotify.com/album/0uxgXh1SQ351dRvFoo9XWJ" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://music.apple.com/ua/album/порізано-бритвою-оккама/1844120403?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+      <a href="https://music.youtube.com/playlist?list=OLAK5uy_mQIjQvFCwsvtjEm2Ka5YSvOIaupCV8UnQ" target="_blank" aria-label="YouTube Music"><i class="fa-brands fa-youtube"></i></a>
+    </div>
   </div>
 
   <div class="divider"></div>
@@ -292,14 +302,7 @@
   <div class="video-wrap">
     <iframe src="https://www.youtube.com/embed/kv_Ni-ogzZA" title="FRANCO - Грім і кров" allowfullscreen></iframe>
   </div>
- <div class="divider"></div>
-
-<div class="section-label-left">
-  <div class="section-label">Spotify</div>
-</div>
-<div class="video-wrap" style="padding-bottom: 152px; height: auto;">
-  <iframe src="https://open.spotify.com/embed/artist/4dVvyUBS8H70Meuw9n4lhw?utm_source=generator" width="100%" height="152" style="border-radius: 8px;" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-</div>
+  <p class="video-caption">Світло завжди знаходить, що освітити.</p>
 </main>
 <footer>
   <div class="footer-top">
