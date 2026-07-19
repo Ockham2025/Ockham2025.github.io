@@ -1,1 +1,733 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Порізано Бритвою Оккама — FRANCO</title>
+<link rel="icon" type="image/png" href="/images/franco-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #000000;
+    color: #f2f2f2;
+    font-family: 'Manrope', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  header img {
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+  }
+  header a {
+    display: inline-block;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  nav a:hover { color: #e63946; }
+  main {
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    width: 100%;
+  }
 
+  /* Обкладинка */
+  .pbo-cover-block {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .pbo-cover {
+    width: 280px;
+    height: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: block;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+  .pbo-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Заголовок */
+  .pbo-header {
+    text-align: center;
+    padding-bottom: 32px;
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .pbo-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #444, transparent);
+  }
+  .pbo-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .pbo-meta {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .pbo-desc {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.75;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  /* Трек-лист */
+  .pbo-tracklist {
+    margin-bottom: 50px;
+  }
+  .pbo-track {
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .pbo-track:first-child {
+    border-top: 1px solid #2a2a2a;
+  }
+  .pbo-track-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 0;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .pbo-track-row:hover {
+    opacity: 0.7;
+  }
+  .pbo-num {
+    font-size: 13px;
+    color: #666;
+    width: 20px;
+    flex-shrink: 0;
+  }
+  .pbo-tname {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    color: #f2f2f2;
+    flex: 1;
+    letter-spacing: 0.3px;
+  }
+  .pbo-dur {
+    font-size: 13px;
+    color: #666;
+    flex-shrink: 0;
+  }
+  .pbo-arrow {
+    font-size: 12px;
+    color: #888;
+    transition: transform 0.2s;
+    display: inline-block;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+  .pbo-arrow.open {
+    transform: rotate(180deg);
+    color: #e63946;
+  }
+
+  .pbo-lyrics {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+  .pbo-lyrics.open {
+    max-height: 280px;
+    overflow-y: auto;
+  }
+  .pbo-lyrics-inner {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 2;
+    white-space: pre-line;
+    border-left: 2px solid #e63946;
+    margin-left: 20px;
+    padding: 8px 0 24px 18px;
+  }
+
+  /* Платформи */
+  .pbo-platforms {
+    margin-bottom: 50px;
+  }
+  .pbo-platforms-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .pbo-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pbo-link {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    color: #f2f2f2;
+    padding: 10px 22px;
+    border: 1px solid #f2f2f2;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .pbo-link:hover {
+    background: #f2f2f2;
+    color: #0d0d0d;
+  }
+
+  /* Креди */
+  .pbo-credits {
+    padding-top: 40px;
+    position: relative;
+  }
+  .pbo-credits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #444, transparent);
+  }
+  .pbo-credits-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    font-weight: 700;
+  }
+  .pbo-credits-block {
+    margin-bottom: 22px;
+  }
+  .pbo-credits-label {
+    font-size: 11px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .pbo-credits-value {
+    font-size: 15px;
+    color: #f2f2f2;
+    line-height: 1.6;
+  }
+  .pbo-credits-members {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  .pbo-credits-member {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    color: #f2f2f2;
+    letter-spacing: 0.3px;
+  }
+  .pbo-credits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 32px;
+  }
+
+  footer {
+    padding: 40px 20px 0;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  .footer-top {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-socials a {
+    color: #f2f2f2;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .footer-socials a:hover { color: #e63946; }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .footer-links a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer-links a:hover { color: #e63946; }
+  .footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 30px 15px; }
+    nav { gap: 20px; }
+    nav a { font-size: 14px; }
+    main { padding: 40px 15px; }
+    .pbo-cover { width: 200px; height: 200px; }
+    .pbo-title { font-size: 20px; }
+    .pbo-credits-grid { grid-template-columns: 1fr; }
+    .pbo-credits-members { gap: 14px; }
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 25px;
+    }
+    .footer-links {
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <nav>
+    <a href="/music/">Музика</a>
+    <a href="/videos/">Відео</a>
+    <a href="/notes/">Нотатки</a>
+    <a href="/about/">Про гурт</a>
+  </nav>
+</header>
+<main>
+
+  <div class="pbo-cover-block">
+    <div class="pbo-cover">
+      <img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Порізано Бритвою Оккама — FRANCO">
+    </div>
+  </div>
+
+  <div class="pbo-header">
+    <div class="pbo-title">Порізано Бритвою Оккама</div>
+    <div class="pbo-meta">FRANCO · 2025 · LP · 10 треків</div>
+    <div class="pbo-desc">Альбом про спробу спростити те, що не піддається спрощенню. Між холодною електронікою та живим нервом гітар, FRANCO рухається крізь теми втрати, відчуження і внутрішніх діалогів, де кожна відповідь лише відкриває нові питання. Це музика станів — тривожних, крихких і чесних до дискомфорту.</div>
+  </div>
+
+  <div class="pbo-tracklist" id="pbo-tracks"></div>
+
+  <div class="pbo-platforms">
+    <div class="pbo-platforms-label">Слухати</div>
+    <div class="pbo-links">
+      <a class="pbo-link" href="https://ffm.to/pbo" target="_blank">Всі платформи</a>
+      <a class="pbo-link" href="https://open.spotify.com/album/0uxgXh1SQ351dRvFoo9XWJ" target="_blank">Spotify</a>
+      <a class="pbo-link" href="https://music.apple.com/ua/album/порізано-бритвою-оккама/1844120403?l=uk" target="_blank">Apple Music</a>
+      <a class="pbo-link" href="https://music.youtube.com/playlist?list=OLAK5uy_mQIjQvFCwsvtjEm2Ka5YSvOIaupCV8UnQ" target="_blank">YouTube Music</a>
+    </div>
+  </div>
+
+  <div class="pbo-credits">
+    <div class="pbo-credits-title">Credits</div>
+
+    <div class="pbo-credits-block">
+      <div class="pbo-credits-label">FRANCO</div>
+      <div class="pbo-credits-members">
+        <div class="pbo-credits-member">Валентин Федишен</div>
+        <div class="pbo-credits-member">Володимир Гусєв</div>
+        <div class="pbo-credits-member">Станіслав Дяченко</div>
+      </div>
+    </div>
+
+    <div class="pbo-credits-grid">
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Музика і тексти</div>
+        <div class="pbo-credits-value">Валентин Федишен</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Запис</div>
+        <div class="pbo-credits-value">Дмитро Кіт, Станіслав Дяченко</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Арт</div>
+        <div class="pbo-credits-value">Олена Бу Шдід</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Дизайн</div>
+        <div class="pbo-credits-value">Олексій Рудюк</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Режисер</div>
+        <div class="pbo-credits-value">Віктор Придувалов</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Лейбл</div>
+        <div class="pbo-credits-value">Faint Trigger Bureau</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<footer>
+  <div class="footer-top">
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy-policy/">Політика конфіденційності</a>
+      <a href="/reach-us/">Контакти</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 FRANCO
+  </div>
+</footer>
+
+<script>
+const pboTracks = [
+  { num: 1, name: "Довго-довго (Човен)", dur: "5:01", lyrics: `Мало нам віддали
+Нас ховали довго-довго
+Стало все назавжди пусто
+А було густо
+Знову пахне сильно
+Дай сховатись в небо синє
+Стало все назавжди пусто
+А було густо
+
+Чуєш, я не знаю
+Я не бачу
+Де мій човен
+Чуєш, я не знаю
+Бо не бачу
+Витри сльози
+
+Кажуть, темне море
+Забирає все навколо
+Та душа, мені здається
+Дорожче серця
+
+Чуєш, я не знаю
+Я не бачу
+Де мій човен
+Чуєш, я не знаю
+Бо не бачу
+Витри сльози
+
+Чуєш, я не знаю
+Я не бачу
+Де мій човен
+Чуєш, я не знаю
+Бо не бачу
+Витри сльози` },
+  { num: 2, name: "Ніч і вино (27 дверей)", dur: "3:31", lyrics: `Недопили
+Забрали по машинам і ґудбай
+Засвітили
+Своє лице попросять не давай
+
+Стоп скажеш
+Знов не ляжеш
+Ніч довга
+Ми...
+
+Забрали недопите то вино
+Забрали недопите то вино
+
+Заслужили
+Побути наодинці без людей
+Зачинили
+Всі двадцять сім зачинених дверей
+
+Стоп скажеш
+Знов не ляжеш
+Ніч довга
+Ми...
+
+Забрали недопите то вино
+Забрали недопите то вино
+
+Забрали недопите то вино
+Забрали недопите то вино
+Забрали недопите то` },
+  { num: 3, name: "Грім і кров (Хто тут я)", dur: "3:04", lyrics: `Стало страшно
+Як забрали в тебе день
+Ніч минула
+Та залишилась мігрень
+
+Коли повсюди грім і кров
+Я добре знаю хто тут я
+Я я
+
+Світле небо
+Замальоване дітьми
+Темне поле
+Непритомне від війни
+
+Коли повсюди грім і кров
+Я добре знаю хто тут я
+Снігом посипана земля
+Тільки залишиться любов` },
+  { num: 4, name: "Мовчання на краю світу (Не пиши)", dur: "4:48", lyrics: `Я не знаю, де живе твоя душа
+Кожен раз не бачу я у ній кінця
+І краю не видно
+
+Не пиши мені свої слова
+Дай забути ніч, бо там вода
+
+Я не знаю, та чомусь летить стіна
+Потрапляю під вогонь твого буття
+Страшно надовго лишатися
+
+Не пиши мені свої слова
+Дай забути ніч, бо там вода
+Не пиши мені свої слова
+Дай забути ніч, бо там вода` },
+  { num: 5, name: "Кислота (Затемнилось)", dur: "3:34", lyrics: `Ти бачиш, як затемнилось
+І світилось, і годилось
+Заклеєне - відклеїлось
+Побачене - засліпилось
+
+Дім не стане чужим
+Тільки раз на сторіччя
+Снайпер буде косим
+Вистрелить собі у обличчя
+
+Якби всім стало мудрості
+І не дражнила нас брехня
+Якби мій кіт сто років жив
+Та випалить все кислота
+
+Дім не стане чужим
+Тільки раз на сторіччя
+Снайпер буде косим
+Вистрелить собі у обличчя` },
+  { num: 6, name: "Сам на сам (Живу з тобою)", dur: "3:17", lyrics: `Скільки б не було тебе
+Але я сам на сам живу з тобою
+Вилитий у ніч мороз
+Так прісно сходить з неба та й з водою
+
+Вечір як останній
+На сльозі на ранній
+
+Дихати час не дає
+Але з тобою міг би полетіти
+Десь наприкінці весни
+На березі вогню буде горіти
+
+Вечір як останній
+На сльозі на ранній
+
+Скільки б не було тебе
+
+Скільки б не було тебе
+Але я сам на сам живу з тобою
+Вилитий у ніч мороз
+Так прісно сходить з неба та й з водою` },
+  { num: 7, name: "Сартр (Кокосові слова)", dur: "4:02", lyrics: `Мої кокосові слова
+Твої молочні теплі ріки
+Ніби в тумані голова
+Я п'ю ліки
+Сіль на воді посипана
+Ще поживем наскільки зможем
+Бог ненароком так помер
+Все тривожить
+
+Часу мало, лід зламало
+Від темноти, від темноти
+Я не можу, як ви схожі
+Бери й кричи, бери й кричи
+
+Ніби нудота без кінця
+Від ваших слів і ваших рухів
+Хто вам дав право на факап
+Злити духів
+Ніби нудота без кінця
+Від ваших слів і ваших рухів
+Хто вам дав право на факап
+Злити духів
+
+Часу мало, лід зламало
+Від темноти, від темноти
+Я не можу, як ви схожі
+Бери й кричи, бери й кричи
+
+Мої кокосові слова
+Твої молочні теплі ріки
+Мої кокосові слова
+Твої молочні теплі ріки` },
+  { num: 8, name: "Сад (Ти забери назад)", dur: "3:32", lyrics: `Ти забери назад
+Свої останні сни
+Мій небезпечний сад
+Кожного дня - тобі
+
+Ти забери назад
+Все, що дала мені
+Мій небезпечний сад
+Кожного дня - тобі
+
+Холодно на душі
+Гріє мене вино
+Стали ми вмить чужі
+Навіть пробили дно
+
+Ти забери назад
+Все, що дала мені
+Мій небезпечний сад
+Кожного дня - тобі
+Мій небезпечний сад
+Кожного дня - тобі` },
+  { num: 9, name: "Маяк не працює (Сльози падали)", dur: "3:34", lyrics: `Ми так довго дивились назад
+Ми літали, а тут снігопад
+В ніч, коли розбудили вовки
+Ми збирали докупи думки
+
+За вікном сльози падали униз
+За вікном темно, ти повернись, спинись
+
+Там нам зорі показують шлях
+Йти далеко-далеко в полях
+Ми так довго чекали весну
+Я літатиму поруч мов птах
+
+За вікном сльози падали униз
+За вікном темно, ти повернись, спинись
+
+За вікном сльози падали униз
+За вікном темно, ти повернись, спинись` },
+  { num: 10, name: "Повернення (І сонце сходить)", dur: "3:33", lyrics: `Так намальовано
+І зашифровано
+Чорним по білому
+Білим на чорному
+Світиться золотом
+Твоя симфонія
+Плакали ангели
+Тішились демони
+
+І, і сонце сходить
+І, і сонце сходить
+
+Наше повернення
+Дім поруч з грушами
+З дому виноситься
+Срібло і золото
+Світить гірляндами
+Наше повернення
+В місяці клятому
+В небі небесному
+
+І, і сонце сходить
+І, і сонце сходить
+І, і сонце сходить
+І, і сонце сходить
+
+І, і сонце сходить` },
+];
+
+const container = document.getElementById('pbo-tracks');
+pboTracks.forEach((t, i) => {
+  const div = document.createElement('div');
+  div.className = 'pbo-track';
+  div.innerHTML = `
+    <div class="pbo-track-row" onclick="pboToggle(${i})">
+      <span class="pbo-num">${t.num}</span>
+      <span class="pbo-tname">${t.name}</span>
+      <span class="pbo-dur">${t.dur}</span>
+      <span class="pbo-arrow" id="pbo-arrow-${i}">↓</span>
+    </div>
+    <div class="pbo-lyrics" id="pbo-lyrics-${i}">
+      <div class="pbo-lyrics-inner">${t.lyrics}</div>
+    </div>
+  `;
+  container.appendChild(div);
+});
+
+function pboToggle(i) {
+  const lyrics = document.getElementById('pbo-lyrics-' + i);
+  const arrow = document.getElementById('pbo-arrow-' + i);
+  const isOpen = lyrics.classList.contains('open');
+  document.querySelectorAll('.pbo-lyrics').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.pbo-arrow').forEach(el => el.classList.remove('open'));
+  if (!isOpen) { lyrics.classList.add('open'); arrow.classList.add('open'); }
+}
+</script>
+</body>
+</html>
