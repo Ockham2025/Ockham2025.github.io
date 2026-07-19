@@ -1,1 +1,304 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Політика конфіденційності — FRANCO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #000000;
+    color: #f2f2f2;
+    font-family: 'Manrope', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  header img {
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    position: relative;
+    color: #f2f2f2;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 6px;
+    transition: letter-spacing 0.3s ease, color 0.3s ease;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #e63946;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  nav a:hover {
+    color: #e63946;
+    letter-spacing: 2px;
+  }
+  nav a:hover::after {
+    width: 100%;
+  }
+  main {
+    flex: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    width: 100%;
+  }
 
+  .page-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .page-updated {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+  .content p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #ccc;
+    margin-bottom: 20px;
+  }
+  .content h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 45px;
+    margin-bottom: 18px;
+  }
+  .content h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    color: #f2f2f2;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    margin-bottom: 14px;
+  }
+  .content ul {
+    margin: 0 0 20px 20px;
+    color: #ccc;
+    line-height: 1.7;
+  }
+  .content ul li {
+    margin-bottom: 8px;
+  }
+  .content a {
+    color: #e63946;
+    text-decoration: none;
+  }
+  .content a:hover {
+    text-decoration: underline;
+  }
+
+  footer {
+    padding: 40px 20px 0;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  .footer-top {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-socials a {
+    color: #f2f2f2;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .footer-socials a:hover { color: #e63946; }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .footer-links a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer-links a:hover { color: #e63946; }
+  .footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 30px 15px; }
+    nav { gap: 20px; }
+    nav a { font-size: 14px; }
+    main { padding: 40px 15px; }
+    .page-title { font-size: 24px; }
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 25px;
+    }
+    .footer-links {
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <img src="/images/francologo.png" alt="FRANCO">
+  <nav>
+    <a href="/music/">Музика</a>
+    <a href="/videos/">Відео</a>
+    <a href="/notes/">Нотатки</a>
+    <a href="/about/">Про гурт</a>
+  </nav>
+</header>
+<main>
+  <div class="page-title">Політика конфіденційності</div>
+  <div class="page-updated">Останнє оновлення: 1 лютого 2026 року</div>
+
+  <div class="content">
+    <p>Ця Політика конфіденційності описує, які персональні дані ми можемо збирати через сайт гурту FRANCO (далі — «ми», «наш сайт»), з якою метою ми їх використовуємо та як захищаємо.</p>
+
+    <h2>1. Які дані ми збираємо</h2>
+    <p>Ми можемо збирати такі дані:</p>
+    <ul>
+      <li>Ім'я та email через контактну форму</li>
+      <li>Ім'я та email, які ви добровільно надаєте через контактні форми або форму підписки на новини</li>
+      <li>Технічні дані, зокрема IP-адресу, тип браузера, приблизне місцезнаходження та дані про поведінку на сайті (через сервіси аналітики, наприклад Google Analytics)</li>
+      <li>Дані, які можуть збиратися сторонніми платформами при взаємодії з вбудованим контентом (YouTube, Spotify тощо)</li>
+    </ul>
+
+    <h2>2. Як ми використовуємо дані</h2>
+    <p>Ми використовуємо персональні дані виключно з таких цілей:</p>
+    <ul>
+      <li>Відповідати на ваші запити та повідомлення</li>
+      <li>Надсилати новини гурту, анонси релізів, подій та оновлення сайту — лише за вашою добровільною згодою</li>
+      <li>Аналізувати відвідуваність сайту з метою покращення контенту та структури</li>
+      <li>Відображати мультимедійний контент зі сторонніх платформ</li>
+    </ul>
+    <p>Ми обробляємо персональні дані лише на підставі вашої згоди або в інших випадках, передбачених чинним законодавством.</p>
+
+    <h3>3. Email-розсилка</h3>
+    <p>Для надсилання новин ми використовуємо сервіс Mailchimp.</p>
+    <ul>
+      <li>При підписці ми збираємо ім'я та email</li>
+      <li>Ви можете відписатися від розсилки у будь-який момент за допомогою посилання в кожному листі</li>
+      <li>Mailchimp обробляє персональні дані відповідно до власної політики конфіденційності та вимог GDPR</li>
+    </ul>
+
+    <h2>4. Хто має доступ до даних</h2>
+    <p>Ми не продаємо та не передаємо ваші персональні дані третім особам, за винятком випадків, коли це необхідно для роботи сайту або надання його функцій:</p>
+    <ul>
+      <li>Сервісів веб-аналітики (наприклад, Google Analytics)</li>
+      <li>Сервісів email-розсилок (Mailchimp)</li>
+      <li>Сторонніх платформ (YouTube, Spotify тощо), якщо ви взаємодієте з вбудованим контентом</li>
+    </ul>
+
+    <h2>5. Файли cookie</h2>
+    <p>Наш сайт може використовувати файли cookie для:</p>
+    <ul>
+      <li>забезпечення коректної роботи сайту</li>
+      <li>збереження налаштувань користувача</li>
+      <li>аналізу відвідуваності</li>
+    </ul>
+    <p>Ви можете обмежити або вимкнути використання cookie у налаштуваннях свого браузера.</p>
+
+    <h2>6. Ваші права</h2>
+    <p>Ви маєте право:</p>
+    <ul>
+      <li>Дізнатися, які персональні дані ми зберігаємо</li>
+      <li>Вимагати виправлення або видалення своїх персональних даних</li>
+      <li>Відкликати згоду на обробку персональних даних у будь-який момент</li>
+      <li>Подати скаргу до відповідного органу із захисту персональних даних</li>
+    </ul>
+
+    <h2>7. Контакти</h2>
+    <p>Якщо у вас виникли питання щодо цієї Політики конфіденційності або обробки персональних даних, зв'яжіться з нами: <a href="mailto:info@franco.com.ua">info@franco.com.ua</a></p>
+  </div>
+</main>
+<footer>
+  <div class="footer-top">
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy-policy/">Політика конфіденційності</a>
+      <a href="/reach-us/">Контакти</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 FRANCO
+  </div>
+</footer>
+</body>
+</html>
