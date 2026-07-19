@@ -1,1 +1,358 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Відео — FRANCO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #000000;
+    color: #f2f2f2;
+    font-family: 'Manrope', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  header img {
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+  }
+  header a {
+    display: inline-block;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  nav a:hover { color: #e63946; }
+  main {
+    flex: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    width: 100%;
+  }
 
+  .page-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .video-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .video-card .video-wrap {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+  .video-card .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .video-card-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 17px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  footer {
+    padding: 40px 20px 0;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  .footer-top {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-socials a {
+    color: #f2f2f2;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .footer-socials a:hover { color: #e63946; }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .footer-links a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer-links a:hover { color: #e63946; }
+  .footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  @media (max-width: 700px) {
+    header { padding: 30px 15px; }
+    nav { gap: 20px; }
+    nav a { font-size: 14px; }
+    main { padding: 40px 15px; }
+    .page-title { font-size: 24px; }
+    .video-grid {
+      grid-template-columns: 1fr;
+      gap: 35px;
+    }
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 25px;
+    }
+    .footer-links {
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <nav>
+    <a href="/music/">Музика</a>
+    <a href="/videos/">Відео</a>
+    <a href="/notes/">Нотатки</a>
+    <a href="/about/">Про гурт</a>
+  </nav>
+</header>
+<main>
+  <div class="page-title">Відео</div>
+
+  <div class="video-grid">
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/G5lZMJ1pXSk" title="Маяк не працює (Сльози падали)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Маяк не працює (Сльози падали)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/kv_Ni-ogzZA" title="Грім і кров (Хто тут я)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Грім і кров (Хто тут я)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/IbeuYpeBoww" title="Зоряна Осінь (Воплі Відоплясова Cover)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Зоряна Осінь (Воплі Відоплясова Cover)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/pEPpxA4FR9M" title="Додому" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Додому</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/rV7wzS-8fI4" title="Може я (Live @ Kaska)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Може я (Live @ Kaska)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/XkrHXQG-LCo" title="Маша" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Маша</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/UGQMqaMvtaU" title="Рисові Поля (Live @ SoundPlant, 2019)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Рисові Поля (Live @ SoundPlant, 2019)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/BWwsuPJPGV8" title="Ніч і вино (27 дверей) [Live @ SoundPlant, 2019]" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Ніч і вино (27 дверей) [Live @ SoundPlant, 2019]</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/FSoVXh2ilzg" title="Твої Правила (Live @ SoundPlant, 2019)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Твої Правила (Live @ SoundPlant, 2019)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/d-1H3dUoRZk" title="Тремор" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Тремор</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/jv4y9p2jo3Y" title="Голова чи серце (Live at ШООМ)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Голова чи серце (Live at ШООМ)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/vRUAN-QzgvI" title="До-мінор (Live at ШООМ)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">До-мінор (Live at ШООМ)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/egOAa4t9Mdo" title="Пірс (Live at ШООМ)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Пірс (Live at ШООМ)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/IX6ijuwqIEk" title="Тремор (Live at ШООМ)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Тремор (Live at ШООМ)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/fe2CFiU3LpA" title="Меркурій (live at SoundPlant, 2016)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Меркурій (live at SoundPlant, 2016)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/r5-xrOKa00M" title="Ніби Не Ясно (live at SoundPlant, 2016)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Ніби Не Ясно (live at SoundPlant, 2016)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/PLgVXxHbxQ8" title="За Вікном (live at SoundPlant, 2016)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">За Вікном (live at SoundPlant, 2016)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/KEJMZ_ZzV_M" title="До-мінор (live at SoundPlant, 2016)" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">До-мінор (live at SoundPlant, 2016)</div>
+    </div>
+
+    <div class="video-card">
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/TPxe2ihyCI4" title="Регіна" allowfullscreen></iframe>
+      </div>
+      <div class="video-card-title">Регіна</div>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="footer-top">
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy-policy/">Політика конфіденційності</a>
+      <a href="/reach-us/">Контакти</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 FRANCO
+  </div>
+</footer>
+</body>
+</html>
