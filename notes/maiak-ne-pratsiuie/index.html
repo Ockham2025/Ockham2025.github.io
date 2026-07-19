@@ -1,1 +1,263 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Коли світло більше не веде — FRANCO</title>
+<link rel="icon" type="image/png" href="/images/franco-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #000000;
+    color: #f2f2f2;
+    font-family: 'Manrope', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  header img {
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+  }
+  header a { display: inline-block; }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  nav a:hover { color: #e63946; }
+  main {
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    width: 100%;
+  }
 
+  .back-link {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: none;
+    margin-bottom: 30px;
+    transition: color 0.3s ease;
+  }
+  .back-link:hover { color: #e63946; }
+
+  .note-date {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 12px;
+  }
+  .note-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.25;
+    margin-bottom: 36px;
+  }
+
+  .video-wrap {
+    max-width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    margin-bottom: 40px;
+  }
+  .video-wrap iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .note-body p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #ddd;
+    margin-bottom: 22px;
+  }
+  .note-body p:last-child { margin-bottom: 0; }
+
+  .note-credits {
+    margin-top: 45px;
+    padding-top: 30px;
+    position: relative;
+    font-size: 14px;
+    line-height: 2;
+    color: #999;
+  }
+  .note-credits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #444, transparent);
+  }
+  .note-credits strong {
+    color: #ccc;
+    font-weight: 500;
+  }
+
+  footer {
+    padding: 40px 20px 0;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  .footer-top {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+  .footer-socials { display: flex; gap: 20px; }
+  .footer-socials a { color: #f2f2f2; font-size: 20px; text-decoration: none; }
+  .footer-socials a:hover { color: #e63946; }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .footer-links a { color: #f2f2f2; text-decoration: none; font-size: 14px; }
+  .footer-links a:hover { color: #e63946; }
+  .footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 30px 15px; }
+    nav { gap: 20px; }
+    nav a { font-size: 14px; }
+    main { padding: 40px 15px; }
+    .note-title { font-size: 22px; }
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 25px;
+    }
+    .footer-links { align-items: center; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <nav>
+    <a href="/music/">Музика</a>
+    <a href="/videos/">Відео</a>
+    <a href="/notes/">Нотатки</a>
+    <a href="/about/">Про гурт</a>
+  </nav>
+</header>
+<main>
+  <a href="/notes/" class="back-link">← Усі нотатки</a>
+
+  <div class="note-date">01.05.2026</div>
+  <div class="note-title">Коли світло більше не веде</div>
+
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/G5lZMJ1pXSk" title="FRANCO - Маяк не працює (Сльози падали)" allowfullscreen></iframe>
+  </div>
+
+  <div class="note-body">
+    <p>Гурт FRANCO представив відео на трек «Маяк не працює (Сльози падали)» з альбому «Порізано Бритвою Оккама».</p>
+    <p>«Маяк не працює (Сльози падали)» — один із тих треків, які не плануються.</p>
+    <p>Цей альбом з самого початку формувався навколо відчуття втрати. Не як теми, а як стану, який змінює все інше — звук, паузи, слова.</p>
+    <p>З часом це відчуття тільки поглиблювалось. І цей трек залишився в ньому таким, яким з'явився: без спроб щось пояснити або виправити.</p>
+    <p>Музика не вирішує таких речей. Але іноді вона дає форму тиші, з якою інакше не впоратись.</p>
+  </div>
+
+  <div class="note-credits">
+    <strong>Відео створено</strong> Re:Evolution Film<br>
+    <strong>Режисер</strong> — Віктор Придувалов<br>
+    <strong>Оператори</strong> — Сергій Півненко, Олександр Сокуренко<br>
+    <strong>Постпродакшн</strong> — Mental dRive Studio<br>
+    <strong>Mood Video</strong> — Олексій Рудюк
+  </div>
+</main>
+<footer>
+  <div class="footer-top">
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy-policy/">Політика конфіденційності</a>
+      <a href="/reach-us/">Контакти</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 FRANCO
+  </div>
+</footer>
+</body>
+</html>
