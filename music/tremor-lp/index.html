@@ -1,1 +1,484 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тремор — FRANCO</title>
+<link rel="icon" type="image/png" href="/images/franco-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: #000000;
+    color: #f2f2f2;
+    font-family: 'Manrope', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  header img {
+    max-width: 400px;
+    width: 90%;
+    height: auto;
+  }
+  header a {
+    display: inline-block;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  nav a:hover { color: #e63946; }
+  main {
+    flex: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    width: 100%;
+  }
 
+  .pbo-cover-block {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .pbo-cover {
+    width: 280px;
+    height: 280px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: block;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+  .pbo-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pbo-header {
+    text-align: center;
+    padding-bottom: 32px;
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .pbo-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #444, transparent);
+  }
+  .pbo-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+  .pbo-meta {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #888;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .pbo-desc {
+    font-size: 15px;
+    color: #ccc;
+    line-height: 1.75;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .pbo-tracklist {
+    margin-bottom: 50px;
+  }
+  .pbo-track {
+    border-bottom: 1px solid #2a2a2a;
+  }
+  .pbo-track:first-child {
+    border-top: 1px solid #2a2a2a;
+  }
+  .pbo-track-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 0;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .pbo-track-row:hover {
+    opacity: 0.7;
+  }
+  .pbo-num {
+    font-size: 13px;
+    color: #666;
+    width: 20px;
+    flex-shrink: 0;
+  }
+  .pbo-tname {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    color: #f2f2f2;
+    flex: 1;
+    letter-spacing: 0.3px;
+  }
+  .pbo-dur {
+    font-size: 13px;
+    color: #666;
+    flex-shrink: 0;
+  }
+  .pbo-arrow {
+    font-size: 12px;
+    color: #888;
+    transition: transform 0.2s;
+    display: inline-block;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+  .pbo-arrow.open {
+    transform: rotate(180deg);
+    color: #e63946;
+  }
+
+  .pbo-lyrics { display: none; }
+  .pbo-lyrics.open {
+    display: block;
+    max-height: 280px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .pbo-lyrics-inner {
+    font-size: 14px;
+    color: #aaa;
+    line-height: 2;
+    border-left: 2px solid #e63946;
+    margin-left: 20px;
+    padding: 8px 0 24px 18px;
+  }
+
+  .pbo-platforms {
+    margin-bottom: 50px;
+  }
+  .pbo-platforms-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .pbo-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pbo-link {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    color: #f2f2f2;
+    padding: 10px 22px;
+    border: 1px solid #f2f2f2;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .pbo-link:hover {
+    background: #f2f2f2;
+    color: #0d0d0d;
+  }
+
+  .pbo-credits {
+    padding-top: 40px;
+    position: relative;
+  }
+  .pbo-credits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #444, transparent);
+  }
+  .pbo-credits-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    font-weight: 700;
+  }
+  .pbo-credits-block {
+    margin-bottom: 22px;
+  }
+  .pbo-credits-label {
+    font-size: 11px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .pbo-credits-value {
+    font-size: 15px;
+    color: #f2f2f2;
+    line-height: 1.6;
+  }
+  .pbo-credits-members {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  .pbo-credits-member {
+    font-family: 'Oswald', sans-serif;
+    font-size: 15px;
+    color: #f2f2f2;
+    letter-spacing: 0.3px;
+  }
+  .pbo-credits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 32px;
+  }
+
+  footer {
+    padding: 40px 20px 0;
+    position: relative;
+  }
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #555, transparent);
+  }
+  .footer-top {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+  .footer-socials {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-socials a {
+    color: #f2f2f2;
+    font-size: 20px;
+    text-decoration: none;
+  }
+  .footer-socials a:hover { color: #e63946; }
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+  }
+  .footer-links a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .footer-links a:hover { color: #e63946; }
+  .footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    padding: 20px 0;
+    border-top: 1px solid #2a2a2a;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 30px 15px; }
+    nav { gap: 20px; }
+    nav a { font-size: 14px; }
+    main { padding: 40px 15px; }
+    .pbo-cover { width: 200px; height: 200px; }
+    .pbo-title { font-size: 20px; }
+    .pbo-credits-grid { grid-template-columns: 1fr; }
+    .pbo-credits-members { gap: 14px; }
+    .footer-top {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 25px;
+    }
+    .footer-links {
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <nav>
+    <a href="/music/">Музика</a>
+    <a href="/videos/">Відео</a>
+    <a href="/notes/">Нотатки</a>
+    <a href="/about/">Про гурт</a>
+  </nav>
+</header>
+<main>
+
+  <div class="pbo-cover-block">
+    <div class="pbo-cover">
+      <img src="/images/franco-tremor.png" alt="Тремор — FRANCO">
+    </div>
+  </div>
+
+  <div class="pbo-header">
+    <div class="pbo-title">Тремор</div>
+    <div class="pbo-meta">FRANCO · 2018 · LP · 8 треків</div>
+    <div class="pbo-desc">«Тремор» — альбом, створений у період внутрішнього переформатування гурту й усього навколо нього. Зимова темрява, нічні записи та постійне відчуття страху стали частиною його звучання. Саме в цей час відбулося знайомство з Віктором Придуваловим, що вплинуло на подальшу візуальну та емоційну мову FRANCO. «Тремор» звучить як документ стану, в якому тривога, тиша і зміни вже неможливо відокремити одне від одного.</div>
+  </div>
+
+  <div class="pbo-tracklist" id="tremor-tracks"></div>
+
+  <div class="pbo-platforms">
+    <div class="pbo-platforms-label">Слухати</div>
+    <div class="pbo-links">
+      <a class="pbo-link" href="https://ffm.to/tremor-franco" target="_blank">Всі платформи</a>
+      <a class="pbo-link" href="https://open.spotify.com/album/26POa0NZL8RT7S50UMyzc9" target="_blank">Spotify</a>
+      <a class="pbo-link" href="https://music.apple.com/ua/album/тремор/1784294945?l=uk" target="_blank">Apple Music</a>
+      <a class="pbo-link" href="https://music.youtube.com/playlist?list=OLAK5uy_kRYV1nXGgdVODUfRSouUwWcpyR80ItEJw" target="_blank">YouTube Music</a>
+    </div>
+  </div>
+
+  <div class="pbo-credits">
+    <div class="pbo-credits-title">Credits</div>
+
+    <div class="pbo-credits-block">
+      <div class="pbo-credits-label">FRANCO</div>
+      <div class="pbo-credits-members">
+        <div class="pbo-credits-member">Валентин Федишен</div>
+        <div class="pbo-credits-member">Єгор Литвиненко</div>
+      </div>
+    </div>
+
+    <div class="pbo-credits-grid">
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Музика і тексти</div>
+        <div class="pbo-credits-value">Валентин Федишен</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Запис</div>
+        <div class="pbo-credits-value">Олександр Козинець, Антон Блащук, Павло Сафонов</div>
+      </div>
+      <div class="pbo-credits-block">
+        <div class="pbo-credits-label">Режисер</div>
+        <div class="pbo-credits-value">Віктор Придувалов</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<footer>
+  <div class="footer-top">
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy-policy/">Політика конфіденційності</a>
+      <a href="/reach-us/">Контакти</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 FRANCO
+  </div>
+</footer>
+
+<script>
+const tremorTracks = [
+  { num: 1, name: "Рисові поля", dur: "2:00", lyrics: "Не тримай мене\nВ рисових полях\nДай відчути все\nДай почути як\n\nНе тримай мене\nВ рисових полях\nДай відчути все\nДай почути як" },
+  { num: 2, name: "Падав і летів", dur: "4:08", lyrics: "Із тих останніх днів\nЯ пам'ятав усі\nЯк довго я читав\nТі фото на стіні\nЛиш встиг почути звук\nІ правильний приціл\nЗгадав одразу, як і\nПадав і летів\n\nІ на порозі дня\nЛежав уже один\nЛітали в голові\nСобори і думки\nНавіщо я тоді\nПускаю під крило\nА може не для вас і\nВідкрито тут було\n\nЯ сам, я сам десь там\nЧув під ногами капкан\nБачив очима туман\nЧув під ногами капкан\n\nПадав і летів\nПадав і летів\nПадав і летів" },
+  { num: 3, name: "Дай мені тепла", dur: "3:30", lyrics: "Якби я міг збирати сни\nТо я б під скло я всі розклав\nДивився ті, в яких є ти\nЛягати спати вже б не став\nЯкби я міг тримати час\nНе сіяв ним, як тим піском\nЗберіг усе тебе і нас\nІ дивний погляд відблиском\n\nЧому у твої очах сині небеса\nІ мене нема\nЧому у твоїх словах витекла вода\nДай мені тепла\n\nЧому у твої очах сині небеса\nІ мене нема\nЧому у твоїх словах витекла вода\nДай мені тепла" },
+  { num: 4, name: "Твої правила", dur: "4:19", lyrics: "Сонце встає над будинками\nБіжи, якщо можеш, біжи\nВсім, хто каміння підкидував\nТи їхні ножі поверни\nЗабудь, де вони прокидаються\nІ що на сніданок їдять\nБуває, дороги розходяться\nУ пам'яті всі залишаються\n\nТвоє життя, твої правила\nТвоє життя, твої правила\nТвоє життя, твої правила\n\nЯ пам'ятаю, як дорого\nЗа все непомітно платив\nДовго і тяжко, і порівну\nЯ став і на повну летів\nЛетів, де вони не дотягнуться\nІ навіть надовго летів\nЦі може надовго зостануться\nТа в пам'яті всі залишаються\n\nТвоє життя, твої правила\nТвоє життя, твої правила\nТвоє життя, твої правила\n\nТвоє життя, твої правила\nТвоє життя, твої правила\nТвоє життя, твої правила\nТвоє життя, твої правила" },
+  { num: 5, name: "Пірс", dur: "4:18", lyrics: "Дивний сюжет тримає макет\nПрісна вода по землі\nЛиє на всіх, ти не з простих\nМи не спроста тут знайшли\n\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими із води\n\nВсім не до нас, двадцять п'ять фраз\nДвадцять п'ять доз і едем\nРадуй мене, діло твоє\nКамінь в пісок перетрем\n\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими із води\n\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими\nСтарий\nСтарий\n\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими\nСтарий пірс, стрибали вниз\nЛетіли вверх, виходили сухими із води" },
+  { num: 6, name: "До-мінор", dur: "4:26", lyrics: "І я, і ти\nНевидима плівка нас зняла, прости\nІ голий був, і гола ти\nНевидима плівка нас зняла, прости\n\nІ я, і ти\nДороги часто плутаєм, хвости\nУ ящірок, а в нас мости\nНез'єднані будем назавжди, прости" },
+  { num: 7, name: "Ніби не ясно", dur: "3:45", lyrics: "Де ти ходиш? я так довго не чекав\nЯк ти спиш? я так рано вставав\n\nСкрізь земля, я до тебе це все знав\nЯ дзвонив, мабуть не туди попав\nСкрізь земля, я до тебе це все знав\nЯ дзвонив, мабуть не туди попав" },
+  { num: 8, name: "Тремор", dur: "4:27", lyrics: "Світ втрачає голову, а я пишу пісні\nКожен день від холоду мало не зомлів\nСвіт втрачає голову, а я пишу листи\nБуло мало голоду і тисячі вітрів\n\nМоже знайдем себе\nНай очі вилізуть з орбіт\nМоже знайдем себе\nІ на коліна цілий світ\n\nСвіт ламає голову, нам не допомогти\nТремор не від холоду, далеко не лети\nВже не видно полум'я, чомусь нема вогню\nСтало більше холоду, останній день в раю\n\nМоже знайдем себе\nНай очі вилізуть з орбіт\nМоже знайдем себе\nІ на коліна цілий світ\n\nМоже знайдем себе\nНай очі вилізуть з орбіт\nМоже знайдем себе\nІ на коліна цілий світ\n\nМоже знайдем себе\nМоже знайдем себе" },
+];
+
+const container = document.getElementById('tremor-tracks');
+tremorTracks.forEach((t, i) => {
+  const div = document.createElement('div');
+  div.className = 'pbo-track';
+  div.innerHTML =
+    '<div class="pbo-track-row" onclick="tremorToggle(' + i + ')">' +
+    '<span class="pbo-num">' + t.num + '</span>' +
+    '<span class="pbo-tname">' + t.name + '</span>' +
+    '<span class="pbo-dur">' + t.dur + '</span>' +
+    '<span class="pbo-arrow" id="tremor-arrow-' + i + '">↓</span>' +
+    '</div>' +
+    '<div class="pbo-lyrics" id="tremor-lyrics-' + i + '">' +
+    '<div class="pbo-lyrics-inner">' + t.lyrics.replace(/\n/g, '<br>') + '</div>' +
+    '</div>';
+  container.appendChild(div);
+});
+
+function tremorToggle(i) {
+  const lyrics = document.getElementById('tremor-lyrics-' + i);
+  const arrow = document.getElementById('tremor-arrow-' + i);
+  const isOpen = lyrics.classList.contains('open');
+  document.querySelectorAll('#tremor-tracks .pbo-lyrics').forEach(function(el) { el.classList.remove('open'); });
+  document.querySelectorAll('#tremor-tracks .pbo-arrow').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) { lyrics.classList.add('open'); arrow.classList.add('open'); }
+}
+</script>
+</body>
+</html>
