@@ -20,11 +20,12 @@
     flex-direction: column;
     min-height: 100vh;
   }
-  header {
-    padding: 40px 20px;
-    text-align: center;
-    position: relative;
-  }
+header {
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+}
+header a { display: inline-block; }
   header::after {
     content: '';
     position: absolute;
@@ -253,7 +254,7 @@
 </head>
 <body>
 <header>
-  <img src="images/francologo.png" alt="FRANCO">
+<a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
   <nav>
     <a href="/music/">Музика</a>
     <a href="/videos/">Відео</a>
