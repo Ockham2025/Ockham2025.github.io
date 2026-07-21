@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   html, body { height: 100%; }
   body {
     background: #000000;
@@ -26,6 +27,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 header {
   padding: 40px 20px;
@@ -72,6 +74,23 @@ header a { display: inline-block; }
     width: 100%;
   }
 
+  /* Fade-in utility */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .hero.fade-in {
+    transform: scale(1.03);
+  }
+  .hero.fade-in.is-visible {
+    transform: scale(1);
+  }
+
   /* Hero-зображення */
   .hero {
     width: 100%;
@@ -80,6 +99,7 @@ header a { display: inline-block; }
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    transition: opacity 1.1s ease, transform 1.1s ease;
   }
   .hero img {
     width: 100%;
@@ -98,36 +118,38 @@ header a { display: inline-block; }
   /* Секція альбому */
   .album {
     text-align: center;
-    margin-top: 80px;
+    margin-top: 100px;
+  }
+  .album-eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 20px;
   }
   .album-title {
     font-family: 'Oswald', sans-serif;
-    font-size: 32px;
     font-weight: 700;
     color: #f2f2f2;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    line-height: 1.3;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    font-size: clamp(34px, 6vw, 80px);
   }
-  .album-subtitle {
-    font-family: 'Oswald', sans-serif;
-    font-size: 14px;
-    letter-spacing: 2px;
-    color: #f2f2f2;
-    margin-top: 20px;
-    text-transform: uppercase;
-  }
+  .album-title .accent { color: #e63946; }
   .album-date {
     font-family: 'Manrope', sans-serif;
     font-size: 14px;
     color: #f2f2f2;
-    margin-top: 8px;
+    margin-top: 16px;
+    letter-spacing: 1px;
   }
 .album-cover {
   display: block;
   max-width: 400px;
   width: 100%;
-  margin: 40px auto 0;
+  margin: 50px auto 0;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
@@ -245,7 +267,7 @@ header a { display: inline-block; }
     nav a { font-size: 14px; }
     main { padding: 40px 15px; }
     .hero { border-radius: 4px; }
-    .album-title { font-size: 24px; }
+    .album { margin-top: 70px; }
     .section-label { font-size: 18px; }
     .footer-top {
       flex-direction: column;
@@ -255,6 +277,13 @@ header a { display: inline-block; }
     }
     .footer-links {
       align-items: center;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in, .hero {
+      transition: none;
+      opacity: 1;
+      transform: none;
     }
   }
 </style>
@@ -270,18 +299,18 @@ header a { display: inline-block; }
   </nav>
 </header>
 <main>
-  <div class="hero">
+  <div class="hero fade-in">
     <img src="/images/hrim-i-krov.png" alt="FRANCO">
   </div>
 
   <div class="album">
-    <div class="album-title">Порізано Бритвою Оккама</div>
-    <div class="album-subtitle">Новий альбом</div>
-    <div class="album-date">10.10.2025</div>
-    <a href="https://ffm.to/pbo" class="album-cover">
+    <div class="album-eyebrow fade-in">Новий альбом</div>
+    <div class="album-title fade-in">Порізано <span class="accent">Бритвою</span> Оккама</div>
+    <div class="album-date fade-in">10.10.2025</div>
+    <a href="https://ffm.to/pbo" class="album-cover fade-in">
   <img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Порізано Бритвою Оккама">
 </a>
-    <div class="album-streams">
+    <div class="album-streams fade-in">
       <a href="https://open.spotify.com/album/0uxgXh1SQ351dRvFoo9XWJ" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
       <a href="https://music.apple.com/ua/album/порізано-бритвою-оккама/1844120403?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
       <a href="https://music.youtube.com/playlist?list=OLAK5uy_mQIjQvFCwsvtjEm2Ka5YSvOIaupCV8UnQ" target="_blank" aria-label="YouTube Music"><i class="fa-brands fa-youtube"></i></a>
@@ -290,8 +319,8 @@ header a { display: inline-block; }
 
   <div class="divider"></div>
 
-  <div class="section-label">Грім і кров (Хто тут я)</div>
-  <div class="video-wrap">
+  <div class="section-label fade-in">Грім і кров (Хто тут я)</div>
+  <div class="video-wrap fade-in">
     <iframe src="https://www.youtube.com/embed/kv_Ni-ogzZA" title="FRANCO - Грім і кров" allowfullscreen></iframe>
   </div>
 </main>
@@ -316,5 +345,19 @@ header a { display: inline-block; }
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach((el) => {
+    observer.observe(el);
+  });
+</script>
 </body>
 </html>
