@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Після всіх пояснень — FRANCO</title>
+<title>Після всіх пояснень | FRANCO</title>
+<meta name="description" content="FRANCO представили третій студійний альбом «Порізано Бритвою Оккама». Слухайте реліз на всіх стрімінгових платформах.">
+<meta property="og:title" content="Після всіх пояснень — FRANCO">
+<meta property="og:description" content="Новий альбом «Порізано Бритвою Оккама» вже доступний на всіх стрімінгах.">
+<meta property="og:image" content="https://franco.com.ua/images/porizano-brytvoiu-okkama.jpeg">
+<meta property="og:url" content="https://franco.com.ua/notes/porizano-brytvoiu-okkama/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -173,6 +180,58 @@
     height: 100%;
     border: 0;
   }
+  .newsletter {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 40px;
+  }
+  .newsletter-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #f2f2f2;
+    margin-bottom: 20px;
+  }
+  .newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .newsletter-input {
+    background: transparent;
+    border: 1px solid #444;
+    color: #f2f2f2;
+    padding: 12px 18px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    min-width: 260px;
+    border-radius: 4px;
+  }
+  .newsletter-input::placeholder { color: #777; }
+  .newsletter-input:focus {
+    outline: none;
+    border-color: #e63946;
+  }
+  .newsletter-btn {
+    padding: 12px 30px;
+    border: 1px solid #f2f2f2;
+    background: transparent;
+    color: #f2f2f2;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .newsletter-btn:hover {
+    background: #f2f2f2;
+    color: #0d0d0d;
+  }
 
   footer {
     padding: 40px 20px 0;
@@ -222,6 +281,8 @@
     nav a { font-size: 14px; }
     main { padding: 40px 15px; }
     .note-title { font-size: 22px; }
+    .newsletter-form { flex-direction: column; align-items: center; }
+    .newsletter-input { width: 100%; max-width: 320px; }
     .footer-top {
       flex-direction: column;
       align-items: center;
@@ -280,14 +341,25 @@
   </div>
 </main>
 <footer>
+  <div class="newsletter">
+    <div class="newsletter-label">Іноді ми пишемо листи</div>
+    <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" target="_blank" class="newsletter-form">
+      <input type="email" name="EMAIL" placeholder="Твій email" required class="newsletter-input">
+      <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <input type="text" name="b_f4599b9a7dff59f0ab065b38d_b569df38bc" tabindex="-1" value="">
+      </div>
+      <button type="submit" class="newsletter-btn">Підписатись</button>
+    </form>
+  </div>
   <div class="footer-top">
     <div class="footer-socials">
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+      <a href="https://francoband.bandcamp.com" target="_blank" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
       <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
       <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
       <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
     </div>
     <div class="footer-links">
       <a href="/privacy-policy/">Політика конфіденційності</a>
