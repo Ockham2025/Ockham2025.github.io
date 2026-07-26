@@ -71,7 +71,6 @@
     flex: 1;
     width: 100%;
   }
-
   .page-title {
     font-family: 'Oswald', sans-serif;
     font-size: 32px;
@@ -82,7 +81,6 @@
     margin: 20px 0 0;
     text-align: center;
   }
-
   /* --- Manifest blocks --- */
   .manifest-block {
     min-height: 82vh;
@@ -93,7 +91,6 @@
   .manifest-block.align-center { justify-content: center; text-align: center; }
   .manifest-block.align-left { justify-content: flex-start; text-align: left; }
   .manifest-block.align-right { justify-content: flex-end; text-align: right; }
-
   .manifest-text {
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
@@ -109,13 +106,10 @@
     opacity: 1;
     transform: translateY(0);
   }
-
   .manifest-text.size-xl { font-size: clamp(38px, 7vw, 96px); letter-spacing: 1px; }
   .manifest-text.size-lg { font-size: clamp(28px, 5vw, 64px); letter-spacing: 1px; }
   .manifest-text.size-md { font-size: clamp(22px, 4vw, 46px); letter-spacing: 1px; }
-
   .manifest-text .accent { color: #e63946; }
-
   .about-image {
     width: 100%;
     overflow: hidden;
@@ -132,7 +126,6 @@
     opacity: 1;
     transform: scale(1);
   }
-
   /* Форма підписки */
   .newsletter {
     max-width: 1100px;
@@ -186,7 +179,6 @@
     background: #f2f2f2;
     color: #0d0d0d;
   }
-
   footer {
     padding: 60px 20px 0;
     position: relative;
@@ -284,49 +276,42 @@
 </header>
 <main>
   <div class="page-title">Про гурт</div>
-
   <section class="manifest-block align-center">
     <div class="manifest-text size-xl">Засновані у Києві — без намірів, але з <span class="accent">музикою</span>.</div>
   </section>
   <div class="about-image">
     <img src="/images/franco-about-07.jpg" alt="FRANCO">
   </div>
-
   <section class="manifest-block align-left">
     <div class="manifest-text size-lg">Існуємо в суперечках, бо інколи тільки у хаосі можна знайти <span class="accent">порядок</span>.</div>
   </section>
   <div class="about-image">
     <img src="/images/franco-about-06.jpg" alt="FRANCO">
   </div>
-
   <section class="manifest-block align-center">
     <div class="manifest-text size-xl">Граємо наживо, коли відчуваємо, що інакше задихнемося.</div>
   </section>
   <div class="about-image">
     <img src="/images/franco-about-05.jpg" alt="FRANCO">
   </div>
-
   <section class="manifest-block align-right">
     <div class="manifest-text size-lg">Записуємо музику тоді, коли простір між думками стає надто <span class="accent">гучним</span>.</div>
   </section>
   <div class="about-image">
     <img src="/images/franco-about-04.jpg" alt="FRANCO">
   </div>
-
   <section class="manifest-block align-center">
     <div class="manifest-text size-md">Скасовували альбоми частіше, ніж видавали.</div>
   </section>
   <div class="about-image">
     <img src="/images/franco-about-03.jpg" alt="FRANCO">
   </div>
-
   <section class="manifest-block align-left">
     <div class="manifest-text size-xl">Випустили <span class="accent">три</span> альбоми. Буде ще.</div>
   </section>
   <div class="about-image">
     <img src="/images/franco-about-02.jpg" alt="FRANCO">
   </div>
-
   <section class="manifest-block align-center">
     <div class="manifest-text size-lg">FRANCO тут не при чому. Або при чому, але інакше.</div>
   </section>
@@ -365,6 +350,55 @@
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "FRANCO",
+  "image": "https://franco.com.ua/images/franco-about-03.jpg",
+  "alternateName": ["FRANCO band", "Франко"],
+  "foundingDate": "2011",
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "Київ, Україна"
+  },
+  "genre": ["Art Rock", "Electronic", "Post-rock", "Experimental"],
+  "description": "FRANCO — український арт-рок гурт із Києва, що поєднує емоційну глибину з електронними експериментами. Заснований у 2011 році.",
+  "url": "https://franco.com.ua",
+  "sameAs": [
+    "https://www.facebook.com/francoband/",
+    "https://www.instagram.com/francoband/",
+    "https://music.apple.com/ua/artist/franco/1098769283",
+    "https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g",
+    "https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw",
+    "https://francoband.bandcamp.com",
+    "https://www.tiktok.com/@francoband"
+  ],
+  "album": [
+    {
+      "@type": "MusicAlbum",
+      "name": "Порізано Бритвою Оккама",
+      "url": "https://franco.com.ua/music/pbo/",
+      "datePublished": "2025-10-10",
+      "genre": "Art Rock"
+    },
+    {
+      "@type": "MusicAlbum",
+      "name": "Тремор",
+      "url": "https://franco.com.ua/music/tremor-lp/",
+      "datePublished": "2018",
+      "genre": "Art Rock"
+    },
+    {
+      "@type": "MusicAlbum",
+      "name": "Тунелі",
+      "url": "https://franco.com.ua/music/tuneli-lp/",
+      "datePublished": "2017-02-14",
+      "genre": "Art Rock"
+    }
+  ]
+}
+</script>
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -374,7 +408,6 @@
       }
     });
   }, { threshold: 0.2 });
-
   document.querySelectorAll('.manifest-text, .about-image img').forEach((el) => {
     observer.observe(el);
   });
