@@ -8,7 +8,7 @@
 <meta property="og:title" content="Порізано Бритвою Оккама — FRANCO">
 <meta property="og:description" content="Найтемніший і найчесніший альбом FRANCO. Десять пісень, записаних між шумом і тишею.">
 <meta property="og:image" content="https://franco.com.ua/images/porizano-brytvoiu-okkama.jpeg">
-<meta property="og:url" content="https://franco.com.ua/pbo/">
+<meta property="og:url" content="https://franco.com.ua/music/pbo/">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -797,6 +797,34 @@ function pboToggle(i) {
   document.querySelectorAll('.pbo-lyrics').forEach(el => el.classList.remove('open'));
   document.querySelectorAll('.pbo-arrow').forEach(el => el.classList.remove('open'));
   if (!isOpen) { lyrics.classList.add('open'); arrow.classList.add('open'); }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicAlbum",
+  "name": "Порізано Бритвою Оккама",
+  "byArtist": {
+    "@type": "MusicGroup",
+    "name": "FRANCO"
+  },
+  "image": "https://franco.com.ua/images/porizano-brytvoiu-okkama.jpeg",
+  "datePublished": "2025-10-10",
+  "genre": "Art Rock",
+  "url": "https://franco.com.ua/music/pbo/",
+  "numTracks": 10,
+  "track": [
+    { "@type": "MusicRecording", "name": "Довго-довго (Човен)", "position": 1 },
+    { "@type": "MusicRecording", "name": "Ніч і вино (27 дверей)", "position": 2 },
+    { "@type": "MusicRecording", "name": "Грім і кров (Хто тут я)", "position": 3 },
+    { "@type": "MusicRecording", "name": "Мовчання на краю світу (Не пиши)", "position": 4 },
+    { "@type": "MusicRecording", "name": "Кислота (Затемнилось)", "position": 5 },
+    { "@type": "MusicRecording", "name": "Сам на сам (Живу з тобою)", "position": 6 },
+    { "@type": "MusicRecording", "name": "Сартр (Кокосові слова)", "position": 7 },
+    { "@type": "MusicRecording", "name": "Сад (Ти забери назад)", "position": 8 },
+    { "@type": "MusicRecording", "name": "Маяк не працює (Сльози падали)", "position": 9 },
+    { "@type": "MusicRecording", "name": "Повернення (І сонце сходить)", "position": 10 }
+  ]
 }
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
