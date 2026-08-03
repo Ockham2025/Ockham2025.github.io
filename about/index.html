@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Про гурт | FRANCO</title>
-<meta name="description" content="Історія гурту FRANCO, що почалася у Києві в 2011 році. Люди, музика та шлях крізь роки.">
-<meta property="og:title" content="Про гурт — FRANCO">
-<meta property="og:description" content="Історія гурту, музика та люди, які створили FRANCO.">
+<title>Учасники | FRANCO</title>
+<meta name="description" content="Склад гурту FRANCO за роки — від заснування у 2011 році до сьогодні.">
+<meta property="og:title" content="Учасники — FRANCO">
+<meta property="og:description" content="Склад гурту FRANCO за роки.">
 <meta property="og:image" content="https://franco.com.ua/images/franco-about-03.jpg">
-<meta property="og:url" content="https://franco.com.ua/about/">
+<meta property="og:url" content="https://franco.com.ua/about/lineup/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
   html, body { height: 100%; }
   body {
     background: #000000;
@@ -27,7 +26,6 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    overflow-x: hidden;
   }
   header {
     padding: 40px 20px;
@@ -48,9 +46,7 @@
     width: 90%;
     height: auto;
   }
-  header a {
-    display: inline-block;
-  }
+  header a { display: inline-block; }
   nav {
     display: flex;
     justify-content: center;
@@ -69,8 +65,26 @@
   nav a:hover { color: #e63946; }
   main {
     flex: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
     width: 100%;
   }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888;
+    text-decoration: none;
+    margin-bottom: 30px;
+    transition: color 0.3s ease;
+  }
+  .back-link:hover { color: #e63946; }
+
   .page-title {
     font-family: 'Oswald', sans-serif;
     font-size: 32px;
@@ -78,91 +92,60 @@
     color: #f2f2f2;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin: 20px 0 0;
+    margin-bottom: 50px;
     text-align: center;
-  }
-  /* --- Manifest blocks --- */
-  .manifest-block {
-    min-height: 82vh;
-    display: flex;
-    align-items: center;
-    padding: 60px 8vw;
-  }
-  .manifest-block.align-center { justify-content: center; text-align: center; }
-  .manifest-block.align-left { justify-content: flex-start; text-align: left; }
-  .manifest-block.align-right { justify-content: flex-end; text-align: right; }
-  .manifest-text {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #f2f2f2;
-    line-height: 1.15;
-    max-width: 900px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-  }
-  .manifest-text.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .manifest-text.size-xl { font-size: clamp(38px, 7vw, 96px); letter-spacing: 1px; }
-  .manifest-text.size-lg { font-size: clamp(28px, 5vw, 64px); letter-spacing: 1px; }
-  .manifest-text.size-md { font-size: clamp(22px, 4vw, 46px); letter-spacing: 1px; }
-  .manifest-text .accent { color: #e63946; }
-  .about-image {
-    width: 100%;
-    overflow: hidden;
-  }
-  .about-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    opacity: 0;
-    transform: scale(1.03);
-    transition: opacity 1.1s ease, transform 1.1s ease;
-  }
-  .about-image img.is-visible {
-    opacity: 1;
-    transform: scale(1);
   }
 
-  /* Перехід на "Учасники" */
-  .lineup-cta {
-    max-width: 500px;
-    margin: 100px auto 0;
-    padding: 0 20px;
-    text-align: center;
-  }
-  .lineup-divider {
-    max-width: 200px;
-    height: 1px;
-    margin: 0 auto 40px;
-    background: linear-gradient(90deg, transparent, #444, transparent);
-  }
-  .lineup-cta a {
-    display: inline-block;
+  .section-label {
     font-family: 'Oswald', sans-serif;
-    font-size: 15px;
-    letter-spacing: 2px;
+    font-size: 13px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: #f2f2f2;
-    text-decoration: none;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #444;
-    transition: color 0.3s ease, border-color 0.3s ease;
-  }
-  .lineup-cta a:hover {
-    color: #e63946;
-    border-color: #e63946;
-  }
-  .lineup-cta p {
-    font-size: 14px;
     color: #888;
-    margin-top: 12px;
+    margin: 60px 0 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2a2a2a;
   }
+  .section-label:first-of-type { margin-top: 0; }
 
-  /* Форма підписки */
+  .member-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .member-card {
+    padding: 28px 22px;
+    border-radius: 8px;
+    background: #0d0d0d;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    text-align: center;
+  }
+  .member-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .member-role {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .member-periods {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .member-period {
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #e63946;
+  }
   .newsletter {
     max-width: 1100px;
     margin: 0 auto;
@@ -215,10 +198,10 @@
     background: #f2f2f2;
     color: #0d0d0d;
   }
+
   footer {
-    padding: 60px 20px 0;
+    padding: 40px 20px 0;
     position: relative;
-    margin-top: 40px;
   }
   footer::before {
     content: '';
@@ -239,15 +222,8 @@
     gap: 20px;
     padding-bottom: 30px;
   }
-  .footer-socials {
-    display: flex;
-    gap: 20px;
-  }
-  .footer-socials a {
-    color: #f2f2f2;
-    font-size: 20px;
-    text-decoration: none;
-  }
+  .footer-socials { display: flex; gap: 20px; }
+  .footer-socials a { color: #f2f2f2; font-size: 20px; text-decoration: none; }
   .footer-socials a:hover { color: #e63946; }
   .footer-links {
     display: flex;
@@ -255,11 +231,7 @@
     align-items: flex-end;
     gap: 12px;
   }
-  .footer-links a {
-    color: #f2f2f2;
-    text-decoration: none;
-    font-size: 14px;
-  }
+  .footer-links a { color: #f2f2f2; text-decoration: none; font-size: 14px; }
   .footer-links a:hover { color: #e63946; }
   .footer-bottom {
     text-align: center;
@@ -268,19 +240,18 @@
     padding: 20px 0;
     border-top: 1px solid #2a2a2a;
   }
-  @media (max-width: 600px) {
+
+  @media (max-width: 700px) {
     header { padding: 30px 15px; }
     nav { gap: 20px; }
     nav a { font-size: 14px; }
+    main { padding: 40px 15px; }
     .page-title { font-size: 24px; }
-    .manifest-block { min-height: 60vh; padding: 40px 6vw; }
-    .manifest-block.align-left,
-    .manifest-block.align-right {
-      text-align: center;
-      justify-content: center;
+    .member-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
-    .lineup-cta { margin-top: 70px; }
-    .newsletter-form { flex-direction: column; align-items: center; }
+   .newsletter-form { flex-direction: column; align-items: center; }
     .newsletter-input { width: 100%; max-width: 320px; }
     .footer-top {
       flex-direction: column;
@@ -288,16 +259,10 @@
       text-align: center;
       gap: 25px;
     }
-    .footer-links {
-      align-items: center;
-    }
+    .footer-links { align-items: center; }
   }
-  @media (prefers-reduced-motion: reduce) {
-    .manifest-text, .about-image img {
-      transition: none;
-      opacity: 1;
-      transform: none;
-    }
+  @media (max-width: 420px) {
+    .member-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -312,54 +277,118 @@
   </nav>
 </header>
 <main>
-  <div class="page-title">Про гурт</div>
-  <section class="manifest-block align-center">
-    <div class="manifest-text size-xl">Засновані у Києві — без намірів, але з <span class="accent">музикою</span>.</div>
-  </section>
-  <div class="about-image">
-    <img src="/images/franco-about-07.jpg" alt="FRANCO">
-  </div>
-  <section class="manifest-block align-left">
-    <div class="manifest-text size-lg">Існуємо в суперечках, бо інколи тільки у хаосі можна знайти <span class="accent">порядок</span>.</div>
-  </section>
-  <div class="about-image">
-    <img src="/images/franco-about-06.jpg" alt="FRANCO">
-  </div>
-  <section class="manifest-block align-center">
-    <div class="manifest-text size-xl">Граємо наживо, коли відчуваємо, що інакше задихнемося.</div>
-  </section>
-  <div class="about-image">
-    <img src="/images/franco-about-05.jpg" alt="FRANCO">
-  </div>
-  <section class="manifest-block align-right">
-    <div class="manifest-text size-lg">Записуємо музику тоді, коли простір між думками стає надто <span class="accent">гучним</span>.</div>
-  </section>
-  <div class="about-image">
-    <img src="/images/franco-about-04.jpg" alt="FRANCO">
-  </div>
-  <section class="manifest-block align-center">
-    <div class="manifest-text size-md">Скасовували альбоми частіше, ніж видавали.</div>
-  </section>
-  <div class="about-image">
-    <img src="/images/franco-about-03.jpg" alt="FRANCO">
-  </div>
-  <section class="manifest-block align-left">
-    <div class="manifest-text size-xl">Випустили <span class="accent">три</span> альбоми. Буде ще.</div>
-  </section>
-  <div class="about-image">
-    <img src="/images/franco-about-02.jpg" alt="FRANCO">
-  </div>
-  <section class="manifest-block align-center">
-    <div class="manifest-text size-lg">FRANCO тут не при чому. Або при чому, але інакше.</div>
-  </section>
-  <div class="about-image">
-    <img src="/images/franco-about-01.jpg" alt="FRANCO">
+  <a href="/about/" class="back-link">← Про гурт</a>
+  <div class="page-title">Учасники</div>
+
+  <div class="section-label">Зараз у гурті</div>
+  <div class="member-grid">
+    <div class="member-card">
+      <div class="member-name">Валентин Федишен</div>
+      <div class="member-role">Вокал, музика, тексти, клавішні</div>
+      <div class="member-periods">
+        <div class="member-period">з 2011</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Володимир Гусєв</div>
+      <div class="member-role">Гітара</div>
+      <div class="member-periods">
+        <div class="member-period">2015–2016</div>
+        <div class="member-period">з 2022</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Станіслав Дяченко</div>
+      <div class="member-role">Бас, бандура, гітара</div>
+      <div class="member-periods">
+        <div class="member-period">2019–2020</div>
+        <div class="member-period">з 2021</div>
+      </div>
+    </div>
   </div>
 
-  <div class="lineup-cta">
-    <div class="lineup-divider"></div>
-    <a href="/about/lineup/">Учасники</a>
-    <p>Хто був частиною FRANCO за ці роки</p>
+  <div class="section-label">Були у складі</div>
+  <div class="member-grid">
+    <div class="member-card">
+      <div class="member-name">Єгор Литвиненко</div>
+      <div class="member-role">Гітара</div>
+      <div class="member-periods">
+        <div class="member-period">2017–2021</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Сергій Гаврилов</div>
+      <div class="member-role">Барабани</div>
+      <div class="member-periods">
+        <div class="member-period">2021</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Ренат Алієв</div>
+      <div class="member-role">Бас</div>
+      <div class="member-periods">
+        <div class="member-period">2021</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Анатолій Іванін</div>
+      <div class="member-role">Барабани</div>
+      <div class="member-periods">
+        <div class="member-period">2020</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Антон Блащук</div>
+      <div class="member-role">Бас</div>
+      <div class="member-periods">
+        <div class="member-period">2018–2019</div>
+        <div class="member-period">2020</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Олександр Селезньов</div>
+      <div class="member-role">Барабани</div>
+      <div class="member-periods">
+        <div class="member-period">2018–2019</div>
+        <div class="member-period">2020</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Іван Корнієнко</div>
+      <div class="member-role">Барабани</div>
+      <div class="member-periods">
+        <div class="member-period">2019</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Ростислав Сьотка</div>
+      <div class="member-role">Барабани</div>
+      <div class="member-periods">
+        <div class="member-period">2011–2012</div>
+        <div class="member-period">2016</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Ігор Труш</div>
+      <div class="member-role">Барабани</div>
+      <div class="member-periods">
+        <div class="member-period">2013–2015</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Варвара Зюзь</div>
+      <div class="member-role">Бас</div>
+      <div class="member-periods">
+        <div class="member-period">2011–2015</div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-name">Ілля Сидоренко</div>
+      <div class="member-role">Гітара</div>
+      <div class="member-periods">
+        <div class="member-period">2011–2015</div>
+      </div>
+    </div>
   </div>
 </main>
 <footer>
@@ -393,67 +422,5 @@
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  "name": "FRANCO",
-  "image": "https://franco.com.ua/images/franco-about-03.jpg",
-  "alternateName": ["FRANCO band", "Франко"],
-  "foundingDate": "2011",
-  "foundingLocation": {
-    "@type": "Place",
-    "name": "Київ, Україна"
-  },
-  "genre": ["Art Rock", "Electronic", "Post-rock", "Experimental"],
-  "description": "FRANCO — український арт-рок гурт із Києва, що поєднує емоційну глибину з електронними експериментами. Заснований у 2011 році.",
-  "url": "https://franco.com.ua",
-  "sameAs": [
-    "https://www.facebook.com/francoband/",
-    "https://www.instagram.com/francoband/",
-    "https://music.apple.com/ua/artist/franco/1098769283",
-    "https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g",
-    "https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw",
-    "https://francoband.bandcamp.com",
-    "https://www.tiktok.com/@francoband"
-  ],
-  "album": [
-    {
-      "@type": "MusicAlbum",
-      "name": "Порізано Бритвою Оккама",
-      "url": "https://franco.com.ua/music/pbo/",
-      "datePublished": "2025-10-10",
-      "genre": "Art Rock"
-    },
-    {
-      "@type": "MusicAlbum",
-      "name": "Тремор",
-      "url": "https://franco.com.ua/music/tremor-lp/",
-      "datePublished": "2018",
-      "genre": "Art Rock"
-    },
-    {
-      "@type": "MusicAlbum",
-      "name": "Тунелі",
-      "url": "https://franco.com.ua/music/tuneli-lp/",
-      "datePublished": "2017-02-14",
-      "genre": "Art Rock"
-    }
-  ]
-}
-</script>
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.manifest-text, .about-image img').forEach((el) => {
-    observer.observe(el);
-  });
-</script>
 </body>
 </html>
