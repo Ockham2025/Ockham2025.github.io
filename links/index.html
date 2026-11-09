@@ -132,9 +132,21 @@
     transform: translateY(-2px);
   }
   .link-btn.featured {
-    border-color: #e63946;
-    background: linear-gradient(180deg, rgba(230,57,70,0.12), rgba(230,57,70,0.02));
-  }
+    border-color: rgba(180, 65, 70, 0.55);
+    background: linear-gradient(
+        180deg,
+        rgba(180, 65, 70, 0.07),
+        rgba(180, 65, 70, 0.015)
+    );
+}
+ .link-btn.featured:hover {
+    border-color: rgba(210, 75, 80, 0.8);
+    background: linear-gradient(
+        180deg,
+        rgba(180, 65, 70, 0.13),
+        rgba(180, 65, 70, 0.04)
+    );
+}
   .link-btn-text {
     display: flex;
     flex-direction: column;
