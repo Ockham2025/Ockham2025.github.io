@@ -4,14 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add('js');</script>
-<title>Контакти | FRANCO</title>
-<meta name="description" content="Зв'язок із FRANCO: електронна пошта та сторінки гурту.">
-<meta property="og:title" content="Контакти — FRANCO">
-<meta property="og:description" content="Зв'язок із FRANCO: електронна пошта та сторінки гурту.">
-<meta property="og:image" content="https://franco.com.ua/images/franco-caribbean-kyiv-03.jpg">
-<meta property="og:url" content="https://franco.com.ua/reach-us/">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
+<title>Політика конфіденційності | FRANCO</title>
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +45,7 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
-/* ---------- CRT: сканлінії, віньєтка, мерехтіння ---------- */
+/* ---------- CRT: scanlines, vignette, flicker ---------- */
 body::before {
   content: '';
   position: fixed;
@@ -89,7 +82,7 @@ body::after {
   81% { opacity: 1; }
 }
 
-/* ---------- Поява (progressive enhancement) ---------- */
+/* ---------- Fade-in (progressive enhancement) ---------- */
 .fade-in { opacity: 1; }
 .js .fade-in { opacity: 0; }
 .js .fade-in.is-visible { animation: flickerIn .6s steps(1) forwards; }
@@ -102,7 +95,7 @@ body::after {
   100% { opacity: 1; }
 }
 
-/* ---------- Гліч тексту (RGB-розщеплення) ---------- */
+/* ---------- Text glitch (RGB split) ---------- */
 .glitch { position: relative; }
 .glitch::before,
 .glitch::after {
@@ -137,7 +130,7 @@ body::after {
   96% { clip-path: inset(85% 0 2% 0); }
 }
 
-/* ---------- Гліч зображень ---------- */
+/* ---------- Image glitch ---------- */
 @keyframes imgGlitch {
   0%, 90%, 100% { transform: none; clip-path: none; filter: none; }
   91% { transform: translate(-6px, 0); clip-path: inset(15% 0 55% 0); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
@@ -146,7 +139,7 @@ body::after {
   97% { transform: none; clip-path: none; filter: none; }
 }
 
-/* ---------- Шапка ---------- */
+/* ---------- Header ---------- */
 header {
   width: 100%;
   max-width: 1100px;
@@ -199,7 +192,7 @@ nav a:hover::after { color: #000; }
   100% { transform: translate(0); text-shadow: none; }
 }
 
-/* Кнопка-гамбургер (на десктопі прихована) */
+/* Hamburger button (hidden on desktop) */
 .nav-toggle {
   display: none;
   position: relative;
@@ -236,16 +229,17 @@ nav a:hover::after { color: #000; }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---------- Контент ---------- */
+/* ---------- Content ---------- */
 main {
   flex: 1;
-  max-width: 700px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 70px 20px 80px;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
+/* Title: prompt and cursor are real spans so the glitch overlay can use ::before/::after */
 .page-title {
   font-family: var(--display);
   font-weight: 400;
@@ -253,87 +247,49 @@ main {
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 1;
-  font-size: clamp(40px, 8vw, 72px);
-  margin-bottom: 40px;
+  font-size: clamp(34px, 6.5vw, 60px);
+  margin-bottom: 18px;
 }
-.page-title::before { content: '> '; color: var(--accent); }
-.page-title::after {
-  content: '_';
-  color: var(--accent);
-  animation: blink 1s steps(1) infinite;
-}
+.page-title .prompt,
+.page-title .cursor { color: var(--accent); }
+.page-title .cursor { animation: blink 1s steps(1) infinite; }
 @keyframes blink {
   50% { opacity: 0; }
 }
 
-.intro-text {
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--ink);
-  margin-bottom: 14px;
+.page-updated {
+  font-family: var(--body);
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed #333;
 }
-.intro-text.secondary {
+.page-updated::before { content: '// '; color: var(--accent); }
+
+.content p {
   font-size: 15px;
-  color: #999;
+  line-height: 1.8;
+  color: #aaa;
+  margin-bottom: 22px;
 }
-
-/* Роздільник */
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  max-width: 400px;
-  margin: 60px auto;
-  font-family: var(--display);
-  font-size: 24px;
-  letter-spacing: 3px;
-  line-height: 1;
-  color: var(--accent);
-}
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  border-top: 1px dashed #444;
-}
-
-.contact-label {
-  font-family: var(--display);
-  font-size: 24px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 26px;
-}
-.contact-label::before { content: '// '; }
-
-.contact-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.contact-item {
-  font-size: 16px;
+.content p:first-child {
+  font-size: 17px;
   color: var(--ink);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  gap: 4px 12px;
 }
-.contact-item span { color: var(--dim); }
-.contact-item a {
-  color: var(--ink);
+.content a {
+  color: var(--accent);
   text-decoration: none;
-  border-bottom: 1px dashed #555;
+  border-bottom: 1px dashed var(--accent);
 }
-.contact-item a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+.content a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
   text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
 }
 
-/* ---------- Футер ---------- */
+/* ---------- Footer ---------- */
 footer {
   margin-top: 40px;
   padding: 28px 20px 0;
@@ -341,7 +297,7 @@ footer {
   border-top: 1px dashed #444;
 }
 
-/* Рівень 1: підписка */
+/* Level 1: newsletter */
 .newsletter {
   max-width: 1100px;
   margin: 0 auto;
@@ -400,7 +356,7 @@ footer {
   box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
 }
 
-/* Рівень 2: соцмережі + службові посилання */
+/* Level 2: socials + service links */
 .footer-top {
   max-width: 1100px;
   margin: 0 auto;
@@ -446,7 +402,7 @@ footer {
   text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
 }
 
-/* Рівень 3: copyright */
+/* Level 3: copyright */
 .footer-bottom {
   max-width: 1100px;
   margin: 0 auto;
@@ -461,9 +417,9 @@ footer {
   animation: blink 1s steps(1) infinite;
 }
 
-/* ---------- Планшет / мобільні: шапка + гамбургер ---------- */
+/* ---------- Tablet / mobile: header + hamburger ---------- */
 @media (max-width: 800px) {
-  /* Без JS: логотип по центру, меню нижче */
+  /* Without JS: logo centered, menu below */
   header {
     flex-direction: column;
     justify-content: center;
@@ -477,7 +433,7 @@ footer {
   }
   nav a { font-size: 22px; }
 
-  /* З JS: логотип ліворуч, гамбургер праворуч */
+  /* With JS: logo left, hamburger right */
   .js header {
     flex-direction: row;
     justify-content: space-between;
@@ -488,7 +444,7 @@ footer {
   .js header img { width: 200px; }
   .js .nav-toggle { display: block; }
 
-  /* Повноекранне меню: суцільний чорний фон на весь екран */
+  /* Fullscreen menu: solid black background */
   .js nav {
     position: fixed;
     top: 0;
@@ -521,15 +477,13 @@ footer {
   .js nav a { font-size: 34px; }
 }
 
-/* ---------- Мобільні ---------- */
+/* ---------- Mobile ---------- */
 @media (max-width: 600px) {
   main { padding: 45px 15px 55px; }
-  .intro-text { font-size: 16px; }
-  .intro-text.secondary { font-size: 14px; }
-  .divider { margin: 45px auto; font-size: 20px; }
-  .contact-item { flex-direction: column; align-items: center; gap: 2px; }
+  .content p { font-size: 14px; }
+  .content p:first-child { font-size: 16px; }
 
-  /* Футер: усе по центру */
+  /* Footer: everything centered */
   footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
   .newsletter {
     flex-direction: column;
@@ -553,7 +507,7 @@ footer {
   .footer-bottom { text-align: center; }
 }
 
-/* ---------- Зменшений рух ---------- */
+/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -576,24 +530,16 @@ footer {
   </nav>
 </header>
 <main>
-  <h1 class="page-title glitch fade-in" data-text="Зв'язатись з нами">Зв'язатись з нами</h1>
-
-  <p class="intro-text fade-in">Не все потребує відповіді. Але якщо тобі є що сказати, ми прочитаємо.</p>
-  <p class="intro-text secondary fade-in">Пиши, якщо це стосується концертів, співпраці, музики або чогось іншого, що не дає спокою. Ми відповідаємо не миттєво, але читаємо все.</p>
-
-  <div class="divider" aria-hidden="true">///</div>
-
-  <div class="contact-label fade-in">Наші контакти</div>
-  <div class="contact-list fade-in">
-    <div class="contact-item">
-      <span>Електронна пошта:</span><a href="mailto:info@franco.com.ua">info@franco.com.ua</a>
-    </div>
-    <div class="contact-item">
-      <span>Instagram:</span><a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer">@francoband</a>
-    </div>
-    <div class="contact-item">
-      <span>Facebook:</span><a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer">FRANCO</a>
-    </div>
+  <h1 class="page-title glitch fade-in" data-text="> Політика конфіденційності_"><span class="prompt" aria-hidden="true">&gt; </span>Політика конфіденційності<span class="cursor" aria-hidden="true">_</span></h1>
+  <div class="page-updated fade-in">Останнє оновлення: 21 липня 2026 року</div>
+  <div class="content fade-in">
+    <p>Ми поважаємо вашу приватність.</p>
+    <p>Якщо ви підписуєтесь на нашу розсилку, ми зберігаємо лише адресу електронної пошти, яку ви добровільно надаєте. Вона використовується виключно для надсилання новин FRANCO. Ви можете відписатися в будь-який момент за допомогою посилання, яке міститься в кожному листі.</p>
+    <p>Для надсилання розсилок ми використовуємо сервіс Mailchimp, який обробляє вашу адресу електронної пошти відповідно до власної політики конфіденційності.</p>
+    <p>Якщо ви зв'язуєтесь із нами електронною поштою, ми використовуємо надані вами контактні дані лише для відповіді на ваше повідомлення.</p>
+    <p>Сайт може містити посилання або вбудований контент сторонніх сервісів, зокрема YouTube, Spotify, Apple Music, Bandcamp, Instagram, Facebook та інших платформ. Взаємодія з ними регулюється політиками конфіденційності відповідних сервісів.</p>
+    <p>Для аналізу відвідуваності ми використовуємо анонімні статистичні дані (наприклад, Cloudflare Web Analytics), які не дозволяють ідентифікувати конкретного користувача.</p>
+    <p>Якщо у вас виникли запитання щодо цієї політики, напишіть нам на <a href="mailto:info@franco.com.ua">info@franco.com.ua</a>.</p>
   </div>
 </main>
 <footer>
@@ -628,7 +574,7 @@ footer {
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
 <script>
-  /* Поява при скролі */
+  /* Fade-in on scroll */
   const fadeItems = document.querySelectorAll('.fade-in');
 
   if ('IntersectionObserver' in window) {
@@ -646,7 +592,7 @@ footer {
     fadeItems.forEach((el) => el.classList.add('is-visible'));
   }
 
-  /* Мобільне меню */
+  /* Mobile menu */
   (function () {
     const toggle = document.querySelector('.nav-toggle');
     const nav = document.getElementById('site-nav');
@@ -663,12 +609,12 @@ footer {
       setMenu(!nav.classList.contains('is-open'));
     });
 
-    /* Клік по пункту меню або по порожньому фону закриває меню */
+    /* Clicking a menu link or the empty background closes the menu */
     nav.addEventListener('click', (e) => {
       if (e.target === nav || e.target.closest('a')) setMenu(false);
     });
 
-    /* Escape закриває меню і повертає фокус на кнопку */
+    /* Escape closes the menu and returns focus to the button */
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && nav.classList.contains('is-open')) {
         setMenu(false);
@@ -676,7 +622,7 @@ footer {
       }
     });
 
-    /* Якщо екран розширився до десктопу, скидаємо стан */
+    /* Reset the state when the screen grows to desktop width */
     const mq = window.matchMedia('(min-width: 801px)');
     const onChange = (e) => { if (e.matches) setMenu(false); };
     if (mq.addEventListener) mq.addEventListener('change', onChange);
