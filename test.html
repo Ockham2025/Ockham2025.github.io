@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
 <title>FRANCO | Офіційний сайт</title>
 <meta name="description" content="FRANCO — український гурт, заснований у 2011 році. Досі в процесі.">
 <script type="application/ld+json">
@@ -61,11 +62,17 @@
 <meta property="og:title" content="FRANCO — Офіційний сайт">
 <meta property="og:description" content="FRANCO — український гурт, заснований у 2011 році. Досі в процесі.">
 <meta property="og:image" content="https://franco.com.ua/images/hrim-i-krov.png">
+<meta property="og:image:alt" content="FRANCO — Грім і кров">
 <meta property="og:url" content="https://franco.com.ua/">
 <meta property="og:site_name" content="FRANCO">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
 <link rel="canonical" href="https://franco.com.ua/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FRANCO — Офіційний сайт">
+<meta name="twitter:description" content="FRANCO — український гурт, заснований у 2011 році. Досі в процесі.">
+<meta name="twitter:image" content="https://franco.com.ua/images/hrim-i-krov.png">
+<meta name="twitter:image:alt" content="FRANCO — Грім і кров">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -96,8 +103,15 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+body.menu-open { overflow: hidden; }
 
 ::selection { background: var(--accent); color: #000; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px dashed var(--accent);
+  outline-offset: 3px;
+}
 
 /* ---------- CRT: сканлінії, віньєтка, мерехтіння ---------- */
 body::before {
@@ -132,9 +146,10 @@ body::after {
   81% { opacity: 1; }
 }
 
-/* ---------- Поява ---------- */
-.fade-in { opacity: 0; }
-.fade-in.is-visible { animation: flickerIn .6s steps(1) forwards; }
+/* ---------- Поява (progressive enhancement) ---------- */
+.fade-in { opacity: 1; }
+.js .fade-in { opacity: 0; }
+.js .fade-in.is-visible { animation: flickerIn .6s steps(1) forwards; }
 @keyframes flickerIn {
   0%   { opacity: 0; }
   15%  { opacity: 1; }
@@ -198,24 +213,30 @@ body::after {
 
 /* ---------- Шапка ---------- */
 header {
-  padding: 40px 20px 0;
-  text-align: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px 30px;
   position: relative;
 }
 header a { display: inline-block; }
+header .logo { display: block; flex-shrink: 0; }
 header img {
-  max-width: 400px;
-  width: 90%;
+  display: block;
+  width: 280px;
+  max-width: 100%;
   height: auto;
   animation: imgGlitch 7s steps(1) infinite;
 }
 nav {
   display: flex;
-  justify-content: center;
-  gap: 28px;
-  margin-top: 26px;
-  padding-top: 14px;
-  border-top: 1px dashed #333;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px 28px;
   flex-wrap: wrap;
 }
 nav a {
@@ -243,11 +264,48 @@ nav a:hover::after { color: #000; }
   100% { transform: translate(0); text-shadow: none; }
 }
 
+/* Кнопка-гамбургер (на десктопі прихована) */
+.nav-toggle {
+  display: none;
+  position: relative;
+  z-index: 95;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 0;
+  color: var(--ink);
+  cursor: pointer;
+}
+.nav-toggle span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  background: currentColor;
+  transition: transform .2s steps(3), opacity .2s steps(3);
+}
+.nav-toggle span:nth-child(1) { top: 14px; }
+.nav-toggle span:nth-child(2) { top: 21px; }
+.nav-toggle span:nth-child(3) { top: 28px; }
+.nav-toggle:hover {
+  background: var(--ink);
+  color: #000;
+  border-color: var(--ink);
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+.nav-toggle[aria-expanded="true"] { border-color: var(--accent); }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 main {
   flex: 1;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 50px 20px 60px;
   text-align: center;
   width: 100%;
 }
@@ -353,30 +411,24 @@ main {
   box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
 }
 
-/* ---------- Стрічка ---------- */
-.marquee {
-  width: 100vw;
-  margin: 110px 0 90px calc(50% - 50vw);
-  border-top: 1px solid var(--accent);
-  border-bottom: 1px solid var(--accent);
-  color: var(--accent);
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 6px 0;
-}
-.marquee-track {
-  display: inline-flex;
-  animation: marquee 30s linear infinite;
-}
-.marquee-track span {
+/* ---------- Роздільник ---------- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 700px;
+  margin: 100px auto 80px;
   font-family: var(--display);
-  font-size: clamp(24px, 3.5vw, 36px);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding-right: 1em;
+  font-size: 24px;
+  letter-spacing: 3px;
+  line-height: 1;
+  color: var(--accent);
 }
-@keyframes marquee {
-  to { transform: translateX(-50%); }
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-top: 1px dashed #444;
 }
 
 /* ---------- Заголовок секції ---------- */
@@ -433,12 +485,24 @@ main {
   border: 0;
 }
 
-/* ---------- Підписка ---------- */
+/* ---------- Футер ---------- */
+footer {
+  margin-top: 40px;
+  padding: 28px 20px 0;
+  position: relative;
+  border-top: 1px dashed #444;
+}
+
+/* Рівень 1: підписка */
 .newsletter {
   max-width: 1100px;
   margin: 0 auto;
-  text-align: center;
-  padding-bottom: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding-bottom: 24px;
 }
 .newsletter-label {
   font-family: var(--display);
@@ -446,14 +510,12 @@ main {
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--ink);
-  margin-bottom: 18px;
 }
 .newsletter-label::before { content: '> '; color: var(--accent); }
 .newsletter-form {
   display: flex;
   justify-content: center;
   gap: 10px;
-  flex-wrap: wrap;
 }
 .newsletter-input {
   background: transparent;
@@ -490,22 +552,16 @@ main {
   box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
 }
 
-/* ---------- Футер ---------- */
-footer {
-  margin-top: 60px;
-  padding: 50px 20px 0;
-  position: relative;
-  border-top: 1px dashed #444;
-}
+/* Рівень 2: соцмережі + службові посилання */
 .footer-top {
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
-  padding-bottom: 30px;
+  gap: 14px 24px;
+  padding-bottom: 20px;
 }
 .footer-socials {
   display: flex;
@@ -522,24 +578,33 @@ footer {
 }
 .footer-links {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 22px;
 }
 .footer-links a {
-  color: var(--ink);
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   text-decoration: none;
-  font-size: 13px;
+  color: #808080;
 }
+.footer-links a::before { content: '[ '; }
+.footer-links a::after  { content: ' ]'; }
 .footer-links a:hover {
-  color: var(--accent);
-  text-decoration: underline;
+  color: var(--ink);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
 }
+
+/* Рівень 3: copyright */
 .footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
   text-align: center;
   color: #666;
   font-size: 13px;
-  padding: 20px 0;
+  padding: 12px 0 16px;
   border-top: 1px solid #222;
 }
 .footer-bottom::after {
@@ -547,38 +612,96 @@ footer {
   animation: blink 1s steps(1) infinite;
 }
 
+/* ---------- Планшет / мобільні: шапка + гамбургер ---------- */
+@media (max-width: 800px) {
+  /* Без JS: логотип по центру, меню нижче (як раніше) */
+  header {
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 30px 15px 0;
+  }
+  header img { width: 240px; }
+  nav {
+    justify-content: center;
+    gap: 6px 18px;
+  }
+  nav a { font-size: 22px; }
+
+  /* З JS: логотип ліворуч, гамбургер праворуч */
+  .js header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 15px 0;
+  }
+  .js header img { width: 200px; }
+  .js .nav-toggle { display: block; }
+
+  /* Повноекранне меню по центру */
+  .js nav {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 80px 20px;
+    background: rgba(5, 5, 5, .97);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .2s steps(3), visibility 0s linear .2s;
+  }
+  .js nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .2s steps(3);
+  }
+  .js nav a { font-size: 34px; }
+}
+
 /* ---------- Мобільні ---------- */
 @media (max-width: 600px) {
-  header { padding: 30px 15px 0; }
-  nav { gap: 14px; }
-  nav a { font-size: 22px; }
   main { padding: 40px 15px; }
   .album { margin-top: 70px; }
   .album-cover { margin-top: 45px; max-width: 300px; }
-  .marquee { margin: 80px 0 60px calc(50% - 50vw); }
+  .divider { margin: 70px auto 60px; font-size: 20px; }
   .window { box-shadow: 5px 5px 0 rgba(230, 57, 70, .55); }
-  .newsletter-form { flex-direction: column; align-items: center; }
+  footer { padding: 24px 15px 0; margin-top: 30px; }
+  .newsletter { flex-direction: column; gap: 12px; }
+  .newsletter-form { flex-direction: column; align-items: center; width: 100%; }
   .newsletter-input { width: 100%; max-width: 320px; min-width: 0; }
   .footer-top {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 25px;
+    gap: 16px;
   }
-  .footer-links { align-items: center; }
+  .footer-socials { flex-wrap: wrap; justify-content: center; }
+  .footer-links { justify-content: center; }
 }
 
+/* ---------- Зменшений рух ---------- */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .fade-in { opacity: 1; }
+  .js .fade-in { opacity: 1; }
 }
 </style>
 </head>
 <body>
 
 <header>
-<a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
-  <nav>
+  <a href="/" class="logo"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <button type="button" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="site-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="site-nav" aria-label="Головне меню">
     <a href="/music/">Музика</a>
     <a href="/videos/">Відео</a>
     <a href="/notes/">Нотатки</a>
@@ -587,38 +710,33 @@ footer {
 </header>
 <main>
   <div class="hero fade-in">
-    <img src="/images/hrim-i-krov.png" alt="FRANCO">
+    <img src="/images/hrim-i-krov.png" alt="FRANCO — Грім і кров">
   </div>
 
   <div class="album">
-    <div class="album-eyebrow fade-in">// Новий альбом</div>
-    <div class="album-title glitch fade-in" data-text="Порізано Бритвою Оккама">Порізано <span class="accent">Бритвою</span> Оккама</div>
+    <div class="album-eyebrow fade-in">// Альбом</div>
+    <h1 class="album-title glitch fade-in" data-text="Порізано Бритвою Оккама">Порізано <span class="accent">Бритвою</span> Оккама</h1>
     <div class="album-date fade-in">[10.10.2025]</div>
     <a href="https://ffm.to/pbo" class="album-cover fade-in">
       <img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Порізано Бритвою Оккама">
     </a>
     <div class="album-streams fade-in">
-      <a href="https://open.spotify.com/album/0uxgXh1SQ351dRvFoo9XWJ" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-      <a href="https://music.apple.com/ua/album/порізано-бритвою-оккама/1844120403?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
-      <a href="https://music.youtube.com/playlist?list=OLAK5uy_mQIjQvFCwsvtjEm2Ka5YSvOIaupCV8UnQ" target="_blank" aria-label="YouTube Music"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://open.spotify.com/album/0uxgXh1SQ351dRvFoo9XWJ" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://music.apple.com/ua/album/порізано-бритвою-оккама/1844120403?l=uk" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+      <a href="https://music.youtube.com/playlist?list=OLAK5uy_mQIjQvFCwsvtjEm2Ka5YSvOIaupCV8UnQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube Music"><i class="fa-brands fa-youtube"></i></a>
     </div>
   </div>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>/// Порізано Бритвою Оккама /// 10.10.2025 /// Порізано Бритвою Оккама /// 10.10.2025 /// Порізано Бритвою Оккама /// 10.10.2025 ///</span>
-      <span>/// Порізано Бритвою Оккама /// 10.10.2025 /// Порізано Бритвою Оккама /// 10.10.2025 /// Порізано Бритвою Оккама /// 10.10.2025 ///</span>
-    </div>
-  </div>
+  <div class="divider" aria-hidden="true">///</div>
 
-  <div class="section-label fade-in">Грім і кров (Хто тут я)</div>
+  <h2 class="section-label fade-in">Грім і кров (Хто тут я)</h2>
   <div class="window fade-in">
     <div class="window-bar" aria-hidden="true">
       <span>kv_Ni-ogzZA.avi</span>
       <span>[_][X]</span>
     </div>
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/kv_Ni-ogzZA" title="FRANCO - Грім і кров" allowfullscreen></iframe>
+      <iframe src="https://www.youtube-nocookie.com/embed/kv_Ni-ogzZA" title="FRANCO — Грім і кров (Хто тут я): відео на YouTube" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </div>
 </main>
@@ -626,7 +744,7 @@ footer {
   <div class="newsletter">
     <div class="newsletter-label">Іноді ми пишемо листи</div>
     <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" target="_blank" class="newsletter-form">
-      <input type="email" name="EMAIL" placeholder="Твій email" required class="newsletter-input">
+      <input type="email" name="EMAIL" placeholder="Твій email" aria-label="Твоя електронна адреса" autocomplete="email" required class="newsletter-input">
       <div style="position: absolute; left: -5000px;" aria-hidden="true">
         <input type="text" name="b_f4599b9a7dff59f0ab065b38d_b569df38bc" tabindex="-1" value="">
       </div>
@@ -635,13 +753,13 @@ footer {
   </div>
   <div class="footer-top">
     <div class="footer-socials">
-      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
-      <a href="https://francoband.bandcamp.com" target="_blank" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
-      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+      <a href="https://francoband.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
     </div>
     <div class="footer-links">
       <a href="/privacy-policy/">Політика конфіденційності</a>
@@ -654,18 +772,60 @@ footer {
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+  /* Поява при скролі */
+  const fadeItems = document.querySelectorAll('.fade-in');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeItems.forEach((el) => observer.observe(el));
+  } else {
+    fadeItems.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  /* Мобільне меню */
+  (function () {
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('site-nav');
+    if (!toggle || !nav) return;
+
+    function setMenu(open) {
+      nav.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
+    }
+
+    toggle.addEventListener('click', () => {
+      setMenu(!nav.classList.contains('is-open'));
+    });
+
+    /* Клік по пункту меню або по порожньому фону закриває меню */
+    nav.addEventListener('click', (e) => {
+      if (e.target === nav || e.target.closest('a')) setMenu(false);
+    });
+
+    /* Escape закриває меню і повертає фокус на кнопку */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        setMenu(false);
+        toggle.focus();
       }
     });
-  }, { threshold: 0.15 });
 
-  document.querySelectorAll('.fade-in').forEach((el) => {
-    observer.observe(el);
-  });
+    /* Якщо екран розширився до десктопу, скидаємо стан */
+    const mq = window.matchMedia('(min-width: 801px)');
+    const onChange = (e) => { if (e.matches) setMenu(false); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  })();
 </script>
 </body>
 </html>
