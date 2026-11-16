@@ -583,11 +583,12 @@ footer {
   gap: 6px 22px;
 }
 .footer-links a {
-  font-family: var(--display);
-  font-size: 20px;
+  font-family: var(--body);
+  font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
   text-decoration: none;
+  white-space: nowrap;
   color: #808080;
 }
 .footer-links a::before { content: '[ '; }
@@ -614,7 +615,7 @@ footer {
 
 /* ---------- Планшет / мобільні: шапка + гамбургер ---------- */
 @media (max-width: 800px) {
-  /* Без JS: логотип по центру, меню нижче (як раніше) */
+  /* Без JS: логотип по центру, меню нижче */
   header {
     flex-direction: column;
     justify-content: center;
@@ -683,7 +684,7 @@ footer {
     gap: 16px;
   }
   .footer-socials { flex-wrap: wrap; justify-content: center; }
-  .footer-links { justify-content: center; }
+  .footer-links { justify-content: center; gap: 8px 16px; }
 }
 
 /* ---------- Зменшений рух ---------- */
