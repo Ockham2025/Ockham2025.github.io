@@ -166,6 +166,11 @@ body::after {
   81% { opacity: 1; }
 }
 
+/* Mobile: no vignette overlay (it showed up as a band above the iOS toolbar) */
+@media (max-width: 900px) {
+  body::after { display: none; }
+}
+
 /* ---------- Fade-in (progressive enhancement) ---------- */
 .fade-in { opacity: 1; }
 .js .fade-in { opacity: 0; }
