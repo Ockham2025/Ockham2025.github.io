@@ -4,14 +4,75 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add('js');</script>
-<title>Контакти | FRANCO</title>
-<meta name="description" content="Зв'язок із FRANCO: електронна пошта та сторінки гурту.">
-<meta property="og:title" content="Контакти — FRANCO">
-<meta property="og:description" content="Зв'язок із FRANCO: електронна пошта та сторінки гурту.">
-<meta property="og:image" content="https://franco.com.ua/images/franco-caribbean-kyiv-03.jpg">
-<meta property="og:url" content="https://franco.com.ua/reach-us/">
+<title>FRANCO | Офіційний сайт</title>
+<meta name="description" content="FRANCO — український гурт, заснований у 2011 році. Досі в процесі.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://franco.com.ua/#website",
+      "url": "https://franco.com.ua/",
+      "name": "FRANCO",
+      "inLanguage": "uk",
+      "publisher": {
+        "@id": "https://franco.com.ua/#musicgroup"
+      }
+    },
+    {
+      "@type": "MusicGroup",
+      "@id": "https://franco.com.ua/#musicgroup",
+      "name": "FRANCO",
+      "url": "https://franco.com.ua/",
+      "description": "FRANCO — незалежний альтернативний рок-гурт із Києва, заснований у грудні 2011 року Валентином Федишеном. Гурт виконує авторську музику українською мовою.",
+      "disambiguatingDescription": "Український музичний гурт FRANCO, заснований у Києві у 2011 році Валентином Федишеном. Офіційний сайт: franco.com.ua.",
+      "foundingDate": "2011",
+      "foundingLocation": {
+        "@type": "City",
+        "name": "Київ",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "UA"
+        }
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Валентин Федишен"
+      },
+      "genre": [
+        "Альтернативний рок",
+        "Електронний рок"
+      ],
+      "inLanguage": "uk",
+      "image": "https://franco.com.ua/images/hrim-i-krov.png",
+      "sameAs": [
+        "https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw",
+        "https://music.apple.com/ua/artist/franco/1098769283",
+        "https://francoband.bandcamp.com/",
+        "https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g",
+        "https://www.instagram.com/francoband/",
+        "https://www.facebook.com/francoband/",
+        "https://www.tiktok.com/@francoband"
+      ]
+    }
+  ]
+}
+</script>
+<meta property="og:title" content="FRANCO — Офіційний сайт">
+<meta property="og:description" content="FRANCO — український гурт, заснований у 2011 році. Досі в процесі.">
+<meta property="og:image" content="https://franco.com.ua/images/hrim-i-krov.png">
+<meta property="og:image:alt" content="FRANCO — Грім і кров">
+<meta property="og:url" content="https://franco.com.ua/">
+<meta property="og:site_name" content="FRANCO">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<link rel="canonical" href="https://franco.com.ua/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FRANCO — Офіційний сайт">
+<meta name="twitter:description" content="FRANCO — український гурт, заснований у 2011 році. Досі в процесі.">
+<meta name="twitter:image" content="https://franco.com.ua/images/hrim-i-krov.png">
+<meta name="twitter:image:alt" content="FRANCO — Грім і кров">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,6 +103,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+html.menu-open,
 body.menu-open { overflow: hidden; }
 
 ::selection { background: var(--accent); color: #000; }
@@ -56,9 +118,9 @@ button:focus-visible {
 body::before {
   content: '';
   position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 100vh;
-  height: 100lvh;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 100;
   background: repeating-linear-gradient(
@@ -72,9 +134,9 @@ body::before {
 body::after {
   content: '';
   position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 100vh;
-  height: 100lvh;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 101;
   background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .55) 100%);
@@ -144,6 +206,14 @@ body::after {
   93% { transform: translate(7px, 0); clip-path: inset(60% 0 10% 0); filter: drop-shadow(-5px 0 var(--accent)) drop-shadow(5px 0 var(--cyan)); }
   95% { transform: translate(-3px, 0); clip-path: inset(35% 0 40% 0); filter: hue-rotate(90deg); }
   97% { transform: none; clip-path: none; filter: none; }
+}
+@keyframes imgGlitchHover {
+  0%   { transform: none; filter: none; clip-path: none; }
+  20%  { transform: translate(-6px, 2px); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
+  40%  { transform: translate(6px, -2px); clip-path: inset(30% 0 30% 0); }
+  60%  { transform: translate(-3px, 0); clip-path: none; filter: hue-rotate(90deg); }
+  80%  { transform: translate(3px, 1px); filter: hue-rotate(-90deg); }
+  100% { transform: none; filter: none; clip-path: none; }
 }
 
 /* ---------- Header ---------- */
@@ -230,52 +300,123 @@ nav a:hover::after { color: var(--accent); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---------- Content ---------- */
 main {
   flex: 1;
-  max-width: 700px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 70px 20px 80px;
-  width: 100%;
+  padding: 50px 20px 60px;
   text-align: center;
+  width: 100%;
 }
 
-/* Title: prompt and cursor are real spans, so ::before/::after stay free for the glitch overlay */
-.page-title {
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #3a3a3a;
+  overflow: hidden;
+}
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: imgGlitch 9s steps(1) infinite 2s;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 14%;
+  top: -20%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, .09), transparent);
+  animation: scan 6s linear infinite;
+}
+@keyframes scan {
+  to { top: 110%; }
+}
+
+/* ---------- Album ---------- */
+.album {
+  text-align: center;
+  margin-top: 100px;
+}
+.album-eyebrow {
+  font-family: var(--display);
+  font-size: 24px;
+  letter-spacing: 4px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.album-title {
   font-family: var(--display);
   font-weight: 400;
   color: var(--ink);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  line-height: 1;
-  font-size: clamp(40px, 8vw, 72px);
-  margin-bottom: 40px;
+  letter-spacing: 1px;
+  line-height: .9;
+  font-size: clamp(52px, 12vw, 160px);
 }
-.page-title .prompt,
-.page-title .cursor { color: var(--accent); }
-.page-title .cursor { animation: blink 1s steps(1) infinite; }
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-.intro-text {
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--ink);
-  margin-bottom: 14px;
-}
-.intro-text.secondary {
+.album-title .accent { color: var(--accent); }
+.album-date {
+  font-family: var(--body);
   font-size: 15px;
-  color: #999;
+  color: var(--dim);
+  margin-top: 22px;
+  letter-spacing: 3px;
 }
 
-/* Divider */
+.album-cover {
+  display: block;
+  max-width: 400px;
+  width: 100%;
+  margin: 60px auto 0;
+  border: 1px solid #3a3a3a;
+  box-shadow: -4px 0 0 var(--cyan), 4px 0 0 var(--accent);
+  overflow: hidden;
+}
+.album-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.album-cover:hover img {
+  animation: imgGlitchHover .4s steps(1) 1;
+}
+
+.album-streams {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 46px;
+}
+.album-streams a {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  color: var(--ink);
+  font-size: 24px;
+  text-decoration: none;
+  border: 1px solid #555;
+}
+.album-streams a:hover {
+  background: var(--ink);
+  color: #000;
+  border-color: var(--ink);
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+
+/* ---------- Divider ---------- */
 .divider {
   display: flex;
   align-items: center;
   gap: 16px;
-  max-width: 400px;
-  margin: 60px auto;
+  max-width: 700px;
+  margin: 100px auto 80px;
   font-family: var(--display);
   font-size: 24px;
   letter-spacing: 3px;
@@ -289,40 +430,58 @@ main {
   border-top: 1px dashed #444;
 }
 
-.contact-label {
+/* ---------- Section heading ---------- */
+.section-label {
   font-family: var(--display);
-  font-size: 24px;
-  letter-spacing: 4px;
+  font-weight: 400;
+  color: var(--ink);
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 26px;
+  letter-spacing: 2px;
+  line-height: 1;
+  font-size: clamp(30px, 5vw, 56px);
+  margin-bottom: 40px;
 }
-.contact-label::before { content: '// '; }
+.section-label::before { content: '> '; color: var(--accent); }
+.section-label::after {
+  content: '_';
+  color: var(--accent);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
 
-.contact-list {
+/* ---------- Video "window" ---------- */
+.window {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid var(--ink);
+  box-shadow: 8px 8px 0 rgba(230, 57, 70, .55);
+  text-align: left;
+}
+.window-bar {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--ink);
+  color: #000;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 1px;
+  padding: 2px 10px;
 }
-.contact-item {
-  font-size: 16px;
-  color: var(--ink);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  gap: 4px 12px;
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
 }
-.contact-item span { color: var(--dim); }
-.contact-item a {
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px dashed #555;
-}
-.contact-item a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* ---------- Footer ---------- */
@@ -481,17 +640,13 @@ footer {
   .js header img { width: 200px; }
   .js .nav-toggle { display: block; }
 
-  /* Fullscreen menu: solid black background */
+  /* Fullscreen menu: solid background covering the whole screen */
   .js nav {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
     width: 100%;
-    height: 100vh;
-    height: 100lvh;
-    min-height: 100%;
+    height: 100%;
     z-index: 90;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -500,6 +655,7 @@ footer {
     gap: 30px;
     padding: 80px 20px;
     background: #050505;
+    box-shadow: 0 0 0 100vmax #050505;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -512,15 +668,22 @@ footer {
     transition: opacity .2s steps(3);
   }
   .js nav a { font-size: 30px; }
+
+  /* Close button stays pinned top right while the menu is open */
+  .js .nav-toggle[aria-expanded="true"] {
+    position: fixed;
+    top: 20px;
+    right: 15px;
+  }
 }
 
 /* ---------- Mobile ---------- */
 @media (max-width: 600px) {
-  main { padding: 45px 15px 55px; }
-  .intro-text { font-size: 16px; }
-  .intro-text.secondary { font-size: 14px; }
-  .divider { margin: 45px auto; font-size: 20px; }
-  .contact-item { flex-direction: column; align-items: center; gap: 2px; }
+  main { padding: 40px 15px; }
+  .album { margin-top: 70px; }
+  .album-cover { margin-top: 45px; max-width: 300px; }
+  .divider { margin: 70px auto 60px; font-size: 20px; }
+  .window { box-shadow: 5px 5px 0 rgba(230, 57, 70, .55); }
 
   /* Footer: everything centered */
   footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
@@ -569,23 +732,34 @@ footer {
   </nav>
 </header>
 <main>
-  <h1 class="page-title glitch fade-in" data-text="> Зв'язатись з нами_"><span class="prompt" aria-hidden="true">&gt; </span>Зв'язатись з нами<span class="cursor" aria-hidden="true">_</span></h1>
+  <div class="hero fade-in">
+    <img src="/images/hrim-i-krov.png" alt="FRANCO — Грім і кров">
+  </div>
 
-  <p class="intro-text fade-in">Не все потребує відповіді. Але якщо тобі є що сказати, ми прочитаємо.</p>
-  <p class="intro-text secondary fade-in">Пиши, якщо це стосується концертів, співпраці, музики або чогось іншого, що не дає спокою. Ми відповідаємо не миттєво, але читаємо все.</p>
+  <div class="album">
+    <div class="album-eyebrow fade-in">// Альбом</div>
+    <h1 class="album-title glitch fade-in" data-text="Порізано Бритвою Оккама">Порізано <span class="accent">Бритвою</span> Оккама</h1>
+    <div class="album-date fade-in">[10.10.2025]</div>
+    <a href="https://ffm.to/pbo" class="album-cover fade-in">
+      <img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Порізано Бритвою Оккама">
+    </a>
+    <div class="album-streams fade-in">
+      <a href="https://open.spotify.com/album/0uxgXh1SQ351dRvFoo9XWJ" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://music.apple.com/ua/album/порізано-бритвою-оккама/1844120403?l=uk" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+      <a href="https://music.youtube.com/playlist?list=OLAK5uy_mQIjQvFCwsvtjEm2Ka5YSvOIaupCV8UnQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube Music"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+  </div>
 
   <div class="divider" aria-hidden="true">///</div>
 
-  <div class="contact-label fade-in">Наші контакти</div>
-  <div class="contact-list fade-in">
-    <div class="contact-item">
-      <span>Електронна пошта:</span><a href="mailto:info@franco.com.ua">info@franco.com.ua</a>
+  <h2 class="section-label fade-in">Грім і кров (Хто тут я)</h2>
+  <div class="window fade-in">
+    <div class="window-bar" aria-hidden="true">
+      <span>kv_Ni-ogzZA.avi</span>
+      <span>[_][X]</span>
     </div>
-    <div class="contact-item">
-      <span>Instagram:</span><a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer">@francoband</a>
-    </div>
-    <div class="contact-item">
-      <span>Facebook:</span><a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer">FRANCO</a>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube-nocookie.com/embed/kv_Ni-ogzZA" title="FRANCO — Грім і кров (Хто тут я): відео на YouTube" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </div>
 </main>
@@ -648,6 +822,7 @@ footer {
     function setMenu(open) {
       nav.classList.toggle('is-open', open);
       document.body.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
     }
