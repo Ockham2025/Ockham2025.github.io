@@ -4,7 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add('js');</script>
-<title>Політика конфіденційності | FRANCO</title>
+<title>Про гурт | FRANCO</title>
+<meta name="description" content="FRANCO — незалежний альтернативний рок-гурт із Києва, заснований у 2011 році. Історія гурту та його учасники.">
+<link rel="canonical" href="https://franco.com.ua/about/">
+<meta property="og:title" content="Про гурт — FRANCO">
+<meta property="og:description" content="FRANCO — гурт із Києва. Кілька слів про тих, хто стоїть за музикою.">
+<meta property="og:image" content="https://franco.com.ua/images/franco-about-03.jpg">
+<meta property="og:url" content="https://franco.com.ua/about/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,6 +139,14 @@ body::before {
   95% { transform: translate(-3px, 0); clip-path: inset(35% 0 40% 0); filter: hue-rotate(90deg); }
   97% { transform: none; clip-path: none; filter: none; }
 }
+@keyframes imgGlitchHover {
+  0%   { transform: none; filter: none; clip-path: none; }
+  20%  { transform: translate(-6px, 2px); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
+  40%  { transform: translate(6px, -2px); clip-path: inset(30% 0 30% 0); }
+  60%  { transform: translate(-3px, 0); clip-path: none; filter: hue-rotate(90deg); }
+  80%  { transform: translate(3px, 1px); filter: hue-rotate(-90deg); }
+  100% { transform: none; filter: none; clip-path: none; }
+}
 
 /* ---------- Header ---------- */
 header {
@@ -219,11 +235,10 @@ nav a:hover::after { color: var(--accent); }
 /* ---------- Content ---------- */
 main {
   flex: 1;
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 70px 20px 80px;
+  padding: 60px 20px 60px;
   width: 100%;
-  text-align: left;
 }
 
 /* Title: prompt and cursor are real spans so the glitch overlay can use ::before/::after */
@@ -234,8 +249,8 @@ main {
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 1;
-  font-size: clamp(34px, 6.5vw, 60px);
-  margin-bottom: 18px;
+  font-size: clamp(40px, 8vw, 72px);
+  text-align: center;
 }
 .page-title .prompt,
 .page-title .cursor { color: var(--accent); }
@@ -244,36 +259,45 @@ main {
   50% { opacity: 0; }
 }
 
-.page-updated {
-  font-family: var(--body);
-  font-size: 13px;
-  letter-spacing: 1px;
-  color: var(--dim);
-  margin-bottom: 40px;
-  padding-bottom: 24px;
-  border-bottom: 1px dashed #333;
+/* ---------- Manifest blocks ---------- */
+.manifest-block {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  padding: 50px 2vw;
 }
-.page-updated::before { content: '// '; color: var(--accent); }
+.manifest-block.align-center { justify-content: center; text-align: center; }
+.manifest-block.align-left   { justify-content: flex-start; text-align: left; }
+.manifest-block.align-right  { justify-content: flex-end; text-align: right; }
 
-.content p {
-  font-size: 15px;
-  line-height: 1.8;
-  color: #aaa;
-  margin-bottom: 22px;
-}
-.content p:first-child {
-  font-size: 17px;
+.manifest-text {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
   color: var(--ink);
+  line-height: 1;
+  max-width: 900px;
 }
-.content a {
-  color: var(--accent);
-  text-decoration: none;
-  border-bottom: 1px dashed var(--accent);
+.manifest-text.size-xl { font-size: clamp(48px, 9vw, 120px); letter-spacing: 1px; }
+.manifest-text.size-lg { font-size: clamp(38px, 7vw, 88px);  letter-spacing: 1px; }
+.manifest-text.size-md { font-size: clamp(30px, 5.5vw, 64px); letter-spacing: 1px; }
+.manifest-text .accent { color: var(--accent); }
+
+/* ---------- Photos ---------- */
+.about-image {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #3a3a3a;
+  overflow: hidden;
 }
-.content a:hover {
-  color: var(--ink);
-  border-bottom-color: var(--ink);
-  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+.about-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.about-image:hover img {
+  animation: imgGlitchHover .4s steps(1) 1;
 }
 
 /* ---------- Footer ---------- */
@@ -471,9 +495,13 @@ footer {
 
 /* ---------- Mobile ---------- */
 @media (max-width: 600px) {
-  main { padding: 45px 15px 55px; }
-  .content p { font-size: 14px; }
-  .content p:first-child { font-size: 16px; }
+  main { padding: 40px 15px 45px; }
+  .manifest-block { min-height: 50vh; padding: 40px 0; }
+  .manifest-block.align-left,
+  .manifest-block.align-right {
+    text-align: center;
+    justify-content: center;
+  }
 
   /* Footer: everything centered */
   footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
@@ -522,16 +550,55 @@ footer {
   </nav>
 </header>
 <main>
-  <h1 class="page-title glitch fade-in" data-text="> Політика конфіденційності_"><span class="prompt" aria-hidden="true">&gt; </span>Політика конфіденційності<span class="cursor" aria-hidden="true">_</span></h1>
-  <div class="page-updated fade-in">Останнє оновлення: 21 липня 2026 року</div>
-  <div class="content fade-in">
-    <p>Ми поважаємо вашу приватність.</p>
-    <p>Якщо ви підписуєтесь на нашу розсилку, ми зберігаємо лише адресу електронної пошти, яку ви добровільно надаєте. Вона використовується виключно для надсилання новин FRANCO. Ви можете відписатися в будь-який момент за допомогою посилання, яке міститься в кожному листі.</p>
-    <p>Для надсилання розсилок ми використовуємо сервіс Mailchimp, який обробляє вашу адресу електронної пошти відповідно до власної політики конфіденційності.</p>
-    <p>Якщо ви зв'язуєтесь із нами електронною поштою, ми використовуємо надані вами контактні дані лише для відповіді на ваше повідомлення.</p>
-    <p>Сайт може містити посилання або вбудований контент сторонніх сервісів, зокрема YouTube, Spotify, Apple Music, Bandcamp, Instagram, Facebook та інших платформ. Взаємодія з ними регулюється політиками конфіденційності відповідних сервісів.</p>
-    <p>Для аналізу відвідуваності ми використовуємо анонімні статистичні дані (наприклад, Cloudflare Web Analytics), які не дозволяють ідентифікувати конкретного користувача.</p>
-    <p>Якщо у вас виникли запитання щодо цієї політики, напишіть нам на <a href="mailto:info@franco.com.ua">info@franco.com.ua</a>.</p>
+  <h1 class="page-title glitch fade-in" data-text="> Про гурт_"><span class="prompt" aria-hidden="true">&gt; </span>Про гурт<span class="cursor" aria-hidden="true">_</span></h1>
+
+  <section class="manifest-block align-center">
+    <div class="manifest-text size-xl fade-in">Засновані у Києві — без намірів, але з <span class="accent">музикою</span>.</div>
+  </section>
+  <div class="about-image fade-in">
+    <img src="/images/franco-about-07.jpg" alt="FRANCO" loading="lazy">
+  </div>
+
+  <section class="manifest-block align-left">
+    <div class="manifest-text size-lg fade-in">Існуємо в суперечках, бо інколи тільки у хаосі можна знайти <span class="accent">порядок</span>.</div>
+  </section>
+  <div class="about-image fade-in">
+    <img src="/images/franco-about-06.jpg" alt="FRANCO" loading="lazy">
+  </div>
+
+  <section class="manifest-block align-center">
+    <div class="manifest-text size-xl fade-in">Граємо наживо, коли відчуваємо, що інакше задихнемося.</div>
+  </section>
+  <div class="about-image fade-in">
+    <img src="/images/franco-about-05.jpg" alt="FRANCO" loading="lazy">
+  </div>
+
+  <section class="manifest-block align-right">
+    <div class="manifest-text size-lg fade-in">Записуємо музику тоді, коли простір між думками стає надто <span class="accent">гучним</span>.</div>
+  </section>
+  <div class="about-image fade-in">
+    <img src="/images/franco-about-04.jpg" alt="FRANCO" loading="lazy">
+  </div>
+
+  <section class="manifest-block align-center">
+    <div class="manifest-text size-md fade-in">Скасовували альбоми частіше, ніж видавали.</div>
+  </section>
+  <div class="about-image fade-in">
+    <img src="/images/franco-about-03.jpg" alt="FRANCO" loading="lazy">
+  </div>
+
+  <section class="manifest-block align-left">
+    <div class="manifest-text size-xl fade-in">Випустили <span class="accent">три</span> альбоми. Буде ще.</div>
+  </section>
+  <div class="about-image fade-in">
+    <img src="/images/franco-about-02.jpg" alt="FRANCO" loading="lazy">
+  </div>
+
+  <section class="manifest-block align-center">
+    <div class="manifest-text size-lg fade-in">FRANCO тут не при чому. Або при чому, але інакше.</div>
+  </section>
+  <div class="about-image fade-in">
+    <img src="/images/franco-about-01.jpg" alt="FRANCO" loading="lazy">
   </div>
 </main>
 <footer>
@@ -565,6 +632,40 @@ footer {
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "@id": "https://franco.com.ua/#musicgroup",
+  "name": "FRANCO",
+  "url": "https://franco.com.ua/",
+  "image": "https://franco.com.ua/images/franco-about-03.jpg",
+  "description": "FRANCO — незалежний альтернативний рок-гурт із Києва, заснований у грудні 2011 року Валентином Федишеном. Гурт виконує авторську музику українською мовою з електронними текстурами та атмосферним звучанням.",
+  "disambiguatingDescription": "Український музичний гурт FRANCO, заснований у Києві у 2011 році Валентином Федишеном. Офіційний сайт: franco.com.ua.",
+  "foundingDate": "2011-12",
+  "foundingLocation": {
+    "@type": "City",
+    "name": "Київ"
+  },
+  "founder": {
+    "@type": "Person",
+    "name": "Валентин Федишен"
+  },
+  "genre": [
+    "Alternative Rock",
+    "Electronic Rock"
+  ],
+  "sameAs": [
+    "https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw",
+    "https://music.apple.com/ua/artist/franco/1098769283",
+    "https://francoband.bandcamp.com/",
+    "https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g",
+    "https://www.instagram.com/francoband/",
+    "https://www.facebook.com/francoband/",
+    "https://www.tiktok.com/@francoband"
+  ]
+}
+</script>
 <script>
   /* Fade-in on scroll */
   const fadeItems = document.querySelectorAll('.fade-in');
