@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add('js');</script>
-<title>Музика | FRANCO</title>
-<meta name="description" content="Дискографія FRANCO — незалежного альтернативного рок-гурту з Києва, заснованого у 2011 році. Альбоми, EP та сингли.">
-<meta property="og:title" content="Музика — FRANCO">
-<meta property="og:description" content="Дискографія FRANCO: альбоми, EP, сингли та музика, що залишається після шуму.">
-<meta property="og:image" content="https://franco.com.ua/images/franco-rehearsal-2020.jpg">
-<meta property="og:url" content="https://franco.com.ua/music/">
+<title>Нотатки | FRANCO</title>
+<meta name="description" content="Нотатки FRANCO — новини гурту, музичні релізи, відео, концерти та інші події з історії незалежного альтернативного рок-гурту з Києва.">
+<meta property="og:title" content="Нотатки — FRANCO">
+<meta property="og:description" content="Новини гурту, музичні релізи, відео, концерти та інші події з історії FRANCO.">
+<meta property="og:image" content="https://franco.com.ua/images/franco-mariupol-2021-01.jpg">
+<meta property="og:url" content="https://franco.com.ua/notes/">
 <meta property="og:type" content="website">
-<link rel="canonical" href="https://franco.com.ua/music/">
+<link rel="canonical" href="https://franco.com.ua/notes/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -235,7 +235,7 @@ nav a:hover::after { color: var(--accent); }
 /* ---------- Content ---------- */
 main {
   flex: 1;
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 70px 20px 80px;
   width: 100%;
@@ -260,75 +260,97 @@ main {
   50% { opacity: 0; }
 }
 
-/* ---------- Section labels ---------- */
-.section-label {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: 30px;
-  letter-spacing: 3px;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--ink);
-  margin: 70px 0 28px;
-  padding-bottom: 12px;
-  border-bottom: 1px dashed #444;
-}
-.section-label::before { content: '// '; color: var(--accent); }
-.section-label:first-of-type { margin-top: 0; }
-
-/* ---------- Release grid ---------- */
-.music-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px 30px;
-}
-.music-grid.singles {
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px 20px;
-}
-.music-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+/* ---------- Note cards ---------- */
+.note-card {
+  display: block;
   text-decoration: none;
   color: inherit;
-}
-.music-item .cover {
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
+  margin-bottom: 36px;
   border: 1px solid #3a3a3a;
-  box-shadow: -4px 0 0 var(--cyan), 4px 0 0 var(--accent);
-  margin-bottom: 8px;
+  overflow: hidden;
+  position: relative;
 }
-.music-item img {
+.note-card:hover {
+  box-shadow: -4px 0 0 var(--cyan), 4px 0 0 var(--accent);
+}
+.note-card.is-hidden { display: none; }
+
+.note-banner {
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
+  position: relative;
+}
+.note-banner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-.music-item:hover .cover img {
+.note-card:hover .note-banner img {
   animation: imgGlitchHover .4s steps(1) 1;
 }
-.music-item .title {
-  font-family: var(--display);
-  font-size: 26px;
-  line-height: 1;
-  color: var(--ink);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.note-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(0, 0, 0, .9) 0%, rgba(0, 0, 0, .25) 55%, transparent 100%);
 }
-.music-item:hover .title {
-  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+
+.note-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 24px 28px;
 }
-.music-item .year {
+.note-date {
   font-family: var(--body);
   font-size: 13px;
   letter-spacing: 2px;
-  color: var(--dim);
+  color: #aaa;
+  margin-bottom: 8px;
 }
-.music-item .year::before { content: '['; }
-.music-item .year::after  { content: ']'; }
+.note-date::before { content: '['; }
+.note-date::after  { content: ']'; }
+.note-title {
+  font-family: var(--display);
+  font-size: 30px;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+.note-card:hover .note-title {
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+
+/* ---------- Show more ---------- */
+.show-more-wrap {
+  text-align: center;
+  margin-top: 50px;
+}
+.show-more-btn {
+  display: inline-block;
+  padding: 12px 34px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  font-family: var(--display);
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+}
+.show-more-btn:hover {
+  background: var(--ink);
+  color: #000;
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+.show-more-btn.is-gone { display: none; }
 
 /* ---------- Footer ---------- */
 footer {
@@ -523,22 +545,15 @@ footer {
   }
 }
 
-/* ---------- Two-column releases ---------- */
-@media (max-width: 700px) {
-  .music-grid,
-  .music-grid.singles {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px 20px;
-  }
-}
-
 /* ---------- Mobile ---------- */
 @media (max-width: 600px) {
   main { padding: 45px 15px 55px; }
   .page-title { margin-bottom: 40px; }
-  .section-label { font-size: 24px; margin: 50px 0 22px; }
-  .music-item .title { font-size: 21px; }
-  .music-item .cover { box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent); }
+  .note-card { margin-bottom: 28px; }
+  .note-title { font-size: 22px; }
+  .note-date { font-size: 12px; margin-bottom: 6px; }
+  .note-text { padding: 14px 16px; }
+  .show-more-wrap { margin-top: 36px; }
 
   /* Footer: everything centered */
   footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
@@ -587,93 +602,254 @@ footer {
   </nav>
 </header>
 <main>
-  <h1 class="page-title glitch fade-in" data-text="> Музика_"><span class="prompt" aria-hidden="true">&gt; </span>Музика<span class="cursor" aria-hidden="true">_</span></h1>
+  <h1 class="page-title glitch fade-in" data-text="> Нотатки_"><span class="prompt" aria-hidden="true">&gt; </span>Нотатки<span class="cursor" aria-hidden="true">_</span></h1>
 
-  <h2 class="section-label fade-in">Альбоми (LP)</h2>
-  <div class="music-grid">
-    <a class="music-item fade-in" href="/music/pbo/">
-      <div class="cover"><img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Порізано Бритвою Оккама"></div>
-      <div class="title">Порізано Бритвою Оккама</div>
-      <div class="year">2025</div>
+  <div id="notes-list">
+
+    <a class="note-card fade-in" href="/notes/dublab-september-2026/">
+      <div class="note-banner"><img src="/images/dublab-FRANCO-Fedyshen.jpeg" alt="Гостьовий мікс Валентина Федишена для dublab, вересень 2026"></div>
+      <div class="note-text">
+        <div class="note-date">11.09.2026</div>
+        <div class="note-title">Гостьовий мікс Валентина Федишена для dublab, вересень 2026</div>
+      </div>
     </a>
-    <a class="music-item fade-in" href="/music/tremor-lp/">
-      <div class="cover"><img src="/images/franco-tremor.png" alt="Тремор"></div>
-      <div class="title">Тремор</div>
-      <div class="year">2018</div>
+
+    <a class="note-card fade-in" href="/notes/maiak-ne-pratsiuie/">
+      <div class="note-banner"><img src="/images/mayak2.png" alt="Коли світло більше не веде"></div>
+      <div class="note-text">
+        <div class="note-date">01.05.2026</div>
+        <div class="note-title">Коли світло більше не веде</div>
+      </div>
     </a>
-    <a class="music-item fade-in" href="/music/tuneli-lp/">
-      <div class="cover"><img src="/images/franco-tuneli.png" alt="Тунелі"></div>
-      <div class="title">Тунелі</div>
-      <div class="year">2017</div>
+
+    <a class="note-card fade-in" href="/notes/hrim-i-krov/">
+      <div class="note-banner"><img src="/images/FRANCO-PBO2025-scaled.jpg" alt="Нова сторінка в цій історії" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">10.10.2025</div>
+        <div class="note-title">Нова сторінка в цій історії</div>
+      </div>
     </a>
+
+    <a class="note-card fade-in" href="/notes/porizano-brytvoiu-okkama/">
+      <div class="note-banner"><img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Після всіх пояснень" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">10.10.2025</div>
+        <div class="note-title">Після всіх пояснень</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in" href="/notes/vv-cover/">
+      <div class="note-banner"><img src="/images/franco-zoriana-osin.png" alt="Діалог із минулим" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">13.12.2022</div>
+        <div class="note-title">Діалог із минулим</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in" href="/notes/dodomu-ep/">
+      <div class="note-banner"><img src="/images/franco-dodomu.jpg" alt="Світ став іншим. Пісні залишились" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">06.05.2022</div>
+        <div class="note-title">Світ став іншим. Пісні залишились</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in" href="/notes/mrpl-city-2021/">
+      <div class="note-banner"><img src="/images/franco-mariupol-2021-01.jpg" alt="Ми знову вийшли назовні" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">07.08.2021</div>
+        <div class="note-title">Ми знову вийшли назовні</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in" href="/notes/teplyy-lampovyy-2021/">
+      <div class="note-banner"><img src="/images/franco-teplyy-lampovyy-2021.jpg" alt="Музика без зайвої відстані" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">22.07.2021</div>
+        <div class="note-title">Музика без зайвої відстані</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in" href="/notes/live-2020/">
+      <div class="note-banner"><img src="/images/franco-live-2020.jpg" alt="LIVE 2020: Те, що залишилось наживо" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">14.06.2021</div>
+        <div class="note-title">LIVE 2020: Те, що залишилось наживо</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in" href="/notes/masha-promin/">
+      <div class="note-banner"><img src="/images/franco-masha-radio-promin-02.jpg" alt="Перша розмова про Машу" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">14.03.2021</div>
+        <div class="note-title">Перша розмова про Машу</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in" href="/notes/masha/">
+      <div class="note-banner"><img src="/images/franco-masha.jpg" alt="Кілька хвилин із чужого життя" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">04.03.2021</div>
+        <div class="note-title">Кілька хвилин із чужого життя</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/rehearsal-2020/">
+      <div class="note-banner"><img src="/images/franco-rehearsal-2020.jpg" alt="Репетиції в ізоляції" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">21.10.2020</div>
+        <div class="note-title">Репетиції в ізоляції</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/soundplant-2019/">
+      <div class="note-banner"><img src="/images/franco-live-at-soundplant-2019.jpeg" alt="Там, де зійшлися звуки" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">01.07.2019</div>
+        <div class="note-title">Там, де зійшлися звуки</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/caribbean-club-2019/">
+      <div class="note-banner"><img src="/images/franco-caribbean-kyiv-04.jpg" alt="Місто слухало" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">31.01.2019</div>
+        <div class="note-title">Місто слухало</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/tremor-album/">
+      <div class="note-banner"><img src="/images/franco-tremor.png" alt="Точка нестабільності" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">30.11.2018</div>
+        <div class="note-title">Точка нестабільності</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/rainy-the-atypical-patient/">
+      <div class="note-banner"><img src="/images/the-atypical-patient-rainy.jpg" alt="Дощ, якого ніхто не передбачив" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">31.10.2018</div>
+        <div class="note-title">Дощ, якого ніхто не передбачив</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/mrpl-city-2018/">
+      <div class="note-banner"><img src="/images/franco-about-05.jpg" alt="Музика між містом і водою" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">05.08.2018</div>
+        <div class="note-title">Музика між містом і водою</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/youthday-2018/">
+      <div class="note-banner"><img src="/images/youthday-2018-01.jpg" alt="Поки було літо" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">24.06.2018</div>
+        <div class="note-title">Поки було літо</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/live-at-shoom/">
+      <div class="note-banner"><img src="/images/franco-live-at-shoom.jpg" alt="Без другого дубля" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">18.12.2017</div>
+        <div class="note-title">Без другого дубля</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/the-atypical-patient-mr-jude/">
+      <div class="note-banner"><img src="/images/the-atypical-patient-mr-jude.jpg" alt="Випадок, який не пояснити" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">15.08.2017</div>
+        <div class="note-title">Випадок, який не пояснити</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/tuneli-rmx/">
+      <div class="note-banner"><img src="/images/franco-tuneli-rmx.png" alt="Тунелі з іншого боку" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">03.05.2017</div>
+        <div class="note-title">Тунелі з іншого боку</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/tuneli-album/">
+      <div class="note-banner"><img src="/images/franco-tuneli.png" alt="Там, де починається темрява" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">14.02.2017</div>
+        <div class="note-title">Там, де починається темрява</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/live-2016/">
+      <div class="note-banner"><img src="/images/franco-soundplant-2016.jpeg" alt="Кілька моментів до завтра" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">14.09.2016</div>
+        <div class="note-title">Кілька моментів до завтра</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/spyrt-single/">
+      <div class="note-banner"><img src="/images/franco-spyrt.png" alt="Те, що не розбавити" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">04.04.2016</div>
+        <div class="note-title">Те, що не розбавити</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/rehina-video/">
+      <div class="note-banner"><img src="/images/franco-rehina.jpg" alt="Коли пісня отримує своє обличчя" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">13.12.2015</div>
+        <div class="note-title">Коли пісня отримує своє обличчя</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/mezzanine-2015/">
+      <div class="note-banner"><img src="/images/franco-mezzanine_01.jpg" alt="Ніч у Mezzanine" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">21.11.2015</div>
+        <div class="note-title">Ніч у Mezzanine</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/rehearsal-april-2015/">
+      <div class="note-banner"><img src="/images/2015-04-23-21.24.21.jpeg" alt="Чернетка звуку" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">23.04.2015</div>
+        <div class="note-title">Чернетка звуку</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/ep-2015/">
+      <div class="note-banner"><img src="/images/franco-ep-2015.png" alt="Перші сліди" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">15.04.2015</div>
+        <div class="note-title">Перші сліди</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/single-tanho/">
+      <div class="note-banner"><img src="/images/franco-tanho.jpg" alt="Танго вже не наше" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">06.03.2014</div>
+        <div class="note-title">Танго вже не наше</div>
+      </div>
+    </a>
+
+    <a class="note-card fade-in is-hidden" href="/notes/first-show-2012/">
+      <div class="note-banner"><img src="/images/franco-first-show-2012.jpg" alt="Коли все ще можна було передумати" loading="lazy"></div>
+      <div class="note-text">
+        <div class="note-date">08.03.2012</div>
+        <div class="note-title">Коли все ще можна було передумати</div>
+      </div>
+    </a>
+
   </div>
 
-  <h2 class="section-label fade-in">Мініальбоми (EP)</h2>
-  <div class="music-grid">
-    <a class="music-item fade-in" href="https://ffm.to/dodomu-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-dodomu.jpg" alt="Додому" loading="lazy"></div>
-      <div class="title">Додому</div>
-      <div class="year">2022</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/live2020-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-live-2020.jpg" alt="Live 2020" loading="lazy"></div>
-      <div class="title">Live 2020</div>
-      <div class="year">2021</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/tuneli-rmx-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-tuneli-rmx.png" alt="Тунелі Remix" loading="lazy"></div>
-      <div class="title">Тунелі Remix</div>
-      <div class="year">2017</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/ep2015-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-ep-2015.png" alt="EP 2015" loading="lazy"></div>
-      <div class="title">EP 2015</div>
-      <div class="year">2015</div>
-    </a>
-  </div>
-
-  <h2 class="section-label fade-in">Сингли</h2>
-  <div class="music-grid singles">
-    <a class="music-item fade-in" href="https://ffm.to/masha-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-masha.jpg" alt="Маша" loading="lazy"></div>
-      <div class="title">Маша</div>
-      <div class="year">2021</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/tremor-s-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-tremor-single.png" alt="Тремор" loading="lazy"></div>
-      <div class="title">Тремор</div>
-      <div class="year">2018</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/ty-v-meni-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-ty-v-meni.jpg" alt="Ти в мені" loading="lazy"></div>
-      <div class="title">Ти в мені</div>
-      <div class="year">2017</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/holova-sertse-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-holova-chy-sertse.jpg" alt="Голова чи серце" loading="lazy"></div>
-      <div class="title">Голова чи серце</div>
-      <div class="year">2016</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/ptakhy-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-ptakhy.jpg" alt="Птахи" loading="lazy"></div>
-      <div class="title">Птахи</div>
-      <div class="year">2016</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/spyrt-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-spyrt.png" alt="Спирт" loading="lazy"></div>
-      <div class="title">Спирт</div>
-      <div class="year">2016</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/rehina-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-rehina.jpg" alt="Регіна" loading="lazy"></div>
-      <div class="title">Регіна</div>
-      <div class="year">2015</div>
-    </a>
-    <a class="music-item fade-in" href="https://ffm.to/tanho-franco" target="_blank" rel="noopener noreferrer">
-      <div class="cover"><img src="/images/franco-tanho.jpg" alt="Танго" loading="lazy"></div>
-      <div class="title">Танго</div>
-      <div class="year">2014</div>
-    </a>
+  <div class="show-more-wrap">
+    <button type="button" class="show-more-btn" id="show-more-btn" onclick="showMoreNotes()">Показати ще</button>
   </div>
 </main>
 <footer>
@@ -706,240 +882,14 @@ footer {
     &copy; 2026 FRANCO
   </div>
 </footer>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "@id": "https://franco.com.ua/music/#discography",
-  "name": "Дискографія FRANCO",
-  "description": "Альбоми, мініальбоми та сингли українського гурту FRANCO з Києва.",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Порізано Бритвою Оккама",
-        "url": "https://franco.com.ua/music/pbo/",
-        "image": "https://franco.com.ua/images/porizano-brytvoiu-okkama.jpeg",
-        "datePublished": "2025-10-10",
-        "albumReleaseType": "https://schema.org/AlbumRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Тремор",
-        "url": "https://franco.com.ua/music/tremor-lp/",
-        "image": "https://franco.com.ua/images/franco-tremor.png",
-        "datePublished": "2018-11-30",
-        "albumReleaseType": "https://schema.org/AlbumRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Тунелі",
-        "url": "https://franco.com.ua/music/tuneli-lp/",
-        "image": "https://franco.com.ua/images/franco-tuneli.png",
-        "datePublished": "2017-02-14",
-        "albumReleaseType": "https://schema.org/AlbumRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Додому",
-        "url": "https://ffm.to/dodomu-franco",
-        "image": "https://franco.com.ua/images/franco-dodomu.jpg",
-        "datePublished": "2022",
-        "albumReleaseType": "https://schema.org/EPRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 5,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Live 2020",
-        "url": "https://ffm.to/live2020-franco",
-        "image": "https://franco.com.ua/images/franco-live-2020.jpg",
-        "datePublished": "2021",
-        "albumReleaseType": "https://schema.org/EPRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 6,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Тунелі Remix",
-        "url": "https://ffm.to/tuneli-rmx-franco",
-        "image": "https://franco.com.ua/images/franco-tuneli-rmx.png",
-        "datePublished": "2017",
-        "albumReleaseType": "https://schema.org/EPRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 7,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "EP 2015",
-        "url": "https://ffm.to/ep2015-franco",
-        "image": "https://franco.com.ua/images/franco-ep-2015.png",
-        "datePublished": "2015",
-        "albumReleaseType": "https://schema.org/EPRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 8,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Маша",
-        "url": "https://ffm.to/masha-franco",
-        "image": "https://franco.com.ua/images/franco-masha.jpg",
-        "datePublished": "2021",
-        "albumReleaseType": "https://schema.org/SingleRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 9,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Тремор",
-        "url": "https://ffm.to/tremor-s-franco",
-        "image": "https://franco.com.ua/images/franco-tremor-single.png",
-        "datePublished": "2018",
-        "albumReleaseType": "https://schema.org/SingleRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 10,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Ти в мені",
-        "url": "https://ffm.to/ty-v-meni-franco",
-        "image": "https://franco.com.ua/images/franco-ty-v-meni.jpg",
-        "datePublished": "2017",
-        "albumReleaseType": "https://schema.org/SingleRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 11,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Голова чи серце",
-        "url": "https://ffm.to/holova-sertse-franco",
-        "image": "https://franco.com.ua/images/franco-holova-chy-sertse.jpg",
-        "datePublished": "2016",
-        "albumReleaseType": "https://schema.org/SingleRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 12,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Птахи",
-        "url": "https://ffm.to/ptakhy-franco",
-        "image": "https://franco.com.ua/images/franco-ptakhy.jpg",
-        "datePublished": "2016",
-        "albumReleaseType": "https://schema.org/SingleRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 13,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Спирт",
-        "url": "https://ffm.to/spyrt-franco",
-        "image": "https://franco.com.ua/images/franco-spyrt.png",
-        "datePublished": "2016",
-        "albumReleaseType": "https://schema.org/SingleRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 14,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Регіна",
-        "url": "https://ffm.to/rehina-franco",
-        "image": "https://franco.com.ua/images/franco-rehina.jpg",
-        "datePublished": "2015",
-        "albumReleaseType": "https://schema.org/SingleRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 15,
-      "item": {
-        "@type": "MusicAlbum",
-        "name": "Танго",
-        "url": "https://ffm.to/tanho-franco",
-        "image": "https://franco.com.ua/images/franco-tanho.jpg",
-        "datePublished": "2014",
-        "albumReleaseType": "https://schema.org/SingleRelease",
-        "byArtist": {
-          "@id": "https://franco.com.ua/#musicgroup"
-        }
-      }
-    }
-  ]
+
+<script>
+/* Reveal the remaining notes */
+function showMoreNotes() {
+  document.querySelectorAll('.note-card.is-hidden').forEach(function(el) {
+    el.classList.remove('is-hidden');
+  });
+  document.getElementById('show-more-btn').classList.add('is-gone');
 }
 </script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
