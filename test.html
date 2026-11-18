@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add('js');</script>
-<title>Нотатки | FRANCO</title>
-<meta name="description" content="Нотатки FRANCO — новини гурту, музичні релізи, відео, концерти та інші події з історії незалежного альтернативного рок-гурту з Києва.">
-<meta property="og:title" content="Нотатки — FRANCO">
-<meta property="og:description" content="Новини гурту, музичні релізи, відео, концерти та інші події з історії FRANCO.">
-<meta property="og:image" content="https://franco.com.ua/images/franco-mariupol-2021-01.jpg">
-<meta property="og:url" content="https://franco.com.ua/notes/">
+<title>Посилання | FRANCO</title>
+<meta name="robots" content="noindex, follow">
+<meta name="description" content="Усі посилання FRANCO в одному місці: музика, відео, соцмережі та новини.">
+<meta property="og:title" content="Посилання — FRANCO">
+<meta property="og:description" content="Музика, відео, соцмережі та новини FRANCO в одному місці.">
+<meta property="og:image" content="https://franco.com.ua/images/hrim-i-krov.png">
+<meta property="og:url" content="https://franco.com.ua/links/">
 <meta property="og:type" content="website">
-<link rel="canonical" href="https://franco.com.ua/notes/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,24 +43,12 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
-html.menu-open,
-body.menu-open { overflow: hidden; }
-
-/* While the menu is open, hide the page itself so nothing shows through
-   the translucent Safari toolbar */
-html.menu-open main,
-html.menu-open footer {
-  visibility: hidden;
-}
-html.menu-open,
-html.menu-open body {
-  background: #050505;
-}
 
 ::selection { background: var(--accent); color: #000; }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible {
   outline: 1px dashed var(--accent);
   outline-offset: 3px;
 }
@@ -139,105 +127,28 @@ body::before {
   95% { transform: translate(-3px, 0); clip-path: inset(35% 0 40% 0); filter: hue-rotate(90deg); }
   97% { transform: none; clip-path: none; filter: none; }
 }
-@keyframes imgGlitchHover {
-  0%   { transform: none; filter: none; clip-path: none; }
-  20%  { transform: translate(-6px, 2px); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
-  40%  { transform: translate(6px, -2px); clip-path: inset(30% 0 30% 0); }
-  60%  { transform: translate(-3px, 0); clip-path: none; filter: hue-rotate(90deg); }
-  80%  { transform: translate(3px, 1px); filter: hue-rotate(-90deg); }
-  100% { transform: none; filter: none; clip-path: none; }
-}
 
-/* ---------- Header ---------- */
+/* ---------- Header (logo only) ---------- */
 header {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 32px 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px 30px;
-  position: relative;
+  padding: 36px 20px 0;
+  text-align: center;
 }
 header a { display: inline-block; }
-header .logo { display: block; flex-shrink: 0; }
 header img {
   display: block;
-  width: clamp(220px, 26vw, 280px);
+  width: clamp(220px, 60vw, 280px);
   max-width: 100%;
   height: auto;
   animation: imgGlitch 7s steps(1) infinite;
 }
-nav {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 8px clamp(16px, 2.4vw, 28px);
-  flex-wrap: nowrap;
-}
-nav a {
-  color: var(--ink);
-  text-decoration: none;
-  font-family: var(--display);
-  font-size: 22px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 0 4px;
-  white-space: nowrap;
-}
-nav a::before { content: '[ '; color: var(--dim); }
-nav a::after  { content: ' ]'; color: var(--dim); }
-nav a:hover {
-  color: var(--ink);
-  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
-}
-nav a:hover::before,
-nav a:hover::after { color: var(--accent); }
-
-/* Hamburger button (hidden on desktop) */
-.nav-toggle {
-  display: none;
-  position: relative;
-  z-index: 95;
-  flex-shrink: 0;
-  width: 46px;
-  height: 46px;
-  padding: 0;
-  background: transparent;
-  border: 1px solid #555;
-  border-radius: 0;
-  color: var(--ink);
-  cursor: pointer;
-}
-.nav-toggle span {
-  position: absolute;
-  left: 11px;
-  right: 11px;
-  height: 2px;
-  background: currentColor;
-  transition: transform .2s steps(3), opacity .2s steps(3);
-}
-.nav-toggle span:nth-child(1) { top: 14px; }
-.nav-toggle span:nth-child(2) { top: 21px; }
-.nav-toggle span:nth-child(3) { top: 28px; }
-.nav-toggle:hover {
-  background: var(--ink);
-  color: #000;
-  border-color: var(--ink);
-  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
-}
-.nav-toggle[aria-expanded="true"] { border-color: var(--accent); }
-.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ---------- Content ---------- */
 main {
   flex: 1;
-  max-width: 900px;
+  max-width: 480px;
   margin: 0 auto;
-  padding: 70px 20px 80px;
+  padding: 50px 20px 60px;
+  text-align: center;
   width: 100%;
 }
 
@@ -249,9 +160,8 @@ main {
   text-transform: uppercase;
   letter-spacing: 2px;
   line-height: 1;
-  font-size: clamp(40px, 8vw, 72px);
-  text-align: center;
-  margin-bottom: 60px;
+  font-size: clamp(38px, 10vw, 56px);
+  margin-bottom: 14px;
 }
 .page-title .prompt,
 .page-title .cursor { color: var(--accent); }
@@ -260,148 +170,152 @@ main {
   50% { opacity: 0; }
 }
 
-/* ---------- Note cards ---------- */
-.note-card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  margin-bottom: 36px;
-  border: 1px solid #3a3a3a;
-  overflow: hidden;
-  position: relative;
-}
-.note-card:hover {
-  box-shadow: -4px 0 0 var(--cyan), 4px 0 0 var(--accent);
-}
-.note-card.is-hidden { display: none; }
-
-.note-banner {
-  width: 100%;
-  aspect-ratio: 21 / 9;
-  overflow: hidden;
-  position: relative;
-}
-.note-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.note-card:hover .note-banner img {
-  animation: imgGlitchHover .4s steps(1) 1;
-}
-.note-banner::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(to top, rgba(0, 0, 0, .9) 0%, rgba(0, 0, 0, .25) 55%, transparent 100%);
-}
-
-.note-text {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  padding: 24px 28px;
-}
-.note-date {
-  font-family: var(--body);
+.page-subtitle {
   font-size: 13px;
-  letter-spacing: 2px;
-  color: #aaa;
-  margin-bottom: 8px;
-}
-.note-date::before { content: '['; }
-.note-date::after  { content: ']'; }
-.note-title {
-  font-family: var(--display);
-  font-size: 30px;
-  color: var(--ink);
-  text-transform: uppercase;
   letter-spacing: 1px;
-  line-height: 1;
+  color: var(--dim);
+  margin-bottom: 36px;
 }
-.note-card:hover .note-title {
+.page-subtitle::before { content: '// '; color: var(--accent); }
+
+/* ---------- Socials ---------- */
+.links-socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin-bottom: 36px;
+}
+.links-socials a {
+  color: var(--ink);
+  font-size: 22px;
+  text-decoration: none;
+}
+.links-socials a:hover {
+  color: var(--accent);
   text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
 }
 
-/* ---------- Show more ---------- */
-.show-more-wrap {
-  text-align: center;
-  margin-top: 50px;
+/* ---------- Link buttons ---------- */
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
-.show-more-btn {
-  display: inline-block;
-  padding: 12px 34px;
-  border: 1px solid var(--ink);
-  color: var(--ink);
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 18px;
   background: transparent;
-  font-family: var(--display);
-  font-size: 24px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
+  border: 1px solid #444;
   border-radius: 0;
+  text-decoration: none;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
 }
-.show-more-btn:hover {
-  background: var(--ink);
-  color: #000;
+.link-btn:hover {
+  border-color: var(--ink);
   box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
 }
-.show-more-btn.is-gone { display: none; }
+.link-btn.featured { border-color: var(--accent); }
+.link-btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.link-btn-title {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.link-btn-sub {
+  font-size: 12px;
+  letter-spacing: .5px;
+  color: var(--dim);
+}
+.link-btn-arrow {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1;
+  color: var(--dim);
+  flex-shrink: 0;
+}
+.link-btn:hover .link-btn-arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+.link-btn[aria-expanded="true"] { border-color: var(--accent); }
+.link-btn[aria-expanded="true"] .link-btn-arrow {
+  color: var(--accent);
+  transform: rotate(90deg);
+}
 
-/* ---------- Footer ---------- */
-footer {
-  margin-top: 40px;
-  padding: 28px 20px 0;
-  position: relative;
+/* ---------- Divider ---------- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 16px 0;
+  font-family: var(--display);
+  font-size: 24px;
+  letter-spacing: 3px;
+  line-height: 1;
+  color: var(--accent);
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
   border-top: 1px dashed #444;
 }
 
-/* Level 1: newsletter */
-.newsletter {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px 24px;
-  padding-bottom: 24px;
+/* ---------- Expandable newsletter form ---------- */
+.subscribe-panel { margin-top: 10px; }
+.js .subscribe-panel {
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
 }
-.newsletter-label {
-  font-family: var(--display);
-  font-size: 26px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--ink);
+.js .subscribe-panel.is-open {
+  max-height: 260px;
+  margin-top: 10px;
 }
-.newsletter-label::before { content: '> '; color: var(--accent); }
-.newsletter-form {
+#mc_embed_signup {
+  background: transparent;
+  padding: 4px 4px 16px;
+}
+#mc_embed_signup form { padding: 0; }
+.subscribe-row {
   display: flex;
-  justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
-.newsletter-input {
+#mc_embed_signup input[type="email"] {
+  flex: 1;
+  min-width: 160px;
   background: transparent;
   border: 1px solid #555;
-  color: var(--ink);
+  border-radius: 0;
   padding: 12px 16px;
+  color: var(--ink);
   font-family: var(--body);
   font-size: 15px;
-  min-width: 280px;
-  border-radius: 0;
+  outline: none;
   caret-color: var(--accent);
 }
-.newsletter-input::placeholder { color: #666; }
-.newsletter-input:focus {
-  outline: none;
+#mc_embed_signup input[type="email"]::placeholder { color: #666; }
+#mc_embed_signup input[type="email"]:focus {
   border-color: var(--accent);
   box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
 }
-.newsletter-btn {
+#mc_embed_signup input[type="submit"] {
   padding: 12px 26px;
   border: 1px solid var(--ink);
   background: transparent;
@@ -413,170 +327,40 @@ footer {
   cursor: pointer;
   border-radius: 0;
 }
-.newsletter-btn:hover {
+#mc_embed_signup input[type="submit"]:hover {
   background: var(--ink);
   color: #000;
   box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
 }
+#mc_embed_signup .indicates-required,
+#mc_embed_signup label { display: none; }
+#mce-responses { margin-top: 10px; font-size: 13px; text-align: left; }
+#mce-error-response { color: var(--accent); }
+#mce-success-response { color: #7fd989; }
 
-/* Level 2: socials + service links */
-.footer-top {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px 24px;
-  padding-bottom: 20px;
+/* ---------- Footer (copyright only) ---------- */
+footer {
+  margin-top: 40px;
+  padding: 0 20px;
+  border-top: 1px dashed #444;
 }
-.footer-socials {
-  display: flex;
-  gap: 20px;
-}
-.footer-socials a {
-  color: var(--ink);
-  font-size: 20px;
-  text-decoration: none;
-}
-.footer-socials a:hover {
-  color: var(--accent);
-  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
-}
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px 22px;
-}
-.footer-links a {
-  font-family: var(--body);
-  font-size: 13px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-  color: #808080;
-}
-.footer-links a::before { content: '[ '; }
-.footer-links a::after  { content: ' ]'; }
-.footer-links a:hover {
-  color: var(--ink);
-  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
-}
-
-/* Level 3: copyright */
 .footer-bottom {
-  max-width: 1100px;
-  margin: 0 auto;
   text-align: center;
   color: #666;
   font-size: 13px;
-  padding: 12px 0 16px;
-  border-top: 1px solid #222;
+  padding: 20px 0;
 }
 .footer-bottom::after {
   content: '_';
   animation: blink 1s steps(1) infinite;
 }
 
-/* ---------- Tablet / mobile: header + hamburger ---------- */
-@media (max-width: 900px) {
-  /* Without JS: logo centered, menu below (may wrap) */
-  header {
-    flex-direction: column;
-    justify-content: center;
-    gap: 16px;
-    padding: 30px 15px 0;
-  }
-  header img { width: 240px; }
-  nav {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 6px 18px;
-  }
-  nav a { font-size: 20px; }
-
-  /* With JS: logo left, hamburger right */
-  .js header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    padding: 20px 15px 0;
-  }
-  .js header img { width: 200px; }
-  .js .nav-toggle { display: block; }
-
-  /* Fullscreen menu: solid background covering the whole screen */
-  .js nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 90;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
-    padding: 80px 20px;
-    background: #050505;
-    box-shadow: 0 0 0 100vmax #050505;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity .2s steps(3), visibility 0s linear .2s;
-  }
-  .js nav.is-open {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transition: opacity .2s steps(3);
-  }
-  .js nav a { font-size: 30px; }
-
-  /* Close button stays pinned top right while the menu is open */
-  .js .nav-toggle[aria-expanded="true"] {
-    position: fixed;
-    top: 20px;
-    right: 15px;
-  }
-}
-
 /* ---------- Mobile ---------- */
 @media (max-width: 600px) {
-  main { padding: 45px 15px 55px; }
-  .page-title { margin-bottom: 40px; }
-  .note-card { margin-bottom: 28px; }
-  .note-title { font-size: 22px; }
-  .note-date { font-size: 12px; margin-bottom: 6px; }
-  .note-text { padding: 14px 16px; }
-  .show-more-wrap { margin-top: 36px; }
-
-  /* Footer: everything centered */
-  footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
-  .newsletter {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 12px;
-  }
-  .newsletter-label { text-align: center; }
-  .newsletter-form { flex-direction: column; align-items: center; width: 100%; }
-  .newsletter-input { width: 100%; max-width: 320px; min-width: 0; }
-  .footer-top {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 16px;
-  }
-  .footer-socials { flex-wrap: wrap; justify-content: center; }
-  .footer-links { justify-content: center; gap: 8px 16px; }
-  .footer-bottom { text-align: center; }
+  header { padding: 30px 15px 0; }
+  main { padding: 40px 15px 45px; }
+  .link-btn-title { font-size: 24px; }
+  footer { margin-top: 30px; }
 }
 
 /* ---------- Reduced motion ---------- */
@@ -590,309 +374,134 @@ footer {
 <body>
 
 <header>
-  <a href="/" class="logo"><img src="/images/francologo.png" alt="FRANCO"></a>
-  <button type="button" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="site-nav">
-    <span></span><span></span><span></span>
-  </button>
-  <nav id="site-nav" aria-label="Головне меню">
-    <a href="/music/">Музика</a>
-    <a href="/videos/">Відео</a>
-    <a href="/notes/">Нотатки</a>
-    <a href="/about/">Про гурт</a>
-  </nav>
+  <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
 </header>
 <main>
-  <h1 class="page-title glitch fade-in" data-text="> Нотатки_"><span class="prompt" aria-hidden="true">&gt; </span>Нотатки<span class="cursor" aria-hidden="true">_</span></h1>
+  <h1 class="page-title glitch fade-in" data-text="> Посилання_"><span class="prompt" aria-hidden="true">&gt; </span>Посилання<span class="cursor" aria-hidden="true">_</span></h1>
+  <div class="page-subtitle fade-in">Музика, відео та все інше.</div>
 
-  <div id="notes-list">
-
-    <a class="note-card fade-in" href="/notes/dublab-september-2026/">
-      <div class="note-banner"><img src="/images/dublab-FRANCO-Fedyshen.jpeg" alt="Гостьовий мікс Валентина Федишена для dublab, вересень 2026"></div>
-      <div class="note-text">
-        <div class="note-date">11.09.2026</div>
-        <div class="note-title">Гостьовий мікс Валентина Федишена для dublab, вересень 2026</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/maiak-ne-pratsiuie/">
-      <div class="note-banner"><img src="/images/mayak2.png" alt="Коли світло більше не веде"></div>
-      <div class="note-text">
-        <div class="note-date">01.05.2026</div>
-        <div class="note-title">Коли світло більше не веде</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/hrim-i-krov/">
-      <div class="note-banner"><img src="/images/FRANCO-PBO2025-scaled.jpg" alt="Нова сторінка в цій історії" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">10.10.2025</div>
-        <div class="note-title">Нова сторінка в цій історії</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/porizano-brytvoiu-okkama/">
-      <div class="note-banner"><img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Після всіх пояснень" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">10.10.2025</div>
-        <div class="note-title">Після всіх пояснень</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/vv-cover/">
-      <div class="note-banner"><img src="/images/franco-zoriana-osin.png" alt="Діалог із минулим" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">13.12.2022</div>
-        <div class="note-title">Діалог із минулим</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/dodomu-ep/">
-      <div class="note-banner"><img src="/images/franco-dodomu.jpg" alt="Світ став іншим. Пісні залишились" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">06.05.2022</div>
-        <div class="note-title">Світ став іншим. Пісні залишились</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/mrpl-city-2021/">
-      <div class="note-banner"><img src="/images/franco-mariupol-2021-01.jpg" alt="Ми знову вийшли назовні" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">07.08.2021</div>
-        <div class="note-title">Ми знову вийшли назовні</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/teplyy-lampovyy-2021/">
-      <div class="note-banner"><img src="/images/franco-teplyy-lampovyy-2021.jpg" alt="Музика без зайвої відстані" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">22.07.2021</div>
-        <div class="note-title">Музика без зайвої відстані</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/live-2020/">
-      <div class="note-banner"><img src="/images/franco-live-2020.jpg" alt="LIVE 2020: Те, що залишилось наживо" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">14.06.2021</div>
-        <div class="note-title">LIVE 2020: Те, що залишилось наживо</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/masha-promin/">
-      <div class="note-banner"><img src="/images/franco-masha-radio-promin-02.jpg" alt="Перша розмова про Машу" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">14.03.2021</div>
-        <div class="note-title">Перша розмова про Машу</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in" href="/notes/masha/">
-      <div class="note-banner"><img src="/images/franco-masha.jpg" alt="Кілька хвилин із чужого життя" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">04.03.2021</div>
-        <div class="note-title">Кілька хвилин із чужого життя</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/rehearsal-2020/">
-      <div class="note-banner"><img src="/images/franco-rehearsal-2020.jpg" alt="Репетиції в ізоляції" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">21.10.2020</div>
-        <div class="note-title">Репетиції в ізоляції</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/soundplant-2019/">
-      <div class="note-banner"><img src="/images/franco-live-at-soundplant-2019.jpeg" alt="Там, де зійшлися звуки" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">01.07.2019</div>
-        <div class="note-title">Там, де зійшлися звуки</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/caribbean-club-2019/">
-      <div class="note-banner"><img src="/images/franco-caribbean-kyiv-04.jpg" alt="Місто слухало" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">31.01.2019</div>
-        <div class="note-title">Місто слухало</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/tremor-album/">
-      <div class="note-banner"><img src="/images/franco-tremor.png" alt="Точка нестабільності" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">30.11.2018</div>
-        <div class="note-title">Точка нестабільності</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/rainy-the-atypical-patient/">
-      <div class="note-banner"><img src="/images/the-atypical-patient-rainy.jpg" alt="Дощ, якого ніхто не передбачив" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">31.10.2018</div>
-        <div class="note-title">Дощ, якого ніхто не передбачив</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/mrpl-city-2018/">
-      <div class="note-banner"><img src="/images/franco-about-05.jpg" alt="Музика між містом і водою" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">05.08.2018</div>
-        <div class="note-title">Музика між містом і водою</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/youthday-2018/">
-      <div class="note-banner"><img src="/images/youthday-2018-01.jpg" alt="Поки було літо" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">24.06.2018</div>
-        <div class="note-title">Поки було літо</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/live-at-shoom/">
-      <div class="note-banner"><img src="/images/franco-live-at-shoom.jpg" alt="Без другого дубля" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">18.12.2017</div>
-        <div class="note-title">Без другого дубля</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/the-atypical-patient-mr-jude/">
-      <div class="note-banner"><img src="/images/the-atypical-patient-mr-jude.jpg" alt="Випадок, який не пояснити" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">15.08.2017</div>
-        <div class="note-title">Випадок, який не пояснити</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/tuneli-rmx/">
-      <div class="note-banner"><img src="/images/franco-tuneli-rmx.png" alt="Тунелі з іншого боку" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">03.05.2017</div>
-        <div class="note-title">Тунелі з іншого боку</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/tuneli-album/">
-      <div class="note-banner"><img src="/images/franco-tuneli.png" alt="Там, де починається темрява" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">14.02.2017</div>
-        <div class="note-title">Там, де починається темрява</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/live-2016/">
-      <div class="note-banner"><img src="/images/franco-soundplant-2016.jpeg" alt="Кілька моментів до завтра" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">14.09.2016</div>
-        <div class="note-title">Кілька моментів до завтра</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/spyrt-single/">
-      <div class="note-banner"><img src="/images/franco-spyrt.png" alt="Те, що не розбавити" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">04.04.2016</div>
-        <div class="note-title">Те, що не розбавити</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/rehina-video/">
-      <div class="note-banner"><img src="/images/franco-rehina.jpg" alt="Коли пісня отримує своє обличчя" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">13.12.2015</div>
-        <div class="note-title">Коли пісня отримує своє обличчя</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/mezzanine-2015/">
-      <div class="note-banner"><img src="/images/franco-mezzanine_01.jpg" alt="Ніч у Mezzanine" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">21.11.2015</div>
-        <div class="note-title">Ніч у Mezzanine</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/rehearsal-april-2015/">
-      <div class="note-banner"><img src="/images/2015-04-23-21.24.21.jpeg" alt="Чернетка звуку" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">23.04.2015</div>
-        <div class="note-title">Чернетка звуку</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/ep-2015/">
-      <div class="note-banner"><img src="/images/franco-ep-2015.png" alt="Перші сліди" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">15.04.2015</div>
-        <div class="note-title">Перші сліди</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/single-tanho/">
-      <div class="note-banner"><img src="/images/franco-tanho.jpg" alt="Танго вже не наше" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">06.03.2014</div>
-        <div class="note-title">Танго вже не наше</div>
-      </div>
-    </a>
-
-    <a class="note-card fade-in is-hidden" href="/notes/first-show-2012/">
-      <div class="note-banner"><img src="/images/franco-first-show-2012.jpg" alt="Коли все ще можна було передумати" loading="lazy"></div>
-      <div class="note-text">
-        <div class="note-date">08.03.2012</div>
-        <div class="note-title">Коли все ще можна було передумати</div>
-      </div>
-    </a>
-
+  <div class="links-socials fade-in">
+    <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+    <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    <a href="https://francoband.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
+    <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://www.tiktok.com/@francoband" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
   </div>
 
-  <div class="show-more-wrap">
-    <button type="button" class="show-more-btn" id="show-more-btn" onclick="showMoreNotes()">Показати ще</button>
+  <div class="link-list">
+    <a class="link-btn featured fade-in" href="https://ffm.to/pbo" target="_blank" rel="noopener noreferrer">
+      <div class="link-btn-text">
+        <div class="link-btn-title">Порізано Бритвою Оккама</div>
+        <div class="link-btn-sub">Альбом 2025 року. Слухати.</div>
+      </div>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <a class="link-btn fade-in" href="https://www.dublab.com/archive/franco-guest-session-09-09-26" target="_blank" rel="noopener noreferrer">
+      <div class="link-btn-text">
+        <div class="link-btn-title">FRANCO x dublab Guest Session</div>
+        <div class="link-btn-sub">Слухати.</div>
+      </div>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <a class="link-btn fade-in" href="https://www.youtube.com/watch?v=kv_Ni-ogzZA" target="_blank" rel="noopener noreferrer">
+      <div class="link-btn-text">
+        <div class="link-btn-title">Грім і кров (Хто тут я)</div>
+        <div class="link-btn-sub">Офіційне відео.</div>
+      </div>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <div class="fade-in">
+      <button type="button" class="link-btn" id="subscribe-toggle" aria-expanded="false" aria-controls="subscribe-panel">
+        <div class="link-btn-text">
+          <div class="link-btn-title">Розсилка</div>
+          <div class="link-btn-sub">Іноді ми пишемо листи.</div>
+        </div>
+        <span class="link-btn-arrow">→</span>
+      </button>
+      <div class="subscribe-panel" id="subscribe-panel">
+        <div id="mc_embed_signup">
+          <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+            <div id="mc_embed_signup_scroll">
+              <div class="subscribe-row">
+                <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Твій email" aria-label="Твоя електронна адреса" autocomplete="email" required value="">
+                <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Підписатись">
+              </div>
+              <div id="mce-responses" class="clear foot">
+                <div class="response" id="mce-error-response" style="display: none;"></div>
+                <div class="response" id="mce-success-response" style="display: none;"></div>
+              </div>
+              <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_f4599b9a7dff59f0ab065b38d_b569df38bc" tabindex="-1" value="">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider" aria-hidden="true">///</div>
+
+    <a class="link-btn fade-in" href="/music/">
+      <div class="link-btn-text">
+        <div class="link-btn-title">Музика</div>
+        <div class="link-btn-sub">Усі релізи.</div>
+      </div>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <a class="link-btn fade-in" href="/videos/">
+      <div class="link-btn-text">
+        <div class="link-btn-title">Відео</div>
+        <div class="link-btn-sub">Усі відео.</div>
+      </div>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <a class="link-btn fade-in" href="/notes/">
+      <div class="link-btn-text">
+        <div class="link-btn-title">Нотатки</div>
+        <div class="link-btn-sub">Архів.</div>
+      </div>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <a class="link-btn fade-in" href="/about/">
+      <div class="link-btn-text">
+        <div class="link-btn-title">Про гурт</div>
+        <div class="link-btn-sub">Кілька слів.</div>
+      </div>
+      <span class="link-btn-arrow">→</span>
+    </a>
+
+    <a class="link-btn fade-in" href="/reach-us/">
+      <div class="link-btn-text">
+        <div class="link-btn-title">Контакти</div>
+        <div class="link-btn-sub">Якщо потрібно написати.</div>
+      </div>
+      <span class="link-btn-arrow">→</span>
+    </a>
   </div>
 </main>
 <footer>
-  <div class="newsletter">
-    <div class="newsletter-label">Іноді ми пишемо листи</div>
-    <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" target="_blank" class="newsletter-form">
-      <input type="email" name="EMAIL" placeholder="Твій email" aria-label="Твоя електронна адреса" autocomplete="email" required class="newsletter-input">
-      <div style="position: absolute; left: -5000px;" aria-hidden="true">
-        <input type="text" name="b_f4599b9a7dff59f0ab065b38d_b569df38bc" tabindex="-1" value="">
-      </div>
-      <button type="submit" class="newsletter-btn">Підписатись</button>
-    </form>
-  </div>
-  <div class="footer-top">
-    <div class="footer-socials">
-      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
-      <a href="https://francoband.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
-      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://www.tiktok.com/@francoband" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-    </div>
-    <div class="footer-links">
-      <a href="/privacy-policy/">Політика конфіденційності</a>
-      <a href="/reach-us/">Контакти</a>
-    </div>
-  </div>
   <div class="footer-bottom">
     &copy; 2026 FRANCO
   </div>
 </footer>
-
-<script>
-/* Reveal the remaining notes */
-function showMoreNotes() {
-  document.querySelectorAll('.note-card.is-hidden').forEach(function(el) {
-    el.classList.remove('is-hidden');
-  });
-  document.getElementById('show-more-btn').classList.add('is-gone');
-}
-</script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
+<script src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+<script>
+  (function($) {
+    window.fnames = new Array();
+    window.ftypes = new Array();
+    fnames[0]='EMAIL'; ftypes[0]='email';
+  }(jQuery));
+  var $mcj = jQuery.noConflict(true);
+</script>
 <script>
   /* Fade-in on scroll */
   const fadeItems = document.querySelectorAll('.fade-in');
@@ -912,43 +521,13 @@ function showMoreNotes() {
     fadeItems.forEach((el) => el.classList.add('is-visible'));
   }
 
-  /* Mobile menu */
-  (function () {
-    const toggle = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('site-nav');
-    if (!toggle || !nav) return;
-
-    function setMenu(open) {
-      nav.classList.toggle('is-open', open);
-      document.body.classList.toggle('menu-open', open);
-      document.documentElement.classList.toggle('menu-open', open);
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
-    }
-
-    toggle.addEventListener('click', () => {
-      setMenu(!nav.classList.contains('is-open'));
-    });
-
-    /* Clicking a menu link or the empty background closes the menu */
-    nav.addEventListener('click', (e) => {
-      if (e.target === nav || e.target.closest('a')) setMenu(false);
-    });
-
-    /* Escape closes the menu and returns focus to the button */
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
-        setMenu(false);
-        toggle.focus();
-      }
-    });
-
-    /* Reset the state when the screen grows to desktop width */
-    const mq = window.matchMedia('(min-width: 901px)');
-    const onChange = (e) => { if (e.matches) setMenu(false); };
-    if (mq.addEventListener) mq.addEventListener('change', onChange);
-    else if (mq.addListener) mq.addListener(onChange);
-  })();
+  /* Expandable newsletter form */
+  const subToggle = document.getElementById('subscribe-toggle');
+  const subPanel = document.getElementById('subscribe-panel');
+  subToggle.addEventListener('click', () => {
+    const isOpen = subPanel.classList.toggle('is-open');
+    subToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
 </script>
 </body>
 </html>
