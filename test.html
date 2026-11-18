@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add('js');</script>
-<title>Про гурт | FRANCO</title>
-<meta name="description" content="FRANCO — незалежний альтернативний рок-гурт із Києва, заснований у 2011 році. Історія гурту та його учасники.">
-<link rel="canonical" href="https://franco.com.ua/about/">
-<meta property="og:title" content="Про гурт — FRANCO">
-<meta property="og:description" content="FRANCO — гурт із Києва. Кілька слів про тих, хто стоїть за музикою.">
-<meta property="og:image" content="https://franco.com.ua/images/franco-about-03.jpg">
-<meta property="og:url" content="https://franco.com.ua/about/">
+<title>Відео | FRANCO</title>
+<meta name="description" content="Музичні відео FRANCO — кліпи, концертні записи та живі виступи українського альтернативного рок-гурту з Києва.">
+<meta property="og:title" content="Відео — FRANCO">
+<meta property="og:description" content="Кліпи, концертні записи та живі виступи FRANCO.">
+<meta property="og:image" content="https://franco.com.ua/images/FRANCO-PBO2025-scaled.jpg">
+<meta property="og:url" content="https://franco.com.ua/videos/">
 <meta property="og:type" content="website">
+<link rel="canonical" href="https://franco.com.ua/videos/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,14 +139,6 @@ body::before {
   95% { transform: translate(-3px, 0); clip-path: inset(35% 0 40% 0); filter: hue-rotate(90deg); }
   97% { transform: none; clip-path: none; filter: none; }
 }
-@keyframes imgGlitchHover {
-  0%   { transform: none; filter: none; clip-path: none; }
-  20%  { transform: translate(-6px, 2px); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
-  40%  { transform: translate(6px, -2px); clip-path: inset(30% 0 30% 0); }
-  60%  { transform: translate(-3px, 0); clip-path: none; filter: hue-rotate(90deg); }
-  80%  { transform: translate(3px, 1px); filter: hue-rotate(-90deg); }
-  100% { transform: none; filter: none; clip-path: none; }
-}
 
 /* ---------- Header ---------- */
 header {
@@ -237,7 +229,7 @@ main {
   flex: 1;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 60px 20px 60px;
+  padding: 70px 20px 80px;
   width: 100%;
 }
 
@@ -251,6 +243,7 @@ main {
   line-height: 1;
   font-size: clamp(40px, 8vw, 72px);
   text-align: center;
+  margin-bottom: 60px;
 }
 .page-title .prompt,
 .page-title .cursor { color: var(--accent); }
@@ -259,45 +252,55 @@ main {
   50% { opacity: 0; }
 }
 
-/* ---------- Manifest blocks ---------- */
-.manifest-block {
-  min-height: 70vh;
+/* ---------- Video grid ---------- */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px 40px;
+}
+.video-card {
   display: flex;
+  flex-direction: column;
+}
+
+/* Video "window" */
+.window {
+  border: 1px solid var(--ink);
+  box-shadow: 8px 8px 0 rgba(230, 57, 70, .55);
+}
+.window-bar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 50px 2vw;
-}
-.manifest-block.align-center { justify-content: center; text-align: center; }
-.manifest-block.align-left   { justify-content: flex-start; text-align: left; }
-.manifest-block.align-right  { justify-content: flex-end; text-align: right; }
-
-.manifest-text {
+  background: var(--ink);
+  color: #000;
   font-family: var(--display);
-  font-weight: 400;
-  text-transform: uppercase;
+  font-size: 20px;
+  letter-spacing: 1px;
+  padding: 2px 10px;
+}
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-card-title {
+  font-family: var(--display);
+  font-size: 24px;
   color: var(--ink);
-  line-height: 1;
-  max-width: 900px;
-}
-.manifest-text.size-xl { font-size: clamp(48px, 9vw, 120px); letter-spacing: 1px; }
-.manifest-text.size-lg { font-size: clamp(38px, 7vw, 88px);  letter-spacing: 1px; }
-.manifest-text.size-md { font-size: clamp(30px, 5.5vw, 64px); letter-spacing: 1px; }
-.manifest-text .accent { color: var(--accent); }
-
-/* ---------- Photos ---------- */
-.about-image {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  border: 1px solid #3a3a3a;
-  overflow: hidden;
-}
-.about-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.about-image:hover img {
-  animation: imgGlitchHover .4s steps(1) 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  margin-top: 22px;
+  text-align: center;
 }
 
 /* ---------- Footer ---------- */
@@ -493,15 +496,20 @@ footer {
   }
 }
 
+/* ---------- Single-column videos ---------- */
+@media (max-width: 700px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 46px;
+  }
+}
+
 /* ---------- Mobile ---------- */
 @media (max-width: 600px) {
-  main { padding: 40px 15px 45px; }
-  .manifest-block { min-height: 50vh; padding: 40px 0; }
-  .manifest-block.align-left,
-  .manifest-block.align-right {
-    text-align: center;
-    justify-content: center;
-  }
+  main { padding: 45px 15px 55px; }
+  .page-title { margin-bottom: 40px; }
+  .window { box-shadow: 5px 5px 0 rgba(230, 57, 70, .55); }
+  .video-card-title { font-size: 22px; margin-top: 18px; }
 
   /* Footer: everything centered */
   footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
@@ -550,55 +558,198 @@ footer {
   </nav>
 </header>
 <main>
-  <h1 class="page-title glitch fade-in" data-text="> Про гурт_"><span class="prompt" aria-hidden="true">&gt; </span>Про гурт<span class="cursor" aria-hidden="true">_</span></h1>
+  <h1 class="page-title glitch fade-in" data-text="> Відео_"><span class="prompt" aria-hidden="true">&gt; </span>Відео<span class="cursor" aria-hidden="true">_</span></h1>
 
-  <section class="manifest-block align-center">
-    <div class="manifest-text size-xl fade-in">Засновані у Києві — без намірів, але з <span class="accent">музикою</span>.</div>
-  </section>
-  <div class="about-image fade-in">
-    <img src="/images/franco-about-07.jpg" alt="FRANCO" loading="lazy">
-  </div>
+  <div class="video-grid">
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>G5lZMJ1pXSk.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/G5lZMJ1pXSk" title="Маяк не працює (Сльози падали)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Маяк не працює (Сльози падали)</div>
+    </div>
 
-  <section class="manifest-block align-left">
-    <div class="manifest-text size-lg fade-in">Існуємо в суперечках, бо інколи тільки у хаосі можна знайти <span class="accent">порядок</span>.</div>
-  </section>
-  <div class="about-image fade-in">
-    <img src="/images/franco-about-06.jpg" alt="FRANCO" loading="lazy">
-  </div>
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>kv_Ni-ogzZA.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/kv_Ni-ogzZA" title="Грім і кров (Хто тут я)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Грім і кров (Хто тут я)</div>
+    </div>
 
-  <section class="manifest-block align-center">
-    <div class="manifest-text size-xl fade-in">Граємо наживо, коли відчуваємо, що інакше задихнемося.</div>
-  </section>
-  <div class="about-image fade-in">
-    <img src="/images/franco-about-05.jpg" alt="FRANCO" loading="lazy">
-  </div>
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>IbeuYpeBoww.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/IbeuYpeBoww" title="Зоряна Осінь (Воплі Відоплясова Cover)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Зоряна Осінь (Воплі Відоплясова Cover)</div>
+    </div>
 
-  <section class="manifest-block align-right">
-    <div class="manifest-text size-lg fade-in">Записуємо музику тоді, коли простір між думками стає надто <span class="accent">гучним</span>.</div>
-  </section>
-  <div class="about-image fade-in">
-    <img src="/images/franco-about-04.jpg" alt="FRANCO" loading="lazy">
-  </div>
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>pEPpxA4FR9M.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/pEPpxA4FR9M" title="Додому" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Додому</div>
+    </div>
 
-  <section class="manifest-block align-center">
-    <div class="manifest-text size-md fade-in">Скасовували альбоми частіше, ніж видавали.</div>
-  </section>
-  <div class="about-image fade-in">
-    <img src="/images/franco-about-03.jpg" alt="FRANCO" loading="lazy">
-  </div>
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>rV7wzS-8fI4.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/rV7wzS-8fI4" title="Може я (Live @ Kaska)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Може я (Live @ Kaska)</div>
+    </div>
 
-  <section class="manifest-block align-left">
-    <div class="manifest-text size-xl fade-in">Випустили <span class="accent">три</span> альбоми. Буде ще.</div>
-  </section>
-  <div class="about-image fade-in">
-    <img src="/images/franco-about-02.jpg" alt="FRANCO" loading="lazy">
-  </div>
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>XkrHXQG-LCo.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/XkrHXQG-LCo" title="Маша" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Маша</div>
+    </div>
 
-  <section class="manifest-block align-center">
-    <div class="manifest-text size-lg fade-in">FRANCO тут не при чому. Або при чому, але інакше.</div>
-  </section>
-  <div class="about-image fade-in">
-    <img src="/images/franco-about-01.jpg" alt="FRANCO" loading="lazy">
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>UGQMqaMvtaU.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/UGQMqaMvtaU" title="Рисові Поля (Live @ SoundPlant, 2019)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Рисові Поля (Live @ SoundPlant, 2019)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>BWwsuPJPGV8.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/BWwsuPJPGV8" title="Ніч і вино (27 дверей) [Live @ SoundPlant, 2019]" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Ніч і вино (27 дверей) [Live @ SoundPlant, 2019]</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>FSoVXh2ilzg.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/FSoVXh2ilzg" title="Твої Правила (Live @ SoundPlant, 2019)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Твої Правила (Live @ SoundPlant, 2019)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>d-1H3dUoRZk.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/d-1H3dUoRZk" title="Тремор" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Тремор</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>jv4y9p2jo3Y.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/jv4y9p2jo3Y" title="Голова чи серце (Live at ШООМ)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Голова чи серце (Live at ШООМ)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>vRUAN-QzgvI.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/vRUAN-QzgvI" title="До-мінор (Live at ШООМ)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">До-мінор (Live at ШООМ)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>egOAa4t9Mdo.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/egOAa4t9Mdo" title="Пірс (Live at ШООМ)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Пірс (Live at ШООМ)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>IX6ijuwqIEk.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/IX6ijuwqIEk" title="Тремор (Live at ШООМ)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Тремор (Live at ШООМ)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>fe2CFiU3LpA.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/fe2CFiU3LpA" title="Меркурій (live at SoundPlant, 2016)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Меркурій (live at SoundPlant, 2016)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>r5-xrOKa00M.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/r5-xrOKa00M" title="Ніби Не Ясно (live at SoundPlant, 2016)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Ніби Не Ясно (live at SoundPlant, 2016)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>PLgVXxHbxQ8.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/PLgVXxHbxQ8" title="За Вікном (live at SoundPlant, 2016)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">За Вікном (live at SoundPlant, 2016)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>KEJMZ_ZzV_M.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/KEJMZ_ZzV_M" title="До-мінор (live at SoundPlant, 2016)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">До-мінор (live at SoundPlant, 2016)</div>
+    </div>
+
+    <div class="video-card fade-in">
+      <div class="window">
+        <div class="window-bar" aria-hidden="true"><span>TPxe2ihyCI4.avi</span><span>[_][X]</span></div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/TPxe2ihyCI4" title="Регіна" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="video-card-title">Регіна</div>
+    </div>
   </div>
 </main>
 <footer>
@@ -632,40 +783,6 @@ footer {
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  "@id": "https://franco.com.ua/#musicgroup",
-  "name": "FRANCO",
-  "url": "https://franco.com.ua/",
-  "image": "https://franco.com.ua/images/franco-about-03.jpg",
-  "description": "FRANCO — незалежний альтернативний рок-гурт із Києва, заснований у грудні 2011 року Валентином Федишеном. Гурт виконує авторську музику українською мовою з електронними текстурами та атмосферним звучанням.",
-  "disambiguatingDescription": "Український музичний гурт FRANCO, заснований у Києві у 2011 році Валентином Федишеном. Офіційний сайт: franco.com.ua.",
-  "foundingDate": "2011-12",
-  "foundingLocation": {
-    "@type": "City",
-    "name": "Київ"
-  },
-  "founder": {
-    "@type": "Person",
-    "name": "Валентин Федишен"
-  },
-  "genre": [
-    "Alternative Rock",
-    "Electronic Rock"
-  ],
-  "sameAs": [
-    "https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw",
-    "https://music.apple.com/ua/artist/franco/1098769283",
-    "https://francoband.bandcamp.com/",
-    "https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g",
-    "https://www.instagram.com/francoband/",
-    "https://www.facebook.com/francoband/",
-    "https://www.tiktok.com/@francoband"
-  ]
-}
-</script>
 <script>
   /* Fade-in on scroll */
   const fadeItems = document.querySelectorAll('.fade-in');
