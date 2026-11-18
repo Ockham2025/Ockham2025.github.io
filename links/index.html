@@ -278,26 +278,19 @@ main {
 
 /* ---------- Expandable newsletter form ---------- */
 .subscribe-panel { margin-top: 10px; }
-.js .subscribe-panel {
-  max-height: 0;
-  overflow: hidden;
-  margin-top: 0;
-}
-.js .subscribe-panel.is-open {
-  max-height: 260px;
-  margin-top: 10px;
-}
-#mc_embed_signup {
+.js .subscribe-panel { display: none; }
+.js .subscribe-panel.is-open { display: block; }
+#subscribe-box {
   background: transparent;
   padding: 4px 4px 16px;
 }
-#mc_embed_signup form { padding: 0; }
+#subscribe-box form { padding: 0; }
 .subscribe-row {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
-#mc_embed_signup input[type="email"] {
+#subscribe-box input[type="email"] {
   flex: 1;
   min-width: 160px;
   background: transparent;
@@ -310,12 +303,12 @@ main {
   outline: none;
   caret-color: var(--accent);
 }
-#mc_embed_signup input[type="email"]::placeholder { color: #666; }
-#mc_embed_signup input[type="email"]:focus {
+#subscribe-box input[type="email"]::placeholder { color: #666; }
+#subscribe-box input[type="email"]:focus {
   border-color: var(--accent);
   box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
 }
-#mc_embed_signup input[type="submit"] {
+#subscribe-box input[type="submit"] {
   padding: 12px 26px;
   border: 1px solid var(--ink);
   background: transparent;
@@ -327,13 +320,13 @@ main {
   cursor: pointer;
   border-radius: 0;
 }
-#mc_embed_signup input[type="submit"]:hover {
+#subscribe-box input[type="submit"]:hover {
   background: var(--ink);
   color: #000;
   box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
 }
-#mc_embed_signup .indicates-required,
-#mc_embed_signup label { display: none; }
+#subscribe-box .indicates-required,
+#subscribe-box label { display: none; }
 #mce-responses { margin-top: 10px; font-size: 13px; text-align: left; }
 #mce-error-response { color: var(--accent); }
 #mce-success-response { color: #7fd989; }
@@ -424,9 +417,9 @@ footer {
         <span class="link-btn-arrow">→</span>
       </button>
       <div class="subscribe-panel" id="subscribe-panel">
-        <div id="mc_embed_signup">
+        <div id="subscribe-box">
           <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-            <div id="mc_embed_signup_scroll">
+            <div id="subscribe-scroll">
               <div class="subscribe-row">
                 <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Твій email" aria-label="Твоя електронна адреса" autocomplete="email" required value="">
                 <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Підписатись">
@@ -493,6 +486,45 @@ footer {
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+  /* Expandable newsletter form (runs first, independent of the Mailchimp scripts) */
+  (function () {
+    var subToggle = document.getElementById('subscribe-toggle');
+    var subPanel = document.getElementById('subscribe-panel');
+    if (!subToggle || !subPanel) return;
+
+    subToggle.addEventListener('click', function () {
+      var isOpen = subPanel.classList.toggle('is-open');
+      subToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+      /* On devices with a mouse, put the cursor straight into the email field */
+      var emailInput = document.getElementById('mce-EMAIL');
+      if (isOpen && emailInput && window.matchMedia('(hover: hover)').matches) {
+        emailInput.focus();
+      }
+    });
+  })();
+
+  /* Fade-in on scroll */
+  (function () {
+    var fadeItems = document.querySelectorAll('.fade-in');
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      fadeItems.forEach(function (el) { observer.observe(el); });
+    } else {
+      fadeItems.forEach(function (el) { el.classList.add('is-visible'); });
+    }
+  })();
+</script>
 <script src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
 <script>
   (function($) {
@@ -501,33 +533,6 @@ footer {
     fnames[0]='EMAIL'; ftypes[0]='email';
   }(jQuery));
   var $mcj = jQuery.noConflict(true);
-</script>
-<script>
-  /* Fade-in on scroll */
-  const fadeItems = document.querySelectorAll('.fade-in');
-
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    fadeItems.forEach((el) => observer.observe(el));
-  } else {
-    fadeItems.forEach((el) => el.classList.add('is-visible'));
-  }
-
-  /* Expandable newsletter form */
-  const subToggle = document.getElementById('subscribe-toggle');
-  const subPanel = document.getElementById('subscribe-panel');
-  subToggle.addEventListener('click', () => {
-    const isOpen = subPanel.classList.toggle('is-open');
-    subToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
 </script>
 </body>
 </html>
