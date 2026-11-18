@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add('js');</script>
-<title>Відео | FRANCO</title>
-<meta name="description" content="Музичні відео FRANCO — кліпи, концертні записи та живі виступи українського альтернативного рок-гурту з Києва.">
-<meta property="og:title" content="Відео — FRANCO">
-<meta property="og:description" content="Кліпи, концертні записи та живі виступи FRANCO.">
-<meta property="og:image" content="https://franco.com.ua/images/FRANCO-PBO2025-scaled.jpg">
-<meta property="og:url" content="https://franco.com.ua/videos/">
+<title>Музика | FRANCO</title>
+<meta name="description" content="Дискографія FRANCO — незалежного альтернативного рок-гурту з Києва, заснованого у 2011 році. Альбоми, EP та сингли.">
+<meta property="og:title" content="Музика — FRANCO">
+<meta property="og:description" content="Дискографія FRANCO: альбоми, EP, сингли та музика, що залишається після шуму.">
+<meta property="og:image" content="https://franco.com.ua/images/franco-rehearsal-2020.jpg">
+<meta property="og:url" content="https://franco.com.ua/music/">
 <meta property="og:type" content="website">
-<link rel="canonical" href="https://franco.com.ua/videos/">
+<link rel="canonical" href="https://franco.com.ua/music/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,6 +139,14 @@ body::before {
   95% { transform: translate(-3px, 0); clip-path: inset(35% 0 40% 0); filter: hue-rotate(90deg); }
   97% { transform: none; clip-path: none; filter: none; }
 }
+@keyframes imgGlitchHover {
+  0%   { transform: none; filter: none; clip-path: none; }
+  20%  { transform: translate(-6px, 2px); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
+  40%  { transform: translate(6px, -2px); clip-path: inset(30% 0 30% 0); }
+  60%  { transform: translate(-3px, 0); clip-path: none; filter: hue-rotate(90deg); }
+  80%  { transform: translate(3px, 1px); filter: hue-rotate(-90deg); }
+  100% { transform: none; filter: none; clip-path: none; }
+}
 
 /* ---------- Header ---------- */
 header {
@@ -252,56 +260,75 @@ main {
   50% { opacity: 0; }
 }
 
-/* ---------- Video grid ---------- */
-.video-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px 40px;
+/* ---------- Section labels ---------- */
+.section-label {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 3px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 70px 0 28px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #444;
 }
-.video-card {
+.section-label::before { content: '// '; color: var(--accent); }
+.section-label:first-of-type { margin-top: 0; }
+
+/* ---------- Release grid ---------- */
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px 30px;
+}
+.music-grid.singles {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px 20px;
+}
+.music-item {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
 }
-
-/* Video "window" */
-.window {
-  border: 1px solid var(--ink);
-  box-shadow: 8px 8px 0 rgba(230, 57, 70, .55);
-}
-.window-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--ink);
-  color: #000;
-  font-family: var(--display);
-  font-size: 20px;
-  letter-spacing: 1px;
-  padding: 2px 10px;
-}
-.video-wrap {
-  position: relative;
+.music-item .cover {
   width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid #3a3a3a;
+  box-shadow: -4px 0 0 var(--cyan), 4px 0 0 var(--accent);
+  margin-bottom: 8px;
 }
-.video-wrap iframe {
-  position: absolute;
-  inset: 0;
+.music-item img {
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: cover;
+  display: block;
 }
-.video-card-title {
+.music-item:hover .cover img {
+  animation: imgGlitchHover .4s steps(1) 1;
+}
+.music-item .title {
   font-family: var(--display);
-  font-size: 24px;
+  font-size: 26px;
+  line-height: 1;
   color: var(--ink);
   text-transform: uppercase;
   letter-spacing: 1px;
-  line-height: 1.1;
-  margin-top: 22px;
-  text-align: center;
 }
+.music-item:hover .title {
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+.music-item .year {
+  font-family: var(--body);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--dim);
+}
+.music-item .year::before { content: '['; }
+.music-item .year::after  { content: ']'; }
 
 /* ---------- Footer ---------- */
 footer {
@@ -496,11 +523,12 @@ footer {
   }
 }
 
-/* ---------- Single-column videos ---------- */
+/* ---------- Two-column releases ---------- */
 @media (max-width: 700px) {
-  .video-grid {
-    grid-template-columns: 1fr;
-    gap: 46px;
+  .music-grid,
+  .music-grid.singles {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px 20px;
   }
 }
 
@@ -508,8 +536,9 @@ footer {
 @media (max-width: 600px) {
   main { padding: 45px 15px 55px; }
   .page-title { margin-bottom: 40px; }
-  .window { box-shadow: 5px 5px 0 rgba(230, 57, 70, .55); }
-  .video-card-title { font-size: 22px; margin-top: 18px; }
+  .section-label { font-size: 24px; margin: 50px 0 22px; }
+  .music-item .title { font-size: 21px; }
+  .music-item .cover { box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent); }
 
   /* Footer: everything centered */
   footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
@@ -558,198 +587,93 @@ footer {
   </nav>
 </header>
 <main>
-  <h1 class="page-title glitch fade-in" data-text="> Відео_"><span class="prompt" aria-hidden="true">&gt; </span>Відео<span class="cursor" aria-hidden="true">_</span></h1>
+  <h1 class="page-title glitch fade-in" data-text="> Музика_"><span class="prompt" aria-hidden="true">&gt; </span>Музика<span class="cursor" aria-hidden="true">_</span></h1>
 
-  <div class="video-grid">
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>G5lZMJ1pXSk.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/G5lZMJ1pXSk" title="Маяк не працює (Сльози падали)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Маяк не працює (Сльози падали)</div>
-    </div>
+  <h2 class="section-label fade-in">Альбоми (LP)</h2>
+  <div class="music-grid">
+    <a class="music-item fade-in" href="/music/pbo/">
+      <div class="cover"><img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Порізано Бритвою Оккама"></div>
+      <div class="title">Порізано Бритвою Оккама</div>
+      <div class="year">2025</div>
+    </a>
+    <a class="music-item fade-in" href="/music/tremor-lp/">
+      <div class="cover"><img src="/images/franco-tremor.png" alt="Тремор"></div>
+      <div class="title">Тремор</div>
+      <div class="year">2018</div>
+    </a>
+    <a class="music-item fade-in" href="/music/tuneli-lp/">
+      <div class="cover"><img src="/images/franco-tuneli.png" alt="Тунелі"></div>
+      <div class="title">Тунелі</div>
+      <div class="year">2017</div>
+    </a>
+  </div>
 
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>kv_Ni-ogzZA.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/kv_Ni-ogzZA" title="Грім і кров (Хто тут я)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Грім і кров (Хто тут я)</div>
-    </div>
+  <h2 class="section-label fade-in">Мініальбоми (EP)</h2>
+  <div class="music-grid">
+    <a class="music-item fade-in" href="https://ffm.to/dodomu-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-dodomu.jpg" alt="Додому" loading="lazy"></div>
+      <div class="title">Додому</div>
+      <div class="year">2022</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/live2020-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-live-2020.jpg" alt="Live 2020" loading="lazy"></div>
+      <div class="title">Live 2020</div>
+      <div class="year">2021</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/tuneli-rmx-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-tuneli-rmx.png" alt="Тунелі Remix" loading="lazy"></div>
+      <div class="title">Тунелі Remix</div>
+      <div class="year">2017</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/ep2015-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-ep-2015.png" alt="EP 2015" loading="lazy"></div>
+      <div class="title">EP 2015</div>
+      <div class="year">2015</div>
+    </a>
+  </div>
 
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>IbeuYpeBoww.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/IbeuYpeBoww" title="Зоряна Осінь (Воплі Відоплясова Cover)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Зоряна Осінь (Воплі Відоплясова Cover)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>pEPpxA4FR9M.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/pEPpxA4FR9M" title="Додому" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Додому</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>rV7wzS-8fI4.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/rV7wzS-8fI4" title="Може я (Live @ Kaska)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Може я (Live @ Kaska)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>XkrHXQG-LCo.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/XkrHXQG-LCo" title="Маша" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Маша</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>UGQMqaMvtaU.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/UGQMqaMvtaU" title="Рисові Поля (Live @ SoundPlant, 2019)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Рисові Поля (Live @ SoundPlant, 2019)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>BWwsuPJPGV8.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/BWwsuPJPGV8" title="Ніч і вино (27 дверей) [Live @ SoundPlant, 2019]" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Ніч і вино (27 дверей) [Live @ SoundPlant, 2019]</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>FSoVXh2ilzg.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/FSoVXh2ilzg" title="Твої Правила (Live @ SoundPlant, 2019)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Твої Правила (Live @ SoundPlant, 2019)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>d-1H3dUoRZk.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/d-1H3dUoRZk" title="Тремор" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Тремор</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>jv4y9p2jo3Y.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/jv4y9p2jo3Y" title="Голова чи серце (Live at ШООМ)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Голова чи серце (Live at ШООМ)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>vRUAN-QzgvI.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/vRUAN-QzgvI" title="До-мінор (Live at ШООМ)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">До-мінор (Live at ШООМ)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>egOAa4t9Mdo.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/egOAa4t9Mdo" title="Пірс (Live at ШООМ)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Пірс (Live at ШООМ)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>IX6ijuwqIEk.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/IX6ijuwqIEk" title="Тремор (Live at ШООМ)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Тремор (Live at ШООМ)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>fe2CFiU3LpA.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/fe2CFiU3LpA" title="Меркурій (live at SoundPlant, 2016)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Меркурій (live at SoundPlant, 2016)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>r5-xrOKa00M.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/r5-xrOKa00M" title="Ніби Не Ясно (live at SoundPlant, 2016)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Ніби Не Ясно (live at SoundPlant, 2016)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>PLgVXxHbxQ8.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/PLgVXxHbxQ8" title="За Вікном (live at SoundPlant, 2016)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">За Вікном (live at SoundPlant, 2016)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>KEJMZ_ZzV_M.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/KEJMZ_ZzV_M" title="До-мінор (live at SoundPlant, 2016)" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">До-мінор (live at SoundPlant, 2016)</div>
-    </div>
-
-    <div class="video-card fade-in">
-      <div class="window">
-        <div class="window-bar" aria-hidden="true"><span>TPxe2ihyCI4.mp4</span><span>[_][X]</span></div>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/TPxe2ihyCI4" title="Регіна" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-      </div>
-      <div class="video-card-title">Регіна</div>
-    </div>
+  <h2 class="section-label fade-in">Сингли</h2>
+  <div class="music-grid singles">
+    <a class="music-item fade-in" href="https://ffm.to/masha-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-masha.jpg" alt="Маша" loading="lazy"></div>
+      <div class="title">Маша</div>
+      <div class="year">2021</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/tremor-s-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-tremor-single.png" alt="Тремор" loading="lazy"></div>
+      <div class="title">Тремор</div>
+      <div class="year">2018</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/ty-v-meni-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-ty-v-meni.jpg" alt="Ти в мені" loading="lazy"></div>
+      <div class="title">Ти в мені</div>
+      <div class="year">2017</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/holova-sertse-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-holova-chy-sertse.jpg" alt="Голова чи серце" loading="lazy"></div>
+      <div class="title">Голова чи серце</div>
+      <div class="year">2016</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/ptakhy-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-ptakhy.jpg" alt="Птахи" loading="lazy"></div>
+      <div class="title">Птахи</div>
+      <div class="year">2016</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/spyrt-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-spyrt.png" alt="Спирт" loading="lazy"></div>
+      <div class="title">Спирт</div>
+      <div class="year">2016</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/rehina-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-rehina.jpg" alt="Регіна" loading="lazy"></div>
+      <div class="title">Регіна</div>
+      <div class="year">2015</div>
+    </a>
+    <a class="music-item fade-in" href="https://ffm.to/tanho-franco" target="_blank" rel="noopener noreferrer">
+      <div class="cover"><img src="/images/franco-tanho.jpg" alt="Танго" loading="lazy"></div>
+      <div class="title">Танго</div>
+      <div class="year">2014</div>
+    </a>
   </div>
 </main>
 <footer>
@@ -782,6 +706,242 @@ footer {
     &copy; 2026 FRANCO
   </div>
 </footer>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": "https://franco.com.ua/music/#discography",
+  "name": "Дискографія FRANCO",
+  "description": "Альбоми, мініальбоми та сингли українського гурту FRANCO з Києва.",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Порізано Бритвою Оккама",
+        "url": "https://franco.com.ua/music/pbo/",
+        "image": "https://franco.com.ua/images/porizano-brytvoiu-okkama.jpeg",
+        "datePublished": "2025-10-10",
+        "albumReleaseType": "https://schema.org/AlbumRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Тремор",
+        "url": "https://franco.com.ua/music/tremor-lp/",
+        "image": "https://franco.com.ua/images/franco-tremor.png",
+        "datePublished": "2018-11-30",
+        "albumReleaseType": "https://schema.org/AlbumRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Тунелі",
+        "url": "https://franco.com.ua/music/tuneli-lp/",
+        "image": "https://franco.com.ua/images/franco-tuneli.png",
+        "datePublished": "2017-02-14",
+        "albumReleaseType": "https://schema.org/AlbumRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Додому",
+        "url": "https://ffm.to/dodomu-franco",
+        "image": "https://franco.com.ua/images/franco-dodomu.jpg",
+        "datePublished": "2022",
+        "albumReleaseType": "https://schema.org/EPRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Live 2020",
+        "url": "https://ffm.to/live2020-franco",
+        "image": "https://franco.com.ua/images/franco-live-2020.jpg",
+        "datePublished": "2021",
+        "albumReleaseType": "https://schema.org/EPRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Тунелі Remix",
+        "url": "https://ffm.to/tuneli-rmx-franco",
+        "image": "https://franco.com.ua/images/franco-tuneli-rmx.png",
+        "datePublished": "2017",
+        "albumReleaseType": "https://schema.org/EPRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "EP 2015",
+        "url": "https://ffm.to/ep2015-franco",
+        "image": "https://franco.com.ua/images/franco-ep-2015.png",
+        "datePublished": "2015",
+        "albumReleaseType": "https://schema.org/EPRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Маша",
+        "url": "https://ffm.to/masha-franco",
+        "image": "https://franco.com.ua/images/franco-masha.jpg",
+        "datePublished": "2021",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Тремор",
+        "url": "https://ffm.to/tremor-s-franco",
+        "image": "https://franco.com.ua/images/franco-tremor-single.png",
+        "datePublished": "2018",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Ти в мені",
+        "url": "https://ffm.to/ty-v-meni-franco",
+        "image": "https://franco.com.ua/images/franco-ty-v-meni.jpg",
+        "datePublished": "2017",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Голова чи серце",
+        "url": "https://ffm.to/holova-sertse-franco",
+        "image": "https://franco.com.ua/images/franco-holova-chy-sertse.jpg",
+        "datePublished": "2016",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Птахи",
+        "url": "https://ffm.to/ptakhy-franco",
+        "image": "https://franco.com.ua/images/franco-ptakhy.jpg",
+        "datePublished": "2016",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Спирт",
+        "url": "https://ffm.to/spyrt-franco",
+        "image": "https://franco.com.ua/images/franco-spyrt.png",
+        "datePublished": "2016",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Регіна",
+        "url": "https://ffm.to/rehina-franco",
+        "image": "https://franco.com.ua/images/franco-rehina.jpg",
+        "datePublished": "2015",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": {
+        "@type": "MusicAlbum",
+        "name": "Танго",
+        "url": "https://ffm.to/tanho-franco",
+        "image": "https://franco.com.ua/images/franco-tanho.jpg",
+        "datePublished": "2014",
+        "albumReleaseType": "https://schema.org/SingleRelease",
+        "byArtist": {
+          "@id": "https://franco.com.ua/#musicgroup"
+        }
+      }
+    }
+  ]
+}
+</script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
 <script>
   /* Fade-in on scroll */
