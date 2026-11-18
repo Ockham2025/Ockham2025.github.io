@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
 <title>Посилання | FRANCO</title>
 <meta name="robots" content="noindex, follow">
 <meta name="description" content="Усі посилання FRANCO в одному місці: музика, відео, соцмережі та новини.">
@@ -15,287 +16,382 @@
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  html, body { height: 100%; }
-  body {
-    background: #000000;
-    color: #f2f2f2;
-    font-family: 'Manrope', Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-  header {
-    padding: 40px 20px;
-    text-align: center;
-    position: relative;
-  }
-  header a { display: inline-block; }
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #555, transparent);
-  }
-  header img {
-    max-width: 400px;
-    width: 90%;
-    height: auto;
-  }
-  main {
-    flex: 1;
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    text-align: center;
-    width: 100%;
-  }
-
-  /* Fade-in utility */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .fade-in.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .page-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #f2f2f2;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-  }
-  .page-subtitle {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 36px;
-  }
-
-  /* Соцмережі вгорі */
-  .links-socials {
-    display: flex;
-    justify-content: center;
-    gap: 26px;
-    margin-bottom: 36px;
-  }
-  .links-socials a {
-    color: #f2f2f2;
-    font-size: 22px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  .links-socials a:hover {
-    color: #e63946;
-    transform: translateY(-2px);
-  }
-
-  /* Список кнопок-посилань */
-  .link-list {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .link-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 16px 20px;
-    background: #0d0d0d;
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
-    text-decoration: none;
-    color: #f2f2f2;
-    text-align: left;
-    cursor: pointer;
-    transition: border-color 0.3s ease, transform 0.2s ease, background 0.3s ease;
-    width: 100%;
-    font-family: inherit;
-  }
-  .link-btn:hover {
-    border-color: #e63946;
-    background: #141414;
-    transform: translateY(-2px);
-  }
-  .link-btn.featured {
-    border-color: rgba(180, 65, 70, 0.55);
-    background: linear-gradient(
-        180deg,
-        rgba(180, 65, 70, 0.07),
-        rgba(180, 65, 70, 0.015)
-    );
+:root {
+  --bg: #050505;
+  --ink: #d9d9d9;
+  --dim: #777;
+  --accent: #e63946;
+  --cyan: #00e5ff;
+  --display: 'VT323', 'Courier New', monospace;
+  --body: 'IBM Plex Mono', 'Courier New', monospace;
 }
- .link-btn.featured:hover {
-    border-color: rgba(210, 75, 80, 0.8);
-    background: linear-gradient(
-        180deg,
-        rgba(180, 65, 70, 0.13),
-        rgba(180, 65, 70, 0.04)
-    );
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
-  .link-btn-text {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-  .link-btn-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 15px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .link-btn-sub {
-    font-size: 13px;
-    color: #888;
-  }
-  .link-btn-arrow {
-    font-size: 14px;
-    color: #666;
-    flex-shrink: 0;
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-  .link-btn:hover .link-btn-arrow {
-    color: #e63946;
-    transform: translateX(3px);
-  }
-  .link-btn[aria-expanded="true"] .link-btn-arrow {
-    transform: rotate(90deg);
-    color: #e63946;
-  }
 
-  .links-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #333, transparent);
-    margin: 30px 0;
-  }
+::selection { background: var(--accent); color: #000; }
 
-  /* Форма підписки, що розкривається */
-  .subscribe-panel {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, margin 0.4s ease;
-    margin-top: 0;
-  }
-  .subscribe-panel.is-open {
-    max-height: 200px;
-    margin-top: 10px;
-  }
-  #mc_embed_signup {
-    background: transparent;
-    padding: 4px 4px 16px;
-  }
-  #mc_embed_signup form { padding: 0; }
-  .subscribe-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  #mc_embed_signup input[type="email"] {
-    flex: 1;
-    min-width: 160px;
-    background: transparent;
-    border: 1px solid #444;
-    border-radius: 4px;
-    padding: 12px 18px;
-    color: #f2f2f2;
-    font-family: 'Manrope', sans-serif;
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.3s ease;
-  }
-  #mc_embed_signup input[type="email"]::placeholder { color: #777; }
-  #mc_embed_signup input[type="email"]:focus { border-color: #e63946; }
-  #mc_embed_signup input[type="submit"] {
-    padding: 12px 30px;
-    border: 1px solid #f2f2f2;
-    background: transparent;
-    color: #f2f2f2;
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-  #mc_embed_signup input[type="submit"]:hover {
-    background: #f2f2f2;
-    color: #0d0d0d;
-  }
-  #mc_embed_signup .indicates-required,
-  #mc_embed_signup label { display: none; }
-  #mce-responses { margin-top: 10px; font-size: 13px; text-align: left; }
-  #mce-error-response { color: #e63946; }
-  #mce-success-response { color: #7fd989; }
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 1px dashed var(--accent);
+  outline-offset: 3px;
+}
 
-  footer {
-    padding: 40px 20px;
-    position: relative;
-    margin-top: 40px;
-  }
-  footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #555, transparent);
-  }
-  .footer-bottom {
-    text-align: center;
-    color: #666;
-    font-size: 14px;
-  }
+/* ---------- CRT: scanlines ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, .035) 0,
+    rgba(255, 255, 255, .035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
 
-  @media (max-width: 600px) {
-    header { padding: 30px 15px; }
-    main { padding: 40px 15px; }
-    .page-title { font-size: 22px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .fade-in {
-      transition: none;
-      opacity: 1;
-      transform: none;
-    }
-  }
+/* ---------- Fade-in (progressive enhancement) ---------- */
+.fade-in { opacity: 1; }
+.js .fade-in { opacity: 0; }
+.js .fade-in.is-visible { animation: flickerIn .6s steps(1) forwards; }
+@keyframes flickerIn {
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  30%  { opacity: .15; }
+  45%  { opacity: 1; }
+  60%  { opacity: .4; }
+  100% { opacity: 1; }
+}
+
+/* ---------- Text glitch (RGB split) ---------- */
+.glitch { position: relative; }
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+.glitch::before {
+  color: var(--cyan);
+  transform: translateX(-4px);
+  animation: glitchA 5s steps(1) infinite;
+}
+.glitch::after {
+  color: var(--accent);
+  transform: translateX(4px);
+  animation: glitchB 5s steps(1) infinite;
+}
+@keyframes glitchA {
+  0%, 88%, 100% { clip-path: inset(0 0 100% 0); }
+  89% { clip-path: inset(10% 0 62% 0); }
+  91% { clip-path: inset(55% 0 20% 0); }
+  93% { clip-path: inset(80% 0 4% 0); }
+  95% { clip-path: inset(30% 0 45% 0); }
+}
+@keyframes glitchB {
+  0%, 89%, 100% { clip-path: inset(0 0 100% 0); }
+  90% { clip-path: inset(60% 0 15% 0); }
+  92% { clip-path: inset(5% 0 75% 0); }
+  94% { clip-path: inset(40% 0 35% 0); }
+  96% { clip-path: inset(85% 0 2% 0); }
+}
+
+/* ---------- Image glitch ---------- */
+@keyframes imgGlitch {
+  0%, 90%, 100% { transform: none; clip-path: none; filter: none; }
+  91% { transform: translate(-6px, 0); clip-path: inset(15% 0 55% 0); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
+  93% { transform: translate(7px, 0); clip-path: inset(60% 0 10% 0); filter: drop-shadow(-5px 0 var(--accent)) drop-shadow(5px 0 var(--cyan)); }
+  95% { transform: translate(-3px, 0); clip-path: inset(35% 0 40% 0); filter: hue-rotate(90deg); }
+  97% { transform: none; clip-path: none; filter: none; }
+}
+
+/* ---------- Header (logo only) ---------- */
+header {
+  padding: 36px 20px 0;
+  text-align: center;
+}
+header a { display: inline-block; }
+header img {
+  display: block;
+  width: clamp(220px, 60vw, 280px);
+  max-width: 100%;
+  height: auto;
+  animation: imgGlitch 7s steps(1) infinite;
+}
+
+/* ---------- Content ---------- */
+main {
+  flex: 1;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 50px 20px 60px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Title: prompt and cursor are real spans so the glitch overlay can use ::before/::after */
+.page-title {
+  font-family: var(--display);
+  font-weight: 400;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+  font-size: clamp(38px, 10vw, 56px);
+  margin-bottom: 14px;
+}
+.page-title .prompt,
+.page-title .cursor { color: var(--accent); }
+.page-title .cursor { animation: blink 1s steps(1) infinite; }
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.page-subtitle {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--dim);
+  margin-bottom: 36px;
+}
+.page-subtitle::before { content: '// '; color: var(--accent); }
+
+/* ---------- Socials ---------- */
+.links-socials {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  margin-bottom: 36px;
+}
+.links-socials a {
+  color: var(--ink);
+  font-size: 22px;
+  text-decoration: none;
+}
+.links-socials a:hover {
+  color: var(--accent);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+
+/* ---------- Link buttons ---------- */
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 18px;
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 0;
+  text-decoration: none;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+.link-btn:hover {
+  border-color: var(--ink);
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+.link-btn.featured { border-color: var(--accent); }
+.link-btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.link-btn-title {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.link-btn-sub {
+  font-size: 12px;
+  letter-spacing: .5px;
+  color: var(--dim);
+}
+.link-btn-arrow {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1;
+  color: var(--dim);
+  flex-shrink: 0;
+}
+.link-btn:hover .link-btn-arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+.link-btn[aria-expanded="true"] { border-color: var(--accent); }
+.link-btn[aria-expanded="true"] .link-btn-arrow {
+  color: var(--accent);
+  transform: rotate(90deg);
+}
+
+/* ---------- Divider ---------- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 16px 0;
+  font-family: var(--display);
+  font-size: 24px;
+  letter-spacing: 3px;
+  line-height: 1;
+  color: var(--accent);
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-top: 1px dashed #444;
+}
+
+/* ---------- Expandable newsletter form ---------- */
+.subscribe-panel { margin-top: 10px; }
+.js .subscribe-panel {
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+}
+.js .subscribe-panel.is-open {
+  max-height: 260px;
+  margin-top: 10px;
+}
+#mc_embed_signup {
+  background: transparent;
+  padding: 4px 4px 16px;
+}
+#mc_embed_signup form { padding: 0; }
+.subscribe-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#mc_embed_signup input[type="email"] {
+  flex: 1;
+  min-width: 160px;
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 0;
+  padding: 12px 16px;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  outline: none;
+  caret-color: var(--accent);
+}
+#mc_embed_signup input[type="email"]::placeholder { color: #666; }
+#mc_embed_signup input[type="email"]:focus {
+  border-color: var(--accent);
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+#mc_embed_signup input[type="submit"] {
+  padding: 12px 26px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+}
+#mc_embed_signup input[type="submit"]:hover {
+  background: var(--ink);
+  color: #000;
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+#mc_embed_signup .indicates-required,
+#mc_embed_signup label { display: none; }
+#mce-responses { margin-top: 10px; font-size: 13px; text-align: left; }
+#mce-error-response { color: var(--accent); }
+#mce-success-response { color: #7fd989; }
+
+/* ---------- Footer (copyright only) ---------- */
+footer {
+  margin-top: 40px;
+  padding: 0 20px;
+  border-top: 1px dashed #444;
+}
+.footer-bottom {
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+  padding: 20px 0;
+}
+.footer-bottom::after {
+  content: '_';
+  animation: blink 1s steps(1) infinite;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+  header { padding: 30px 15px 0; }
+  main { padding: 40px 15px 45px; }
+  .link-btn-title { font-size: 24px; }
+  footer { margin-top: 30px; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .fade-in { opacity: 1; }
+}
 </style>
 </head>
 <body>
+
 <header>
   <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
 </header>
 <main>
-  <div class="page-title fade-in">Посилання</div>
+  <h1 class="page-title glitch fade-in" data-text="> Посилання_"><span class="prompt" aria-hidden="true">&gt; </span>Посилання<span class="cursor" aria-hidden="true">_</span></h1>
   <div class="page-subtitle fade-in">Музика, відео та все інше.</div>
 
   <div class="links-socials fade-in">
-    <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-    <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
-    <a href="https://francoband.bandcamp.com" target="_blank" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
-    <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-    <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://www.facebook.com/francoband/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-    <a href="https://www.tiktok.com/@francoband" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+    <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+    <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+    <a href="https://francoband.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
+    <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://www.tiktok.com/@francoband" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
   </div>
 
   <div class="link-list">
-    <a class="link-btn featured fade-in" href="https://ffm.to/pbo" target="_blank">
+    <a class="link-btn featured fade-in" href="https://ffm.to/pbo" target="_blank" rel="noopener noreferrer">
       <div class="link-btn-text">
         <div class="link-btn-title">Порізано Бритвою Оккама</div>
         <div class="link-btn-sub">Альбом 2025 року. Слухати.</div>
@@ -303,7 +399,7 @@
       <span class="link-btn-arrow">→</span>
     </a>
 
-    <a class="link-btn fade-in" href="https://www.dublab.com/archive/franco-guest-session-09-09-26" target="_blank">
+    <a class="link-btn fade-in" href="https://www.dublab.com/archive/franco-guest-session-09-09-26" target="_blank" rel="noopener noreferrer">
       <div class="link-btn-text">
         <div class="link-btn-title">FRANCO x dublab Guest Session</div>
         <div class="link-btn-sub">Слухати.</div>
@@ -311,7 +407,7 @@
       <span class="link-btn-arrow">→</span>
     </a>
 
-    <a class="link-btn fade-in" href="https://www.youtube.com/watch?v=kv_Ni-ogzZA" target="_blank">
+    <a class="link-btn fade-in" href="https://www.youtube.com/watch?v=kv_Ni-ogzZA" target="_blank" rel="noopener noreferrer">
       <div class="link-btn-text">
         <div class="link-btn-title">Грім і кров (Хто тут я)</div>
         <div class="link-btn-sub">Офіційне відео.</div>
@@ -332,7 +428,7 @@
           <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
             <div id="mc_embed_signup_scroll">
               <div class="subscribe-row">
-                <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Твій email" required value="">
+                <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Твій email" aria-label="Твоя електронна адреса" autocomplete="email" required value="">
                 <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Підписатись">
               </div>
               <div id="mce-responses" class="clear foot">
@@ -348,7 +444,7 @@
       </div>
     </div>
 
-    <div class="links-divider fade-in"></div>
+    <div class="divider" aria-hidden="true">///</div>
 
     <a class="link-btn fade-in" href="/music/">
       <div class="link-btn-text">
@@ -407,19 +503,25 @@
   var $mcj = jQuery.noConflict(true);
 </script>
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
+  /* Fade-in on scroll */
+  const fadeItems = document.querySelectorAll('.fade-in');
 
-  document.querySelectorAll('.fade-in').forEach((el) => {
-    observer.observe(el);
-  });
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
 
+    fadeItems.forEach((el) => observer.observe(el));
+  } else {
+    fadeItems.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  /* Expandable newsletter form */
   const subToggle = document.getElementById('subscribe-toggle');
   const subPanel = document.getElementById('subscribe-panel');
   subToggle.addEventListener('click', () => {
