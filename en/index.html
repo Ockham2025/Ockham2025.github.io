@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +12,10 @@
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://franco.com.ua/#website",
-      "url": "https://franco.com.ua/",
+      "@id": "https://franco.com.ua/en/#website",
+      "url": "https://franco.com.ua/en/",
       "name": "FRANCO",
-      "inLanguage": "uk",
+      "inLanguage": "en",
       "publisher": {
         "@id": "https://franco.com.ua/#musicgroup"
       }
@@ -30,7 +30,7 @@
       "foundingDate": "2011",
       "foundingLocation": {
         "@type": "City",
-        "name": "Київ",
+        "name": "Kyiv",
         "address": {
           "@type": "PostalAddress",
           "addressCountry": "UA"
@@ -41,8 +41,8 @@
         "name": "Valentyn Fedyshen"
       },
       "genre": [
-        "Альтернативний рок",
-        "Електронний рок"
+        "Alternative rock",
+        "Electronic rock"
       ],
       "inLanguage": "uk",
       "image": "https://franco.com.ua/images/hrim-i-krov.png",
@@ -70,6 +70,9 @@
 <meta property="og:locale:alternate" content="uk_UA">
 
 <link rel="canonical" href="https://franco.com.ua/en/">
+<link rel="alternate" hreflang="uk" href="https://franco.com.ua/">
+<link rel="alternate" hreflang="en" href="https://franco.com.ua/en/">
+<link rel="alternate" hreflang="x-default" href="https://franco.com.ua/">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="FRANCO — Official Website">
@@ -258,6 +261,21 @@ nav a:hover {
 }
 nav a:hover::before,
 nav a:hover::after { color: var(--accent); }
+
+/* English menu has only three links: give them a little more room (desktop only) */
+@media (min-width: 901px) {
+  html[lang="en"] nav { gap: 8px clamp(28px, 4vw, 52px); }
+}
+
+/* Language switcher: small link in the top right corner of the header on desktop */
+nav a.lang-switch {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  font-size: 18px;
+  color: var(--dim);
+}
+nav a.lang-switch:hover { color: var(--ink); }
 
 /* Hamburger button (hidden on desktop) */
 .nav-toggle {
@@ -625,6 +643,12 @@ footer {
   }
   nav a { font-size: 20px; }
 
+  /* Language switcher joins the normal menu flow */
+  nav a.lang-switch {
+    position: static;
+    font-size: 20px;
+  }
+
   /* With JS: logo left, hamburger right */
   .js header {
     flex-direction: row;
@@ -664,6 +688,13 @@ footer {
     transition: opacity .2s steps(3);
   }
   .js nav a { font-size: 30px; }
+
+  /* In the fullscreen menu the language switcher sits under the last item, behind a dashed line */
+  .js nav a.lang-switch {
+    padding-top: 24px;
+    border-top: 1px dashed #444;
+    font-size: 26px;
+  }
 
   /* Close button stays pinned top right while the menu is open */
   .js .nav-toggle[aria-expanded="true"] {
@@ -717,13 +748,14 @@ footer {
 
 <header>
   <a href="/en/" class="logo"><img src="/images/francologo.png" alt="FRANCO"></a>
-  <button type="button" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="site-nav">
+  <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
     <span></span><span></span><span></span>
   </button>
-  <nav id="site-nav" aria-label="Головне меню">
+  <nav id="site-nav" aria-label="Main menu">
     <a href="/en/music/">Music</a>
     <a href="/en/videos/">Videos</a>
     <a href="/en/about/">About</a>
+    <a class="lang-switch" href="/" hreflang="uk" lang="uk" aria-label="Українська версія">UA</a>
   </nav>
 </header>
 <main>
@@ -754,7 +786,7 @@ footer {
       <span>[_][X]</span>
     </div>
     <div class="video-wrap">
-      <iframe src="https://www.youtube-nocookie.com/embed/kv_Ni-ogzZA" title="FRANCO — Грім і кров (Хто тут я): відео на YouTube" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <iframe src="https://www.youtube-nocookie.com/embed/kv_Ni-ogzZA" title="FRANCO — Hrim i krov (Khto tut ya): video on YouTube" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </div>
 </main>
@@ -762,7 +794,7 @@ footer {
   <div class="newsletter">
     <div class="newsletter-label">Sometimes We Write Letters</div>
     <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" target="_blank" class="newsletter-form">
-      <input type="email" name="EMAIL" placeholder="email" aria-label="Твоя електронна адреса" autocomplete="email" required class="newsletter-input">
+      <input type="email" name="EMAIL" placeholder="email" aria-label="Your email address" autocomplete="email" required class="newsletter-input">
       <div style="position: absolute; left: -5000px;" aria-hidden="true">
         <input type="text" name="b_f4599b9a7dff59f0ab065b38d_b569df38bc" tabindex="-1" value="">
       </div>
@@ -819,7 +851,7 @@ footer {
       document.body.classList.toggle('menu-open', open);
       document.documentElement.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     }
 
     toggle.addEventListener('click', () => {
