@@ -1,18 +1,85 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>document.documentElement.classList.add('js');</script>
-<title>Тунелі | FRANCO</title>
-<meta name="description" content="«Тунелі» — дебютний альбом українського альтернативного рок-гурту FRANCO з Києва, випущений 14 лютого 2017 року. 10 треків українською мовою.">
-<meta property="og:title" content="Тунелі — FRANCO">
-<meta property="og:description" content="«Тунелі» — дебютний альбом FRANCO, випущений 14 лютого 2017 року.">
-<meta property="og:image" content="https://franco.com.ua/images/franco-tuneli.png">
-<meta property="og:url" content="https://franco.com.ua/music/tuneli-lp/">
+<title>FRANCO | Official Website</title>
+<meta name="description" content="FRANCO is a Ukrainian band formed in 2011. Still a work in progress.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://franco.com.ua/en/#website",
+      "url": "https://franco.com.ua/en/",
+      "name": "FRANCO",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://franco.com.ua/#musicgroup"
+      }
+    },
+    {
+      "@type": "MusicGroup",
+      "@id": "https://franco.com.ua/#musicgroup",
+      "name": "FRANCO",
+      "url": "https://franco.com.ua/",
+      "description": "FRANCO is an independent alternative rock band from Kyiv, Ukraine, founded in December 2011 by Valentyn Fedyshen. The band performs original music in Ukrainian.",
+      "disambiguatingDescription": "FRANCO is a Ukrainian music group founded in Kyiv in 2011 by Valentyn Fedyshen. Official website: franco.com.ua.",
+      "foundingDate": "2011",
+      "foundingLocation": {
+        "@type": "City",
+        "name": "Kyiv",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "UA"
+        }
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "Valentyn Fedyshen"
+      },
+      "genre": [
+        "Alternative rock",
+        "Electronic rock"
+      ],
+      "inLanguage": "uk",
+      "image": "https://franco.com.ua/images/hrim-i-krov.png",
+      "sameAs": [
+        "https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw",
+        "https://music.apple.com/us/artist/franco/1098769283",
+        "https://francoband.bandcamp.com/",
+        "https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g",
+        "https://www.instagram.com/francoband/",
+        "https://www.facebook.com/francoband/",
+        "https://www.tiktok.com/@francoband"
+      ]
+    }
+  ]
+}
+</script>
+<meta property="og:title" content="FRANCO — Official Website">
+<meta property="og:description" content="FRANCO is a Ukrainian band formed in 2011. Still a work in progress.">
+<meta property="og:image" content="https://franco.com.ua/images/hrim-i-krov.png">
+<meta property="og:image:alt" content="FRANCO — Hrim i krov">
+<meta property="og:url" content="https://franco.com.ua/en/">
+<meta property="og:site_name" content="FRANCO">
 <meta property="og:type" content="website">
-<link rel="canonical" href="https://franco.com.ua/music/tuneli-lp/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="uk_UA">
+
+<link rel="canonical" href="https://franco.com.ua/en/">
+<link rel="alternate" hreflang="uk" href="https://franco.com.ua/">
+<link rel="alternate" hreflang="en" href="https://franco.com.ua/en/">
+<link rel="alternate" hreflang="x-default" href="https://franco.com.ua/">
+
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FRANCO — Official Website">
+<meta name="twitter:description" content="FRANCO is a Ukrainian band formed in 2011. Still a work in progress.">
+<meta name="twitter:image" content="https://franco.com.ua/images/hrim-i-krov.png">
+<meta name="twitter:image:alt" content="FRANCO — Hrim i krov">
+
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -195,6 +262,21 @@ nav a:hover {
 nav a:hover::before,
 nav a:hover::after { color: var(--accent); }
 
+/* English menu has only three links: give them a little more room (desktop only) */
+@media (min-width: 901px) {
+  html[lang="en"] nav { gap: 8px clamp(28px, 4vw, 52px); }
+}
+
+/* Language switcher: small link in the top right corner of the header on desktop */
+nav a.lang-switch {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  font-size: 18px;
+  color: var(--dim);
+}
+nav a.lang-switch:hover { color: var(--ink); }
+
 /* Hamburger button (hidden on desktop) */
 .nav-toggle {
   display: none;
@@ -232,207 +314,188 @@ nav a:hover::after { color: var(--accent); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ---------- Content ---------- */
 main {
   flex: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 20px 60px;
+  text-align: center;
+  width: 100%;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 70px 20px 80px;
-  width: 100%;
-}
-
-/* ---------- Release: cover left, text right ---------- */
-.release {
-  display: grid;
-  grid-template-columns: 340px 1fr;
-  gap: 60px;
-  align-items: start;
-  margin-bottom: 70px;
-}
-.release-cover {
-  width: 100%;
-  aspect-ratio: 1;
-  overflow: hidden;
   border: 1px solid #3a3a3a;
-  box-shadow: -4px 0 0 var(--cyan), 4px 0 0 var(--accent);
+  overflow: hidden;
 }
-.release-cover img {
+.hero img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
+  animation: imgGlitch 9s steps(1) infinite 2s;
 }
-.release-cover:hover img {
-  animation: imgGlitchHover .4s steps(1) 1;
+.hero::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 14%;
+  top: -20%;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, .09), transparent);
+  animation: scan 6s linear infinite;
+}
+@keyframes scan {
+  to { top: 110%; }
 }
 
-.release-eyebrow {
+/* ---------- Album ---------- */
+.album {
+  text-align: center;
+  margin-top: 100px;
+}
+.album-eyebrow {
   font-family: var(--display);
   font-size: 24px;
   letter-spacing: 4px;
   color: var(--accent);
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
-.release-title {
+.album-title {
   font-family: var(--display);
   font-weight: 400;
   color: var(--ink);
   text-transform: uppercase;
   letter-spacing: 1px;
-  line-height: .95;
-  font-size: clamp(44px, 6vw, 72px);
-  margin-bottom: 20px;
+  line-height: .9;
+  font-size: clamp(52px, 12vw, 160px);
 }
-.release-meta {
+.album-title .accent { color: var(--accent); }
+.album-date {
   font-family: var(--body);
-  font-size: 13px;
-  letter-spacing: 2px;
+  font-size: 15px;
   color: var(--dim);
-  text-transform: uppercase;
-  margin-bottom: 26px;
-}
-.release-meta::before { content: '['; }
-.release-meta::after  { content: ']'; }
-.release-desc {
-  font-size: 14px;
-  line-height: 1.85;
-  color: #aaa;
-  max-width: 520px;
-}
-
-/* ---------- Section labels ---------- */
-.section-label {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: 30px;
+  margin-top: 22px;
   letter-spacing: 3px;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: 24px;
-  padding-bottom: 12px;
-  border-bottom: 1px dashed #444;
-}
-.section-label::before { content: '// '; color: var(--accent); }
-
-/* ---------- Track list ---------- */
-.pbo-tracklist { margin-bottom: 70px; }
-.pbo-track { border-bottom: 1px dashed #333; }
-.pbo-track:first-child { border-top: 1px dashed #333; }
-.pbo-track-row {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  padding: 14px 0;
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  color: var(--ink);
-  text-align: left;
-  font-family: inherit;
-  cursor: pointer;
-}
-.pbo-track-row:hover .pbo-tname {
-  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
-}
-.pbo-num {
-  font-family: var(--body);
-  font-size: 13px;
-  color: var(--dim);
-  width: 24px;
-  flex-shrink: 0;
-}
-.pbo-tname {
-  font-family: var(--display);
-  font-size: 26px;
-  line-height: 1.05;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  flex: 1;
-}
-.pbo-dur {
-  font-family: var(--body);
-  font-size: 13px;
-  color: var(--dim);
-  flex-shrink: 0;
-}
-.pbo-arrow {
-  font-family: var(--body);
-  font-size: 13px;
-  color: var(--dim);
-  flex-shrink: 0;
-  display: inline-block;
-}
-.pbo-track-row[aria-expanded="true"] .pbo-arrow {
-  transform: rotate(180deg);
-  color: var(--accent);
 }
 
-.pbo-lyrics { display: none; }
-.pbo-lyrics.open {
+.album-cover {
   display: block;
-  max-height: 320px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #555 transparent;
+  max-width: 400px;
+  width: 100%;
+  margin: 60px auto 0;
+  border: 1px solid #3a3a3a;
+  box-shadow: -4px 0 0 var(--cyan), 4px 0 0 var(--accent);
+  overflow: hidden;
 }
-.pbo-lyrics-inner {
-  font-family: var(--body);
-  font-size: 13px;
-  color: #aaa;
-  line-height: 2;
-  white-space: pre-line;
-  border-left: 2px solid var(--accent);
-  margin: 4px 0 22px 40px;
-  padding: 6px 0 6px 20px;
+.album-cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.album-cover:hover img {
+  animation: imgGlitchHover .4s steps(1) 1;
 }
 
-/* ---------- Platforms ---------- */
-.pbo-platforms { margin-bottom: 70px; }
-.pbo-links {
+.album-streams {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 46px;
 }
-.pbo-link {
-  font-family: var(--display);
-  font-size: 22px;
-  letter-spacing: 2px;
-  line-height: 1;
+.album-streams a {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
   color: var(--ink);
-  padding: 12px 24px;
-  border: 1px solid var(--ink);
+  font-size: 24px;
   text-decoration: none;
-  text-transform: uppercase;
+  border: 1px solid #555;
 }
-.pbo-link:hover {
+.album-streams a:hover {
   background: var(--ink);
   color: #000;
+  border-color: var(--ink);
   box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
 }
 
-/* ---------- Credits ---------- */
-.pbo-credits-block { margin-bottom: 24px; }
-.pbo-credits-label {
-  font-family: var(--body);
-  font-size: 11px;
-  color: var(--dim);
+/* ---------- Divider ---------- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 700px;
+  margin: 100px auto 80px;
+  font-family: var(--display);
+  font-size: 24px;
+  letter-spacing: 3px;
+  line-height: 1;
+  color: var(--accent);
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-top: 1px dashed #444;
+}
+
+/* ---------- Section heading ---------- */
+.section-label {
+  font-family: var(--display);
+  font-weight: 400;
+  color: var(--ink);
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 6px;
+  line-height: 1;
+  font-size: clamp(30px, 5vw, 56px);
+  margin-bottom: 40px;
 }
-.pbo-credits-value {
-  font-size: 14px;
-  color: var(--ink);
-  line-height: 1.6;
+.section-label::before { content: '> '; color: var(--accent); }
+.section-label::after {
+  content: '_';
+  color: var(--accent);
+  animation: blink 1s steps(1) infinite;
 }
-.pbo-credits-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 40px;
-  margin-top: 10px;
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ---------- Video "window" ---------- */
+.window {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid var(--ink);
+  box-shadow: 8px 8px 0 rgba(230, 57, 70, .55);
+  text-align: left;
+}
+.window-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--ink);
+  color: #000;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 1px;
+  padding: 2px 10px;
+}
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* ---------- Footer ---------- */
@@ -562,9 +625,6 @@ footer {
   content: '_';
   animation: blink 1s steps(1) infinite;
 }
-@keyframes blink {
-  50% { opacity: 0; }
-}
 
 /* ---------- Tablet / mobile: header + hamburger ---------- */
 @media (max-width: 900px) {
@@ -582,6 +642,12 @@ footer {
     gap: 6px 18px;
   }
   nav a { font-size: 20px; }
+
+  /* Language switcher joins the normal menu flow */
+  nav a.lang-switch {
+    position: static;
+    font-size: 20px;
+  }
 
   /* With JS: logo left, hamburger right */
   .js header {
@@ -623,40 +689,28 @@ footer {
   }
   .js nav a { font-size: 30px; }
 
+  /* In the fullscreen menu the language switcher sits under the last item, behind a dashed line */
+  .js nav a.lang-switch {
+    padding-top: 24px;
+    border-top: 1px dashed #444;
+    font-size: 26px;
+  }
+
   /* Close button stays pinned top right while the menu is open */
   .js .nav-toggle[aria-expanded="true"] {
     position: fixed;
     top: 20px;
     right: 15px;
   }
-
-  /* Release: stack cover above text */
-  .release {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .release-cover {
-    max-width: 320px;
-    margin: 0 auto;
-  }
 }
 
 /* ---------- Mobile ---------- */
 @media (max-width: 600px) {
-  main { padding: 45px 15px 55px; }
-  .release { margin-bottom: 50px; }
-  .release-cover { max-width: 260px; }
-  .release-eyebrow,
-  .release-title,
-  .release-meta { text-align: center; }
-  .release-desc { margin: 0 auto; }
-  .section-label { font-size: 24px; }
-  .pbo-tracklist,
-  .pbo-platforms { margin-bottom: 50px; }
-  .pbo-tname { font-size: 22px; }
-  .pbo-lyrics-inner { margin-left: 24px; padding-left: 14px; }
-  .pbo-link { font-size: 20px; padding: 10px 18px; }
-  .pbo-credits-grid { grid-template-columns: 1fr; }
+  main { padding: 40px 15px; }
+  .album { margin-top: 70px; }
+  .album-cover { margin-top: 45px; max-width: 300px; }
+  .divider { margin: 70px auto 60px; font-size: 20px; }
+  .window { box-shadow: 5px 5px 0 rgba(230, 57, 70, .55); }
 
   /* Footer: everything centered */
   footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
@@ -693,83 +747,64 @@ footer {
 <body>
 
 <header>
-  <a href="/" class="logo"><img src="/images/francologo.png" alt="FRANCO"></a>
-  <button type="button" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="site-nav">
+  <a href="/en/" class="logo"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
     <span></span><span></span><span></span>
   </button>
-  <nav id="site-nav" aria-label="Головне меню">
-    <a href="/music/">Музика</a>
-    <a href="/videos/">Відео</a>
-    <a href="/notes/">Нотатки</a>
-    <a href="/about/">Про гурт</a>
+  <nav id="site-nav" aria-label="Main menu">
+    <a href="/en/music/">Music</a>
+    <a href="/en/videos/">Videos</a>
+    <a href="/en/about/">About</a>
+    <a class="lang-switch" href="/" hreflang="uk" lang="uk" aria-label="Українська версія">UA</a>
   </nav>
 </header>
 <main>
+  <div class="hero fade-in">
+    <img src="/images/hrim-i-krov.png" alt="FRANCO — Hrim i krov">
+  </div>
 
-  <div class="release">
-    <div class="release-cover fade-in">
-      <img src="/images/franco-tuneli.png" alt="Тунелі — FRANCO">
-    </div>
-
-    <div class="release-info">
-      <div class="release-eyebrow fade-in">// Альбом</div>
-      <h1 class="release-title glitch fade-in" data-text="Тунелі">Тунелі</h1>
-      <div class="release-meta fade-in">FRANCO · 2017 · LP · 10 треків</div>
-      <div class="release-desc fade-in">Ми не дуже віримо в прості пояснення. Навколо багато суперечностей, випадкових збігів і незавершених думок. Ці пісні приблизно про це. І, можливо, про щось зовсім інше.</div>
+  <div class="album">
+    <div class="album-eyebrow fade-in">// Album</div>
+    <h1 class="album-title glitch fade-in" data-text="Porizano Brytvoiu Okkama">Porizano <span class="accent">Brytvoiu</span> Okkama</h1>
+    <div class="album-date fade-in">[10.10.2025]</div>
+    <a href="https://ffm.to/pbo" class="album-cover fade-in">
+      <img src="/images/porizano-brytvoiu-okkama.jpeg" alt="Porizano Brytvoiu Okkama">
+    </a>
+    <div class="album-streams fade-in">
+      <a href="https://open.spotify.com/album/0uxgXh1SQ351dRvFoo9XWJ" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://music.apple.com/us/album/1844120403" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+      <a href="https://music.youtube.com/playlist?list=OLAK5uy_mQIjQvFCwsvtjEm2Ka5YSvOIaupCV8UnQ" target="_blank" rel="noopener noreferrer" aria-label="YouTube Music"><i class="fa-brands fa-youtube"></i></a>
     </div>
   </div>
 
-  <div class="pbo-tracklist" id="tuneli-tracks"></div>
+  <div class="divider" aria-hidden="true">///</div>
 
-  <div class="pbo-platforms fade-in">
-    <h2 class="section-label">Слухати</h2>
-    <div class="pbo-links">
-      <a class="pbo-link" href="https://ffm.to/tuneli-franco" target="_blank" rel="noopener noreferrer">Всі платформи</a>
-      <a class="pbo-link" href="https://open.spotify.com/album/6uncTCfRhZ3WXmW5FhXIyS" target="_blank" rel="noopener noreferrer">Spotify</a>
-      <a class="pbo-link" href="https://music.apple.com/ua/album/тунелі/1745463726?l=uk" target="_blank" rel="noopener noreferrer">Apple Music</a>
-      <a class="pbo-link" href="https://music.youtube.com/playlist?list=OLAK5uy_lnY4kKVr4Jd2bCicq-BsYQhBi0FBpH9yE" target="_blank" rel="noopener noreferrer">YouTube Music</a>
+  <h2 class="section-label fade-in">Hrim i krov (Khto tut ya)</h2>
+  <div class="window fade-in">
+    <div class="window-bar" aria-hidden="true">
+      <span>kv_Ni-ogzZA.avi</span>
+      <span>[_][X]</span>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube-nocookie.com/embed/kv_Ni-ogzZA" title="FRANCO — Hrim i krov (Khto tut ya): video on YouTube" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </div>
-
-  <div class="pbo-credits fade-in">
-    <h2 class="section-label">Credits</h2>
-
-    <div class="pbo-credits-grid">
-      <div class="pbo-credits-block">
-        <div class="pbo-credits-label">Музика і тексти</div>
-        <div class="pbo-credits-value">Валентин Федишен</div>
-      </div>
-      <div class="pbo-credits-block">
-        <div class="pbo-credits-label">Запис</div>
-        <div class="pbo-credits-value">Антон Блащук, Ілля Сидоренко (трек 10)</div>
-      </div>
-      <div class="pbo-credits-block">
-        <div class="pbo-credits-label">Арт</div>
-        <div class="pbo-credits-value">Олена Бу Шдід</div>
-      </div>
-      <div class="pbo-credits-block">
-        <div class="pbo-credits-label">Менеджмент</div>
-        <div class="pbo-credits-value">Олексій Рудок</div>
-      </div>
-    </div>
-  </div>
-
 </main>
 <footer>
   <div class="newsletter">
-    <div class="newsletter-label">Іноді ми пишемо листи</div>
+    <div class="newsletter-label">Sometimes We Write Letters</div>
     <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" target="_blank" class="newsletter-form">
-      <input type="email" name="EMAIL" placeholder="Твій email" aria-label="Твоя електронна адреса" autocomplete="email" required class="newsletter-input">
+      <input type="email" name="EMAIL" placeholder="email" aria-label="Your email address" autocomplete="email" required class="newsletter-input">
       <div style="position: absolute; left: -5000px;" aria-hidden="true">
         <input type="text" name="b_f4599b9a7dff59f0ab065b38d_b569df38bc" tabindex="-1" value="">
       </div>
-      <button type="submit" class="newsletter-btn">Підписатись</button>
+      <button type="submit" class="newsletter-btn">Subscribe</button>
     </form>
   </div>
   <div class="footer-top">
     <div class="footer-socials">
       <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+      <a href="https://music.apple.com/us/artist/franco/1098769283" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
       <a href="https://francoband.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
       <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
       <a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -777,138 +812,17 @@ footer {
       <a href="https://www.tiktok.com/@francoband" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
     </div>
     <div class="footer-links">
-      <a href="/privacy-policy/">Політика конфіденційності</a>
-      <a href="/reach-us/">Контакти</a>
+      <a href="/en/privacy-policy/">Privacy Policy</a>
+      <a href="/en/reach-us/">Contact</a>
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2011–2026 FRANCO
+    &copy; 2026 FRANCO
   </div>
 </footer>
-<script>
-/* Track list with expandable lyrics */
-const tuneliTracks = [
-  { num: 1, name: "Тунелі", dur: "2:13", lyrics: "Два тунелі Стук у двері<br>Два тунелі Стук у двері<br>Стук у двері Два тунелі<br>Стук у двері Два тунелі<br><br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?<br>Який ти з них вибереш?" },
-  { num: 2, name: "Птахи", dur: "3:40", lyrics: "Після шалених доріг<br>Я автостопом біжу<br>Лише сам від себе<br>І джинси на мені<br><br>Знов закидало в траву<br>Моїх невірних птахів<br>Все буде чесно<br>Крига вже скресла<br><br>Лиш я, лиш ти<br>Як ті невірні птахи<br>Лиш я, лиш ти<br>Як ті невірні птахи<br><br>І з кожним днем все не я<br>Забута богом земля<br>Плаче на сцені<br>Та все веселі<br><br>Мої невірні птахи<br>Холодний погляд у них<br>Неба не видно<br>Темно й не мирно<br><br>Лиш я, лиш ти<br>Як ті невірні птахи<br>Лиш я, лиш ти<br>Як ті невірні птахи" },
-  { num: 3, name: "Божоле", dur: "4:25", lyrics: "Як же я усе чесно загубив<br>Ти спитай мене відповідь віків<br><br>Ти мене спитай<br>Де розгубив усе<br>За морями знай<br>Як я хотів тебе<br><br>П'яне божоле п'ю один в один<br>На відстані тебе не чую як завжди<br><br>Ти мене спитай<br>Де розгубив усе<br>За морями знай<br>Як я хотів тебе<br><br>Хотів тебе<br><br>Тебе" },
-  { num: 4, name: "Він серед нас", dur: "3:47", lyrics: "Рання весна<br>Чайка розгублена<br>Чорна вода<br>Море отруєне<br>Бідний моряк<br>Човен вже втрачено<br>Щоб це все значило<br>Різне ми бачили<br><br>Хто серед нас<br><br>Пізня зима<br>Хвиля ховається<br>Вітру нема<br>Якір ламається<br>Бідний моряк<br>Човен вже втрачено<br>Щоб це все значило<br>Різне ми бачили<br><br>Він серед нас<br>Він серед нас<br>Він серед нас<br>Він серед нас<br><br>Він серед нас<br>Він серед нас<br>Він серед нас<br>Він серед нас" },
-  { num: 5, name: "Голова чи серце", dur: "4:23", lyrics: "Зверху і вниз<br>Падай давай<br>Падай давай<br>Швидше давай<br>Падай давай<br><br>Крила знімай<br>Хочеш зрізай<br>Крила знімай<br>Все відпускай<br>Думай і знай<br><br>Сніг пройде<br>І ти знаєш все це<br>Та болить<br>Голова чи серце<br><br>Голова чи серце<br>Голова чи серце<br><br>Більше не спи<br>Довго не спи<br>Рано вставай<br>Рано вставай<br>Чуєш вставай<br><br>За горизонт<br>Сонце кидай<br>Сонце кидай<br>Всіх обганяй<br>Першим ставай<br><br>Сніг пройде<br>І ти знаєш все це<br>Та болить<br>Голова чи серце<br><br>Голова чи серце<br>Голова чи серце<br>Голова чи серце" },
-  { num: 6, name: "Люфт", dur: "1:34", lyrics: "Інструментальний трек" },
-  { num: 7, name: "Ти в мені", dur: "4:23", lyrics: "Я тебе як пізнав<br>То не спав п'ять годин<br>Істина у вині<br>Допивай два ковтки<br><br>Більше говори<br>Розкажи хто я тобі<br>Далі не мовчи<br>Я в тобі а ти в мені<br><br>День за днем німий птах<br>У вікно крила б'є<br>Він без слів він як ти<br>Розгадав все як є<br><br>Більше говори<br>Розкажи хто я тобі<br>Далі не мовчи<br>Я в тобі а ти в мені<br><br>Далі не мовчи<br>Я в тобі а ти в мені" },
-  { num: 8, name: "Баракуда", dur: "3:39", lyrics: "Інструментальний трек" },
-  { num: 9, name: "Дощ", dur: "4:42", lyrics: "Намалюй краплі<br>Намалюй дощ на склі<br>Зранку їх видно<br>Ввечері вже не ті<br><br>Дощ, дощ, дощ<br>Дощ, дощ, дощ<br><br>Замалюй сонце<br>Щоб не світило мені<br>Дихай повільно<br>Дихай на скло а мені<br><br>Дощ, дощ, дощ<br>Дощ, дощ, дощ<br>Дощ, дощ, дощ<br>Дощ, дощ, дощ" },
-  { num: 10, name: "Йога", dur: "3:53", lyrics: "Йога, йога<br>Як тобі не страшно<br>Йога, йога<br>Скільки ми пройшли разом<br>Дві війни підряд разом<br>Я дихав на тебе піском<br><br>Йога, йога<br>Твої очі небо<br>Йога, йога<br>Я таких не знав й не чув<br>Як співає промінь один<br>Моно у вухах<br><br>Йога, йога<br>Разом нам не страшно<br>Знаю лиш як зійде луна мовчиш<br>Може і не друг ти але<br>Я спитаю знов<br><br>Спитаю знов<br><br>Спитаю знов" },
-];
-
-const container = document.getElementById('tuneli-tracks');
-tuneliTracks.forEach((t, i) => {
-  const div = document.createElement('div');
-  div.className = 'pbo-track fade-in';
-  div.innerHTML = `
-    <button type="button" class="pbo-track-row" aria-expanded="false" aria-controls="tuneli-lyrics-${i}" data-index="${i}">
-      <span class="pbo-num">${t.num}</span>
-      <span class="pbo-tname">${t.name}</span>
-      <span class="pbo-dur">${t.dur}</span>
-      <span class="pbo-arrow" aria-hidden="true">↓</span>
-    </button>
-    <div class="pbo-lyrics" id="tuneli-lyrics-${i}">
-      <div class="pbo-lyrics-inner">${t.lyrics}</div>
-    </div>
-  `;
-  container.appendChild(div);
-});
-
-/* Only one lyrics panel is open at a time */
-container.addEventListener('click', (e) => {
-  const row = e.target.closest('.pbo-track-row');
-  if (!row) return;
-  const lyrics = document.getElementById('tuneli-lyrics-' + row.dataset.index);
-  const wasOpen = lyrics.classList.contains('open');
-
-  container.querySelectorAll('.pbo-lyrics').forEach((el) => el.classList.remove('open'));
-  container.querySelectorAll('.pbo-track-row').forEach((el) => el.setAttribute('aria-expanded', 'false'));
-
-  if (!wasOpen) {
-    lyrics.classList.add('open');
-    row.setAttribute('aria-expanded', 'true');
-  }
-});
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MusicAlbum",
-  "@id": "https://franco.com.ua/music/tuneli-lp/#album",
-  "name": "Тунелі",
-  "byArtist": {
-    "@id": "https://franco.com.ua/#musicgroup"
-  },
-  "image": "https://franco.com.ua/images/franco-tuneli.png",
-  "datePublished": "2017-02-14",
-  "genre": [
-    "Alternative Rock",
-    "Electronic Rock"
-  ],
-  "inLanguage": "uk",
-  "url": "https://franco.com.ua/music/tuneli-lp/",
-  "numTracks": 10,
-  "track": [
-    {
-      "@type": "MusicRecording",
-      "name": "Тунелі",
-      "position": 1
-    },
-    {
-      "@type": "MusicRecording",
-      "name": "Птахи",
-      "position": 2
-    },
-    {
-      "@type": "MusicRecording",
-      "name": "Божоле",
-      "position": 3
-    },
-    {
-      "@type": "MusicRecording",
-      "name": "Він серед нас",
-      "position": 4
-    },
-    {
-      "@type": "MusicRecording",
-      "name": "Голова чи серце",
-      "position": 5
-    },
-    {
-      "@type": "MusicRecording",
-      "name": "Люфт",
-      "position": 6
-    },
-    {
-      "@type": "MusicRecording",
-      "name": "Ти в мені",
-      "position": 7
-    },
-    {
-      "@type": "MusicRecording",
-      "name": "Баракуда",
-      "position": 8
-    },
-    {
-      "@type": "MusicRecording",
-      "name": "Дощ",
-      "position": 9
-    },
-    {
-      "@type": "MusicRecording",
-      "name": "Йога",
-      "position": 10
-    }
-  ]
-}
-</script>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
 <script>
-  /* Fade-in on scroll (runs after the track list is built) */
+  /* Fade-in on scroll */
   const fadeItems = document.querySelectorAll('.fade-in');
 
   if ('IntersectionObserver' in window) {
@@ -937,7 +851,7 @@ container.addEventListener('click', (e) => {
       document.body.classList.toggle('menu-open', open);
       document.documentElement.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     }
 
     toggle.addEventListener('click', () => {
