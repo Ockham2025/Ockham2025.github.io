@@ -1,1 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
+<title>Контакти | FRANCO</title>
+<meta name="description" content="Зв'язок із FRANCO: електронна пошта та сторінки гурту.">
+<meta property="og:title" content="Контакти — FRANCO">
+<meta property="og:description" content="Зв'язок із FRANCO: електронна пошта та сторінки гурту.">
+<meta property="og:image" content="https://franco.com.ua/images/franco-caribbean-kyiv-03.jpg">
+<meta property="og:url" content="https://franco.com.ua/en/reach-us/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:locale:alternate" content="uk_UA">
+<link rel="canonical" href="https://franco.com.ua/en/reach-us/">
+<link rel="alternate" hreflang="uk" href="https://franco.com.ua/reach-us/">
+<link rel="alternate" hreflang="en" href="https://franco.com.ua/en/reach-us/">
+<link rel="alternate" hreflang="x-default" href="https://franco.com.ua/reach-us/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/images/favicon-dot.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --bg: #050505;
+  --ink: #d9d9d9;
+  --dim: #777;
+  --accent: #e63946;
+  --cyan: #00e5ff;
+  --display: 'VT323', 'Courier New', monospace;
+  --body: 'IBM Plex Mono', 'Courier New', monospace;
+}
 
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+html.menu-open,
+body.menu-open { overflow: hidden; }
+
+/* While the menu is open, hide the page itself so nothing shows through
+   the translucent Safari toolbar */
+html.menu-open main,
+html.menu-open footer {
+  visibility: hidden;
+}
+html.menu-open,
+html.menu-open body {
+  background: #050505;
+}
+
+::selection { background: var(--accent); color: #000; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px dashed var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- CRT: scanlines ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, .035) 0,
+    rgba(255, 255, 255, .035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ---------- Fade-in (progressive enhancement) ---------- */
+.fade-in { opacity: 1; }
+.js .fade-in { opacity: 0; }
+.js .fade-in.is-visible { animation: flickerIn .6s steps(1) forwards; }
+@keyframes flickerIn {
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  30%  { opacity: .15; }
+  45%  { opacity: 1; }
+  60%  { opacity: .4; }
+  100% { opacity: 1; }
+}
+
+/* ---------- Text glitch (RGB split) ---------- */
+.glitch { position: relative; }
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+.glitch::before {
+  color: var(--cyan);
+  transform: translateX(-4px);
+  animation: glitchA 5s steps(1) infinite;
+}
+.glitch::after {
+  color: var(--accent);
+  transform: translateX(4px);
+  animation: glitchB 5s steps(1) infinite;
+}
+@keyframes glitchA {
+  0%, 88%, 100% { clip-path: inset(0 0 100% 0); }
+  89% { clip-path: inset(10% 0 62% 0); }
+  91% { clip-path: inset(55% 0 20% 0); }
+  93% { clip-path: inset(80% 0 4% 0); }
+  95% { clip-path: inset(30% 0 45% 0); }
+}
+@keyframes glitchB {
+  0%, 89%, 100% { clip-path: inset(0 0 100% 0); }
+  90% { clip-path: inset(60% 0 15% 0); }
+  92% { clip-path: inset(5% 0 75% 0); }
+  94% { clip-path: inset(40% 0 35% 0); }
+  96% { clip-path: inset(85% 0 2% 0); }
+}
+
+/* ---------- Image glitch ---------- */
+@keyframes imgGlitch {
+  0%, 90%, 100% { transform: none; clip-path: none; filter: none; }
+  91% { transform: translate(-6px, 0); clip-path: inset(15% 0 55% 0); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
+  93% { transform: translate(7px, 0); clip-path: inset(60% 0 10% 0); filter: drop-shadow(-5px 0 var(--accent)) drop-shadow(5px 0 var(--cyan)); }
+  95% { transform: translate(-3px, 0); clip-path: inset(35% 0 40% 0); filter: hue-rotate(90deg); }
+  97% { transform: none; clip-path: none; filter: none; }
+}
+
+/* ---------- Header ---------- */
+header {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px 30px;
+  position: relative;
+}
+header a { display: inline-block; }
+header .logo { display: block; flex-shrink: 0; }
+header img {
+  display: block;
+  width: clamp(220px, 26vw, 280px);
+  max-width: 100%;
+  height: auto;
+  animation: imgGlitch 7s steps(1) infinite;
+}
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px clamp(16px, 2.4vw, 28px);
+  flex-wrap: nowrap;
+}
+nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--display);
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0 4px;
+  white-space: nowrap;
+}
+nav a::before { content: '[ '; color: var(--dim); }
+nav a::after  { content: ' ]'; color: var(--dim); }
+nav a:hover {
+  color: var(--ink);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+nav a:hover::before,
+nav a:hover::after { color: var(--accent); }
+
+/* English menu has only three links: give them a little more room (desktop only) */
+@media (min-width: 901px) {
+  html[lang="en"] nav { gap: 8px clamp(28px, 4vw, 52px); }
+}
+
+/* Language switcher: small link in the top right corner of the header on desktop */
+nav a.lang-switch {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  font-size: 18px;
+  color: var(--dim);
+}
+nav a.lang-switch:hover { color: var(--ink); }
+
+/* Hamburger button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  position: relative;
+  z-index: 95;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 0;
+  color: var(--ink);
+  cursor: pointer;
+}
+.nav-toggle span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  background: currentColor;
+  transition: transform .2s steps(3), opacity .2s steps(3);
+}
+.nav-toggle span:nth-child(1) { top: 14px; }
+.nav-toggle span:nth-child(2) { top: 21px; }
+.nav-toggle span:nth-child(3) { top: 28px; }
+.nav-toggle:hover {
+  background: var(--ink);
+  color: #000;
+  border-color: var(--ink);
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+.nav-toggle[aria-expanded="true"] { border-color: var(--accent); }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- Content ---------- */
+main {
+  flex: 1;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 70px 20px 80px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Title: prompt and cursor are real spans, so ::before/::after stay free for the glitch overlay */
+.page-title {
+  font-family: var(--display);
+  font-weight: 400;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+  font-size: clamp(40px, 8vw, 72px);
+  margin-bottom: 40px;
+}
+.page-title .prompt,
+.page-title .cursor { color: var(--accent); }
+.page-title .cursor { animation: blink 1s steps(1) infinite; }
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.intro-text {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.intro-text.secondary {
+  font-size: 15px;
+  color: #999;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 400px;
+  margin: 60px auto;
+  font-family: var(--display);
+  font-size: 24px;
+  letter-spacing: 3px;
+  line-height: 1;
+  color: var(--accent);
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  border-top: 1px dashed #444;
+}
+
+.contact-label {
+  font-family: var(--display);
+  font-size: 24px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 26px;
+}
+.contact-label::before { content: '// '; }
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.contact-item {
+  font-size: 16px;
+  color: var(--ink);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+.contact-item span { color: var(--dim); }
+.contact-item a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px dashed #555;
+}
+.contact-item a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 40px;
+  padding: 28px 20px 0;
+  position: relative;
+  border-top: 1px dashed #444;
+}
+
+/* Level 1: newsletter */
+.newsletter {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding-bottom: 24px;
+}
+.newsletter-label {
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.newsletter-label::before { content: '> '; color: var(--accent); }
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.newsletter-input {
+  background: transparent;
+  border: 1px solid #555;
+  color: var(--ink);
+  padding: 12px 16px;
+  font-family: var(--body);
+  font-size: 15px;
+  min-width: 280px;
+  border-radius: 0;
+  caret-color: var(--accent);
+}
+.newsletter-input::placeholder { color: #666; }
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+.newsletter-btn {
+  padding: 12px 26px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+}
+.newsletter-btn:hover {
+  background: var(--ink);
+  color: #000;
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+
+/* Level 2: socials + service links */
+.footer-top {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding-bottom: 20px;
+}
+.footer-socials {
+  display: flex;
+  gap: 20px;
+}
+.footer-socials a {
+  color: var(--ink);
+  font-size: 20px;
+  text-decoration: none;
+}
+.footer-socials a:hover {
+  color: var(--accent);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 22px;
+}
+.footer-links a {
+  font-family: var(--body);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #808080;
+}
+.footer-links a::before { content: '[ '; }
+.footer-links a::after  { content: ' ]'; }
+.footer-links a:hover {
+  color: var(--ink);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+
+/* Level 3: copyright */
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+  padding: 12px 0 16px;
+  border-top: 1px solid #222;
+}
+.footer-bottom::after {
+  content: '_';
+  animation: blink 1s steps(1) infinite;
+}
+
+/* ---------- Tablet / mobile: header + hamburger ---------- */
+@media (max-width: 900px) {
+  /* Without JS: logo centered, menu below (may wrap) */
+  header {
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 30px 15px 0;
+  }
+  header img { width: 240px; }
+  nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+  }
+  nav a { font-size: 20px; }
+
+  /* Language switcher joins the normal menu flow */
+  nav a.lang-switch {
+    position: static;
+    font-size: 20px;
+  }
+
+  /* With JS: logo left, hamburger right */
+  .js header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 15px 0;
+  }
+  .js header img { width: 200px; }
+  .js .nav-toggle { display: block; }
+
+  /* Fullscreen menu: solid background covering the whole screen */
+  .js nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 80px 20px;
+    background: #050505;
+    box-shadow: 0 0 0 100vmax #050505;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .2s steps(3), visibility 0s linear .2s;
+  }
+  .js nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .2s steps(3);
+  }
+  .js nav a { font-size: 30px; }
+
+  /* In the fullscreen menu the language switcher sits under the last item, behind a dashed line */
+  .js nav a.lang-switch {
+    padding-top: 24px;
+    border-top: 1px dashed #444;
+    font-size: 26px;
+  }
+
+  /* Close button stays pinned top right while the menu is open */
+  .js .nav-toggle[aria-expanded="true"] {
+    position: fixed;
+    top: 20px;
+    right: 15px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+  main { padding: 45px 15px 55px; }
+  .intro-text { font-size: 16px; }
+  .intro-text.secondary { font-size: 14px; }
+  .divider { margin: 45px auto; font-size: 20px; }
+  .contact-item { flex-direction: column; align-items: center; gap: 2px; }
+
+  /* Footer: everything centered */
+  footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
+  .newsletter {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .newsletter-label { text-align: center; }
+  .newsletter-form { flex-direction: column; align-items: center; width: 100%; }
+  .newsletter-input { width: 100%; max-width: 320px; min-width: 0; }
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+  }
+  .footer-socials { flex-wrap: wrap; justify-content: center; }
+  .footer-links { justify-content: center; gap: 8px 16px; }
+  .footer-bottom { text-align: center; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .fade-in { opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="/en/" class="logo"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="site-nav" aria-label="Main menu">
+    <a href="/en/music/">Music</a>
+    <a href="/en/videos/">Videos</a>
+    <a href="/en/about/">About</a>
+    <a class="lang-switch" href="/reach-us/" hreflang="uk" lang="uk" aria-label="Українська версія">UA</a>
+  </nav>
+</header>
+<main>
+  <h1 class="page-title glitch fade-in" data-text="> Зв'язатись з нами_"><span class="prompt" aria-hidden="true">&gt; </span>Зв'язатись з нами<span class="cursor" aria-hidden="true">_</span></h1>
+
+  <p class="intro-text fade-in">Не все потребує відповіді. Але якщо тобі є що сказати, ми прочитаємо.</p>
+  <p class="intro-text secondary fade-in">Пиши, якщо це стосується концертів, співпраці, музики або чогось іншого, що не дає спокою. Ми відповідаємо не миттєво, але читаємо все.</p>
+
+  <div class="divider" aria-hidden="true">///</div>
+
+  <div class="contact-label fade-in">Наші контакти</div>
+  <div class="contact-list fade-in">
+    <div class="contact-item">
+      <span>Електронна пошта:</span><a href="mailto:info@franco.com.ua">info@franco.com.ua</a>
+    </div>
+    <div class="contact-item">
+      <span>Instagram:</span><a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer">@francoband</a>
+    </div>
+    <div class="contact-item">
+      <span>Facebook:</span><a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer">FRANCO</a>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="newsletter">
+    <div class="newsletter-label">Sometimes We Write Letters</div>
+    <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" target="_blank" class="newsletter-form">
+      <input type="email" name="EMAIL" placeholder="email" aria-label="Your email address" autocomplete="email" required class="newsletter-input">
+      <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <input type="text" name="b_f4599b9a7dff59f0ab065b38d_b569df38bc" tabindex="-1" value="">
+      </div>
+      <button type="submit" class="newsletter-btn">Subscribe</button>
+    </form>
+  </div>
+  <div class="footer-top">
+    <div class="footer-socials">
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://music.apple.com/us/artist/franco/1098769283" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+      <a href="https://francoband.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+    </div>
+    <div class="footer-links">
+      <a href="/en/privacy-policy/">Privacy Policy</a>
+      <a href="/en/reach-us/">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2011–2026 FRANCO
+  </div>
+</footer>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+  /* Fade-in on scroll */
+  const fadeItems = document.querySelectorAll('.fade-in');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeItems.forEach((el) => observer.observe(el));
+  } else {
+    fadeItems.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  /* Mobile menu */
+  (function () {
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('site-nav');
+    if (!toggle || !nav) return;
+
+    function setMenu(open) {
+      nav.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+
+    toggle.addEventListener('click', () => {
+      setMenu(!nav.classList.contains('is-open'));
+    });
+
+    /* Clicking a menu link or the empty background closes the menu */
+    nav.addEventListener('click', (e) => {
+      if (e.target === nav || e.target.closest('a')) setMenu(false);
+    });
+
+    /* Escape closes the menu and returns focus to the button */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+
+    /* Reset the state when the screen grows to desktop width */
+    const mq = window.matchMedia('(min-width: 901px)');
+    const onChange = (e) => { if (e.matches) setMenu(false); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  })();
+</script>
+</body>
+</html>
