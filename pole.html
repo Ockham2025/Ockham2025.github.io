@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<style>
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  cursor: pointer;
+}
+
+#screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  transition: background 40ms linear;
+}
+
+#glow {
+  position: absolute;
+  inset: -20%;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse at 50% 50%,
+    #fff 0%, #ddd 12%, #777 35%, transparent 70%);
+  filter: blur(35px);
+  transition: opacity 100ms ease;
+}
+
+#hint {
+  position: fixed;
+  bottom: 28px;
+  width: 100%;
+  text-align: center;
+  color: #555;
+  font: 11px monospace;
+  letter-spacing: 4px;
+  user-select: none;
+}
+</style>
+</head>
+<body>
+
+<div id="screen">
+  <div id="glow"></div>
+</div>
+<div id="hint">CLICK TO BEGIN</div>
+
+<script>
+const screen = document.getElementById('screen');
+const glow = document.getElementById('glow');
+const hint = document.getElementById('hint');
+
+let running = false;
+let timer;
+
+function flash() {
+  if (!running) return;
+
+  const chance = Math.random();
+  let duration, brightness;
+
+  if (chance < 0.55) {
+    brightness = 0.08 + Math.random() * 0.18;
+    duration = 60 + Math.random() * 100;
+  } else if (chance < 0.85) {
+    brightness = 0.3 + Math.random() * 0.35;
+    duration = 50 + Math.random() * 120;
+  } else {
+    brightness = 0.65 + Math.random() * 0.35;
+    duration = 40 + Math.random() * 90;
+  }
+
+  const shade = Math.floor(brightness * 255);
+
+  screen.style.background =
+    `rgb(${shade},${shade},${shade})`;
+
+  glow.style.opacity = brightness * 0.45;
+
+  setTimeout(() => {
+    screen.style.background = '#000';
+    glow.style.opacity = 0;
+  }, duration);
+
+  const pause = 100 + Math.random() * 750;
+  timer = setTimeout(flash, pause + duration);
+}
+
+function toggle() {
+  running = !running;
+
+  if (running) {
+    hint.textContent = 'CLICK TO STOP';
+    flash();
+  } else {
+    clearTimeout(timer);
+    screen.style.background = '#000';
+    glow.style.opacity = 0;
+    hint.textContent = 'CLICK TO BEGIN';
+  }
+}
+
+document.body.addEventListener('click', toggle);
+</script>
+</body>
+</html>
