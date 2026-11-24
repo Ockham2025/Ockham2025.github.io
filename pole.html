@@ -4,95 +4,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title></title>
+<title> </title>
 <style>
 * { box-sizing: border-box; }
-
 html, body {
   margin: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #000;
+  background: black;
   cursor: pointer;
 }
-
 #screen {
   position: fixed;
   inset: 0;
   background: #000;
-  transition: background 40ms linear;
+  transition: none;
 }
-
-#glow {
-  position: absolute;
-  inset: -20%;
-  opacity: 0;
-  background:
-    radial-gradient(ellipse at 50% 50%,
-    #fff 0%, #ddd 12%, #777 35%, transparent 70%);
-  filter: blur(35px);
-  transition: opacity 100ms ease;
-}
-
 #hint {
   position: fixed;
-  bottom: 28px;
+  bottom: 25px;
   width: 100%;
   text-align: center;
-  color: #555;
-  font: 11px monospace;
+  color: #777;
+  font: 12px monospace;
   letter-spacing: 4px;
-  user-select: none;
 }
 </style>
 </head>
 <body>
-
-<div id="screen">
-  <div id="glow"></div>
-</div>
+<div id="screen"></div>
 <div id="hint">CLICK TO BEGIN</div>
 
 <script>
 const screen = document.getElementById('screen');
-const glow = document.getElementById('glow');
 const hint = document.getElementById('hint');
 
 let running = false;
-let timer;
+let timer = null;
 
 function flash() {
   if (!running) return;
 
-  const chance = Math.random();
-  let duration, brightness;
+  const r = Math.random();
 
-  if (chance < 0.55) {
-    brightness = 0.08 + Math.random() * 0.18;
-    duration = 60 + Math.random() * 100;
-  } else if (chance < 0.85) {
-    brightness = 0.3 + Math.random() * 0.35;
-    duration = 50 + Math.random() * 120;
+  if (r < 0.35) {
+    screen.style.background = '#fff';
+  } else if (r < 0.65) {
+    screen.style.background = '#888';
+  } else if (r < 0.82) {
+    screen.style.background =
+      'radial-gradient(ellipse, #fff 0%, #aaa 30%, #222 75%)';
   } else {
-    brightness = 0.65 + Math.random() * 0.35;
-    duration = 40 + Math.random() * 90;
+    screen.style.background = '#333';
   }
 
-  const shade = Math.floor(brightness * 255);
+  const duration = 60 + Math.random() * 140;
 
-  screen.style.background =
-    `rgb(${shade},${shade},${shade})`;
-
-  glow.style.opacity = brightness * 0.45;
-
-  setTimeout(() => {
+  timer = setTimeout(() => {
     screen.style.background = '#000';
-    glow.style.opacity = 0;
+    timer = setTimeout(flash, 80 + Math.random() * 350);
   }, duration);
-
-  const pause = 100 + Math.random() * 750;
-  timer = setTimeout(flash, pause + duration);
 }
 
 function toggle() {
@@ -104,7 +76,6 @@ function toggle() {
   } else {
     clearTimeout(timer);
     screen.style.background = '#000';
-    glow.style.opacity = 0;
     hint.textContent = 'CLICK TO BEGIN';
   }
 }
