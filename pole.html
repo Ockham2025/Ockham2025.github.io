@@ -4,83 +4,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> </title>
+<title></title>
 <style>
 * { box-sizing: border-box; }
-html, body {
+
+body {
   margin: 0;
-  width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  background: transparent;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  background: black;
-  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
 }
-#screen {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  transition: none;
+
+.poem {
+  width: 90%;
+  max-width: 900px;
+  font-size: clamp(28px, 6vw, 68px);
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -2px;
 }
-#hint {
-  position: fixed;
-  bottom: 25px;
-  width: 100%;
-  text-align: center;
-  color: #777;
-  font: 12px monospace;
-  letter-spacing: 4px;
+
+.line {
+  display: block;
+  white-space: nowrap;
+  margin: 0 0 8px;
 }
+
+.char {
+  display: inline-block;
+  animation: tremble var(--speed) infinite;
+  animation-delay: var(--delay);
+  opacity: var(--opacity);
+}
+
+@keyframes tremble {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0);
+    opacity: 1;
+  }
+  15% {
+    transform: translate(1px, -2px) rotate(-2deg);
+  }
+  30% {
+    transform: translate(-2px, 1px) rotate(2deg);
+    opacity: .65;
+  }
+  45% {
+    transform: translate(2px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-1px, -2px) rotate(1deg);
+    opacity: .9;
+  }
+  80% {
+    transform: translate(2px, -1px) rotate(2deg);
+  }
+}
+
+.line:nth-child(2) .char {
+  animation-name: tremble2;
+}
+
+@keyframes tremble2 {
+  0%, 100% { transform: translate(0,0); }
+  25% { transform: translate(-3px,2px) rotate(2deg); }
+  50% { transform: translate(2px,-3px) rotate(-2deg); }
+  75% { transform: translate(-2px,-1px); }
+}
+
+.line:nth-child(3) .char {
+  animation-duration: calc(var(--speed) * 1.5);
+}
+
+.line:nth-child(4) .char {
+  animation-name: tremble2;
+  animation-duration: calc(var(--speed) * .7);
+}
+
 </style>
 </head>
 <body>
-<div id="screen"></div>
-<div id="hint">CLICK TO BEGIN</div>
+
+<div class="poem" id="poem"></div>
 
 <script>
-const screen = document.getElementById('screen');
-const hint = document.getElementById('hint');
+const lines = [
+  "спитаєш лелеку",
+  "де поле і море",
+  "де море там поле",
+  "далеко"
+];
 
-let running = false;
-let timer = null;
+const poem = document.getElementById("poem");
 
-function flash() {
-  if (!running) return;
+lines.forEach((line, lineIndex) => {
+  const row = document.createElement("div");
+  row.className = "line";
 
-  const r = Math.random();
+  [...line].forEach((letter) => {
+    const span = document.createElement("span");
+    span.className = "char";
+    span.textContent = letter === " " ? "\u00a0" : letter;
 
-  if (r < 0.35) {
-    screen.style.background = '#fff';
-  } else if (r < 0.65) {
-    screen.style.background = '#888';
-  } else if (r < 0.82) {
-    screen.style.background =
-      'radial-gradient(ellipse, #fff 0%, #aaa 30%, #222 75%)';
-  } else {
-    screen.style.background = '#333';
-  }
+    span.style.setProperty("--speed",
+      (0.12 + Math.random() * 0.35) + "s");
 
-  const duration = 60 + Math.random() * 140;
+    span.style.setProperty("--delay",
+      (Math.random() * -1) + "s");
 
-  timer = setTimeout(() => {
-    screen.style.background = '#000';
-    timer = setTimeout(flash, 80 + Math.random() * 350);
-  }, duration);
-}
+    row.appendChild(span);
+  });
 
-function toggle() {
-  running = !running;
-
-  if (running) {
-    hint.textContent = 'CLICK TO STOP';
-    flash();
-  } else {
-    clearTimeout(timer);
-    screen.style.background = '#000';
-    hint.textContent = 'CLICK TO BEGIN';
-  }
-}
-
-document.body.addEventListener('click', toggle);
+  poem.appendChild(row);
+});
 </script>
+
 </body>
 </html>
