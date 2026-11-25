@@ -11,7 +11,12 @@
 <meta property="og:image" content="https://franco.com.ua/images/FRANCO-PBO2025-scaled.jpg">
 <meta property="og:url" content="https://franco.com.ua/videos/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:locale:alternate" content="en_GB">
 <link rel="canonical" href="https://franco.com.ua/videos/">
+<link rel="alternate" hreflang="uk" href="https://franco.com.ua/videos/">
+<link rel="alternate" hreflang="en" href="https://franco.com.ua/en/videos/">
+<link rel="alternate" hreflang="x-default" href="https://franco.com.ua/videos/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -186,6 +191,16 @@ nav a:hover {
 }
 nav a:hover::before,
 nav a:hover::after { color: var(--accent); }
+
+/* Language switcher: small link in the top right corner of the header on desktop */
+nav a.lang-switch {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  font-size: 18px;
+  color: var(--dim);
+}
+nav a.lang-switch:hover { color: var(--ink); }
 
 /* Hamburger button (hidden on desktop) */
 .nav-toggle {
@@ -448,6 +463,12 @@ footer {
   }
   nav a { font-size: 20px; }
 
+  /* Language switcher joins the normal menu flow */
+  nav a.lang-switch {
+    position: static;
+    font-size: 20px;
+  }
+
   /* With JS: logo left, hamburger right */
   .js header {
     flex-direction: row;
@@ -487,6 +508,13 @@ footer {
     transition: opacity .2s steps(3);
   }
   .js nav a { font-size: 30px; }
+
+  /* In the fullscreen menu the language switcher sits under the last item, behind a dashed line */
+  .js nav a.lang-switch {
+    padding-top: 24px;
+    border-top: 1px dashed #444;
+    font-size: 26px;
+  }
 
   /* Close button stays pinned top right while the menu is open */
   .js .nav-toggle[aria-expanded="true"] {
@@ -555,6 +583,7 @@ footer {
     <a href="/videos/">Відео</a>
     <a href="/notes/">Нотатки</a>
     <a href="/about/">Про гурт</a>
+    <a class="lang-switch" href="/en/videos/" hreflang="en" lang="en" aria-label="English version">EN</a>
   </nav>
 </header>
 <main>
@@ -770,8 +799,6 @@ footer {
       <a href="https://francoband.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
       <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
       <a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://www.tiktok.com/@francoband" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
     </div>
     <div class="footer-links">
       <a href="/privacy-policy/">Політика конфіденційності</a>
