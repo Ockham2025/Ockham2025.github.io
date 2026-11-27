@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>document.documentElement.classList.add('js');</script>
 <title>Місто слухало — FRANCO</title>
 <meta name="description" content="FRANCO на благодійному вечорі «Молодь — енергія змін» у Caribbean Club, Київ.">
 <meta property="og:title" content="Місто слухало — FRANCO">
@@ -16,212 +17,654 @@
 <link rel="icon" type="image/png" href="/images/favicon-dot.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Manrope:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    background: #000000;
-    color: #f2f2f2;
-    font-family: 'Manrope', Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+:root {
+  --bg: #050505;
+  --ink: #d9d9d9;
+  --dim: #777;
+  --accent: #e63946;
+  --cyan: #00e5ff;
+  --display: 'VT323', 'Courier New', monospace;
+  --body: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--bg); }
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+html.menu-open,
+body.menu-open { overflow: hidden; }
+
+/* While the menu is open, hide the page itself so nothing shows through
+   the translucent Safari toolbar */
+html.menu-open main,
+html.menu-open footer {
+  visibility: hidden;
+}
+html.menu-open,
+html.menu-open body {
+  background: #050505;
+}
+
+::selection { background: var(--accent); color: #000; }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px dashed var(--accent);
+  outline-offset: 3px;
+}
+
+/* ---------- CRT: scanlines ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, .035) 0,
+    rgba(255, 255, 255, .035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* ---------- Fade-in (progressive enhancement) ---------- */
+.fade-in { opacity: 1; }
+.js .fade-in { opacity: 0; }
+.js .fade-in.is-visible { animation: flickerIn .6s steps(1) forwards; }
+@keyframes flickerIn {
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  30%  { opacity: .15; }
+  45%  { opacity: 1; }
+  60%  { opacity: .4; }
+  100% { opacity: 1; }
+}
+
+/* ---------- Text glitch (RGB split) ---------- */
+.glitch { position: relative; }
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 100% 0);
+  pointer-events: none;
+}
+.glitch::before {
+  color: var(--cyan);
+  transform: translateX(-4px);
+  animation: glitchA 5s steps(1) infinite;
+}
+.glitch::after {
+  color: var(--accent);
+  transform: translateX(4px);
+  animation: glitchB 5s steps(1) infinite;
+}
+@keyframes glitchA {
+  0%, 88%, 100% { clip-path: inset(0 0 100% 0); }
+  89% { clip-path: inset(10% 0 62% 0); }
+  91% { clip-path: inset(55% 0 20% 0); }
+  93% { clip-path: inset(80% 0 4% 0); }
+  95% { clip-path: inset(30% 0 45% 0); }
+}
+@keyframes glitchB {
+  0%, 89%, 100% { clip-path: inset(0 0 100% 0); }
+  90% { clip-path: inset(60% 0 15% 0); }
+  92% { clip-path: inset(5% 0 75% 0); }
+  94% { clip-path: inset(40% 0 35% 0); }
+  96% { clip-path: inset(85% 0 2% 0); }
+}
+
+/* ---------- Image glitch ---------- */
+@keyframes imgGlitch {
+  0%, 90%, 100% { transform: none; clip-path: none; filter: none; }
+  91% { transform: translate(-6px, 0); clip-path: inset(15% 0 55% 0); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
+  93% { transform: translate(7px, 0); clip-path: inset(60% 0 10% 0); filter: drop-shadow(-5px 0 var(--accent)) drop-shadow(5px 0 var(--cyan)); }
+  95% { transform: translate(-3px, 0); clip-path: inset(35% 0 40% 0); filter: hue-rotate(90deg); }
+  97% { transform: none; clip-path: none; filter: none; }
+}
+@keyframes imgGlitchHover {
+  0%   { transform: none; filter: none; clip-path: none; }
+  20%  { transform: translate(-6px, 2px); filter: drop-shadow(5px 0 var(--accent)) drop-shadow(-5px 0 var(--cyan)); }
+  40%  { transform: translate(6px, -2px); clip-path: inset(30% 0 30% 0); }
+  60%  { transform: translate(-3px, 0); clip-path: none; filter: hue-rotate(90deg); }
+  80%  { transform: translate(3px, 1px); filter: hue-rotate(-90deg); }
+  100% { transform: none; filter: none; clip-path: none; }
+}
+
+/* ---------- Header ---------- */
+header {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px 30px;
+  position: relative;
+}
+header a { display: inline-block; }
+header .logo { display: block; flex-shrink: 0; }
+header img {
+  display: block;
+  width: clamp(220px, 26vw, 280px);
+  max-width: 100%;
+  height: auto;
+  animation: imgGlitch 7s steps(1) infinite;
+}
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px clamp(16px, 2.4vw, 28px);
+  flex-wrap: nowrap;
+}
+nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--display);
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0 4px;
+  white-space: nowrap;
+}
+nav a::before { content: '[ '; color: var(--dim); }
+nav a::after  { content: ' ]'; color: var(--dim); }
+nav a:hover {
+  color: var(--ink);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+nav a:hover::before,
+nav a:hover::after { color: var(--accent); }
+
+/* Language switcher: small link in the top right corner of the header on desktop */
+nav a.lang-switch {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  font-size: 18px;
+  color: var(--dim);
+}
+nav a.lang-switch:hover { color: var(--ink); }
+
+/* Hamburger button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  position: relative;
+  z-index: 95;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid #555;
+  border-radius: 0;
+  color: var(--ink);
+  cursor: pointer;
+}
+.nav-toggle span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  background: currentColor;
+  transition: transform .2s steps(3), opacity .2s steps(3);
+}
+.nav-toggle span:nth-child(1) { top: 14px; }
+.nav-toggle span:nth-child(2) { top: 21px; }
+.nav-toggle span:nth-child(3) { top: 28px; }
+.nav-toggle:hover {
+  background: var(--ink);
+  color: #000;
+  border-color: var(--ink);
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+.nav-toggle[aria-expanded="true"] { border-color: var(--accent); }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- Content ---------- */
+main {
+  flex: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 60px 20px 80px;
+  width: 100%;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--dim);
+  text-decoration: none;
+  margin-bottom: 34px;
+}
+.back-link::before { content: '[ '; }
+.back-link::after  { content: ' ]'; }
+.back-link:hover {
+  color: var(--ink);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+
+.note-date {
+  display: block;
+  font-family: var(--body);
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  margin-bottom: 14px;
+}
+.note-date::before { content: '['; }
+.note-date::after  { content: ']'; }
+
+/* Title: prompt and cursor are real spans so the glitch overlay can use ::before/::after */
+.note-title {
+  font-family: var(--display);
+  font-weight: 400;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+  font-size: clamp(36px, 7vw, 64px);
+  margin-bottom: 44px;
+}
+.note-title .prompt,
+.note-title .cursor { color: var(--accent); }
+.note-title .cursor { animation: blink 1s steps(1) infinite; }
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ---------- Note body ---------- */
+.note-body p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #aaa;
+  margin-bottom: 22px;
+}
+.note-body p:last-child { margin-bottom: 0; }
+.note-body em { color: #888; font-style: italic; }
+
+/* ---------- Photos ---------- */
+.note-image {
+  width: 100%;
+  margin: 10px 0 34px;
+  border: 1px solid #3a3a3a;
+  box-shadow: -4px 0 0 var(--cyan), 4px 0 0 var(--accent);
+  overflow: hidden;
+}
+.note-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.note-image:hover img {
+  animation: imgGlitchHover .4s steps(1) 1;
+}
+
+.note-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 34px;
+}
+.note-gallery .note-image { margin: 0; }
+
+/* ---------- Section labels ---------- */
+.section-label {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 30px;
+  letter-spacing: 3px;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 40px 0 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #444;
+}
+.section-label::before { content: '// '; color: var(--accent); }
+
+/* ---------- Setlist / tracklist ---------- */
+.tracklist {
+  list-style: none;
+  counter-reset: track-counter;
+  margin-bottom: 40px;
+}
+.tracklist li {
+  counter-increment: track-counter;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dashed #333;
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.05;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.tracklist li:first-child { border-top: 1px dashed #333; }
+.tracklist li::before {
+  content: counter(track-counter);
+  font-family: var(--body);
+  font-size: 13px;
+  letter-spacing: 0;
+  color: var(--dim);
+  width: 24px;
+  flex-shrink: 0;
+}
+
+/* ---------- Embeds (for notes that use them) ---------- */
+.embed-wrap {
+  margin: 10px 0 34px;
+  border: 1px solid #3a3a3a;
+  overflow: hidden;
+}
+.embed-wrap iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+}
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 30px 0;
+  border: 1px solid var(--ink);
+  box-shadow: 8px 8px 0 rgba(230, 57, 70, .55);
+  background: #000;
+}
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Credits list (for notes that use it) ---------- */
+.note-credits ul { list-style: none; }
+.note-credits li {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #aaa;
+  padding: 6px 0;
+  border-bottom: 1px dashed #2a2a2a;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 40px;
+  padding: 28px 20px 0;
+  position: relative;
+  border-top: 1px dashed #444;
+}
+
+/* Level 1: newsletter */
+.newsletter {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding-bottom: 24px;
+}
+.newsletter-label {
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.newsletter-label::before { content: '> '; color: var(--accent); }
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.newsletter-input {
+  background: transparent;
+  border: 1px solid #555;
+  color: var(--ink);
+  padding: 12px 16px;
+  font-family: var(--body);
+  font-size: 15px;
+  min-width: 280px;
+  border-radius: 0;
+  caret-color: var(--accent);
+}
+.newsletter-input::placeholder { color: #666; }
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+.newsletter-btn {
+  padding: 12px 26px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 0;
+}
+.newsletter-btn:hover {
+  background: var(--ink);
+  color: #000;
+  box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent);
+}
+
+/* Level 2: socials + service links */
+.footer-top {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding-bottom: 20px;
+}
+.footer-socials {
+  display: flex;
+  gap: 20px;
+}
+.footer-socials a {
+  color: var(--ink);
+  font-size: 20px;
+  text-decoration: none;
+}
+.footer-socials a:hover {
+  color: var(--accent);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 22px;
+}
+.footer-links a {
+  font-family: var(--body);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #808080;
+}
+.footer-links a::before { content: '[ '; }
+.footer-links a::after  { content: ' ]'; }
+.footer-links a:hover {
+  color: var(--ink);
+  text-shadow: -2px 0 var(--cyan), 2px 0 var(--accent);
+}
+
+/* Level 3: copyright */
+.footer-bottom {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+  padding: 12px 0 16px;
+  border-top: 1px solid #222;
+}
+.footer-bottom::after {
+  content: '_';
+  animation: blink 1s steps(1) infinite;
+}
+
+/* ---------- Tablet / mobile: header + hamburger ---------- */
+@media (max-width: 900px) {
+  /* Without JS: logo centered, menu below (may wrap) */
   header {
-    padding: 40px 20px;
-    text-align: center;
-    position: relative;
-  }
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #555, transparent);
-  }
-  header img {
-    max-width: 400px;
-    width: 90%;
-    height: auto;
-  }
-  header a { display: inline-block; }
-  nav {
-    display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-  }
-  nav a {
-    color: #f2f2f2;
-    text-decoration: none;
-    font-family: 'Oswald', sans-serif;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  nav a:hover { color: #e63946; }
-  main {
-    flex: 1;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 60px 20px;
-    width: 100%;
-  }
-
-  .back-link {
-    display: inline-block;
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #888;
-    text-decoration: none;
-    margin-bottom: 30px;
-    transition: color 0.3s ease;
-  }
-  .back-link:hover { color: #e63946; }
-
-  .note-date {
-    font-family: 'Oswald', sans-serif;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 12px;
-  }
-  .note-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 30px;
-    font-weight: 700;
-    color: #f2f2f2;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1.25;
-    margin-bottom: 36px;
-  }
-
-  .note-image {
-    width: 100%;
-    margin: 10px 0 30px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06);
-  }
-  .note-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .note-body p {
-    font-size: 17px;
-    line-height: 1.8;
-    color: #ddd;
-    margin-bottom: 22px;
-  }
-  .note-body p:last-child { margin-bottom: 0; }
-  .note-body em { color: #bbb; font-style: italic; }
-
-  .tracklist-label {
-    font-family: 'Oswald', sans-serif;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: #f2f2f2;
-    margin: 10px 0 16px;
-  }
-  .tracklist {
-    list-style: none;
-    counter-reset: track-counter;
-    margin-bottom: 30px;
-  }
-  .tracklist li {
-    counter-increment: track-counter;
-    display: flex;
-    gap: 14px;
-    padding: 11px 0;
-    border-bottom: 1px solid #2a2a2a;
-    font-size: 15px;
-    color: #ddd;
-  }
-  .tracklist li:first-child { border-top: 1px solid #2a2a2a; }
-  .tracklist li::before {
-    content: counter(track-counter);
-    color: #666;
-    width: 18px;
-    flex-shrink: 0;
-  }
-
-  .note-gallery {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 16px;
-    margin-bottom: 30px;
+    padding: 30px 15px 0;
   }
-  .note-gallery .note-image { margin: 0; }
+  header img { width: 240px; }
+  nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+  }
+  nav a { font-size: 20px; }
 
-  footer {
-    padding: 40px 20px 0;
-    position: relative;
+  /* Language switcher joins the normal menu flow */
+  nav a.lang-switch {
+    position: static;
+    font-size: 20px;
   }
-  footer::before {
-    content: '';
-    position: absolute;
+
+  /* With JS: logo left, hamburger right */
+  .js header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 15px 0;
+  }
+  .js header img { width: 200px; }
+  .js .nav-toggle { display: block; }
+
+  /* Fullscreen menu: solid background covering the whole screen */
+  .js nav {
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #555, transparent);
-  }
-  .footer-top {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding-bottom: 30px;
-  }
-  .footer-socials { display: flex; gap: 20px; }
-  .footer-socials a { color: #f2f2f2; font-size: 20px; text-decoration: none; }
-  .footer-socials a:hover { color: #e63946; }
-  .footer-links {
-    display: flex;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 12px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 80px 20px;
+    background: #050505;
+    box-shadow: 0 0 0 100vmax #050505;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .2s steps(3), visibility 0s linear .2s;
   }
-  .footer-links a { color: #f2f2f2; text-decoration: none; font-size: 14px; }
-  .footer-links a:hover { color: #e63946; }
-  .footer-bottom {
-    text-align: center;
-    color: #666;
-    font-size: 14px;
-    padding: 20px 0;
-    border-top: 1px solid #2a2a2a;
+  .js nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity .2s steps(3);
+  }
+  .js nav a { font-size: 30px; }
+
+  /* In the fullscreen menu the language switcher sits under the last item, behind a dashed line */
+  .js nav a.lang-switch {
+    padding-top: 24px;
+    border-top: 1px dashed #444;
+    font-size: 26px;
   }
 
-  @media (max-width: 600px) {
-    header { padding: 30px 15px; }
-    nav { gap: 20px; }
-    nav a { font-size: 14px; }
-    main { padding: 40px 15px; }
-    .note-title { font-size: 22px; }
-    .note-gallery { grid-template-columns: 1fr; }
-    .footer-top {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 25px;
-    }
-    .footer-links { align-items: center; }
+  /* Close button stays pinned top right while the menu is open */
+  .js .nav-toggle[aria-expanded="true"] {
+    position: fixed;
+    top: 20px;
+    right: 15px;
   }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 600px) {
+  main { padding: 40px 15px 55px; }
+  .back-link { font-size: 20px; margin-bottom: 28px; }
+  .note-title { margin-bottom: 32px; }
+  .note-body p { font-size: 14px; }
+  .note-image { box-shadow: -3px 0 0 var(--cyan), 3px 0 0 var(--accent); margin-bottom: 28px; }
+  .note-gallery { grid-template-columns: 1fr; gap: 22px; margin-bottom: 28px; }
+  .section-label { font-size: 24px; margin: 30px 0 18px; }
+  .tracklist li { font-size: 22px; }
+  .video-wrap { box-shadow: 5px 5px 0 rgba(230, 57, 70, .55); }
+
+  /* Footer: everything centered */
+  footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
+  .newsletter {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .newsletter-label { text-align: center; }
+  .newsletter-form { flex-direction: column; align-items: center; width: 100%; }
+  .newsletter-input { width: 100%; max-width: 320px; min-width: 0; }
+  .footer-top {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+  }
+  .footer-socials { flex-wrap: wrap; justify-content: center; }
+  .footer-links { justify-content: center; gap: 8px 16px; }
+  .footer-bottom { text-align: center; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .fade-in { opacity: 1; }
+}
 </style>
 <script type="application/ld+json">
 {
@@ -253,49 +696,53 @@
 </script>
 </head>
 <body>
+
 <header>
-  <a href="/"><img src="/images/francologo.png" alt="FRANCO"></a>
-  <nav>
+  <a href="/" class="logo"><img src="/images/francologo.png" alt="FRANCO"></a>
+  <button type="button" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="site-nav">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="site-nav" aria-label="Головне меню">
     <a href="/music/">Музика</a>
     <a href="/videos/">Відео</a>
     <a href="/notes/">Нотатки</a>
     <a href="/about/">Про гурт</a>
-    <a href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a>
+    <a class="lang-switch" href="/en/" hreflang="en" lang="en" aria-label="English version">EN</a>
   </nav>
 </header>
 <main>
   <a href="/notes/" class="back-link">← Усі нотатки</a>
 
-  <time class="note-date" datetime="2019-01-31">31.01.2019</time>
-  <h1 class="note-title">Місто слухало</h1>
+  <time class="note-date fade-in" datetime="2019-01-31">31.01.2019</time>
+  <h1 class="note-title glitch fade-in" data-text="> Місто слухало_"><span class="prompt" aria-hidden="true">&gt; </span>Місто слухало<span class="cursor" aria-hidden="true">_</span></h1>
 
-  <div class="note-image">
+  <div class="note-image fade-in">
     <img src="/images/franco-caribbean-kyiv-01.jpg" alt="Валентин Федишен (FRANCO) наживо у Caribbean Club, Київ, 31.01.2019">
   </div>
 
-  <div class="note-body">
+  <div class="note-body fade-in">
     <p>Сет гурту на благодійному вечорі «Молодь — енергія змін».</p>
     <p>Кілька треків. Не все, що планували. Було трохи дивно, але грали щиро. Сет обірвався, якось неочікувано. Та й вечір був такий самий.</p>
     <p>(Валентин навіть сорочку одягнув.)</p>
   </div>
 
-  <h2 class="tracklist-label">Сетлист</h2>
-  <ol class="tracklist">
+  <h2 class="section-label fade-in">Сетлист</h2>
+  <ol class="tracklist fade-in">
     <li>Рисові поля</li>
     <li>Голова чи серце</li>
     <li>Божоле</li>
     <li>Тремор</li>
   </ol>
 
-  <div class="note-body">
+  <div class="note-body fade-in">
     <p><em>FRANCO: Валентин Федишен (вокал), Єгор Литвиненко (гітара), Антон Блащук (бас), Іван Корнієнко (барабани).</em></p>
   </div>
 
-  <div class="note-image">
+  <div class="note-image fade-in" style="margin-top: 34px;">
     <img src="/images/franco-caribbean-kyiv-02.jpg" alt="Повний склад гурту FRANCO на сцені Caribbean Club у Києві">
   </div>
 
-  <div class="note-gallery">
+  <div class="note-gallery fade-in">
     <div class="note-image">
       <img src="/images/franco-caribbean-kyiv-03.jpg" alt="Валентин Федишен, Caribbean Club">
     </div>
@@ -305,13 +752,25 @@
   </div>
 </main>
 <footer>
+  <div class="newsletter">
+    <div class="newsletter-label">Іноді ми пишемо листи</div>
+    <form action="https://franco.us4.list-manage.com/subscribe/post?u=f4599b9a7dff59f0ab065b38d&amp;id=b569df38bc&amp;f_id=00444ee3f0" method="post" target="_blank" class="newsletter-form">
+      <input type="email" name="EMAIL" placeholder="Твій email" aria-label="Твоя електронна адреса" autocomplete="email" required class="newsletter-input">
+      <div style="position: absolute; left: -5000px;" aria-hidden="true">
+        <input type="text" name="b_f4599b9a7dff59f0ab065b38d_b569df38bc" tabindex="-1" value="">
+      </div>
+      <button type="submit" class="newsletter-btn">Підписатись</button>
+    </form>
+  </div>
   <div class="footer-top">
     <div class="footer-socials">
-      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
-      <a href="https://francoband.bandcamp.com" target="_blank" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
-      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-      <a href="https://www.instagram.com/francoband/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://open.spotify.com/artist/4dVvyUBS8H70Meuw9n4lhw" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+      <a href="https://music.apple.com/ua/artist/franco/1098769283?l=uk" target="_blank" rel="noopener noreferrer" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+      <a href="https://francoband.bandcamp.com" target="_blank" rel="noopener noreferrer" aria-label="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
+      <a href="https://www.youtube.com/channel/UCk6v9L8YVHV8B0qeUE-ND-g" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.instagram.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.facebook.com/francoband/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/@francoband" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
     </div>
     <div class="footer-links">
       <a href="/privacy-policy/">Політика конфіденційності</a>
@@ -323,5 +782,62 @@
   </div>
 </footer>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "830a47a27072481b9885e0675f015796"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+  /* Fade-in on scroll */
+  const fadeItems = document.querySelectorAll('.fade-in');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeItems.forEach((el) => observer.observe(el));
+  } else {
+    fadeItems.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  /* Mobile menu */
+  (function () {
+    const toggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('site-nav');
+    if (!toggle || !nav) return;
+
+    function setMenu(open) {
+      nav.classList.toggle('is-open', open);
+      document.body.classList.toggle('menu-open', open);
+      document.documentElement.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
+    }
+
+    toggle.addEventListener('click', () => {
+      setMenu(!nav.classList.contains('is-open'));
+    });
+
+    /* Clicking a menu link or the empty background closes the menu */
+    nav.addEventListener('click', (e) => {
+      if (e.target === nav || e.target.closest('a')) setMenu(false);
+    });
+
+    /* Escape closes the menu and returns focus to the button */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+        setMenu(false);
+        toggle.focus();
+      }
+    });
+
+    /* Reset the state when the screen grows to desktop width */
+    const mq = window.matchMedia('(min-width: 901px)');
+    const onChange = (e) => { if (e.matches) setMenu(false); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  })();
+</script>
 </body>
 </html>
