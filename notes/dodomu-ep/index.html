@@ -354,7 +354,7 @@ main {
 }
 .section-label::before { content: '// '; color: var(--accent); }
 
-/* ---------- Setlist / tracklist ---------- */
+/* ---------- Setlist / tracklist (same look as the album track rows) ---------- */
 .tracklist {
   list-style: none;
   counter-reset: track-counter;
@@ -374,7 +374,8 @@ main {
   text-transform: uppercase;
   color: var(--ink);
 }
-.tracklist li:first-child { border-top: 1px dashed #333; }
+/* The section label above already has a dashed line, so no second one here */
+.tracklist li:first-child { border-top: 0; }
 .tracklist li::before {
   content: counter(track-counter);
   font-family: var(--body);
@@ -385,24 +386,50 @@ main {
   flex-shrink: 0;
 }
 
-/* ---------- Embeds ---------- */
-.embed-wrap {
-  margin: 10px 0 34px;
-  border: 1px solid #3a3a3a;
-  overflow: hidden;
+/* ---------- Credits (same look as the album credits) ---------- */
+.credits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+  margin-bottom: 20px;
 }
-.embed-wrap iframe {
-  display: block;
-  width: 100%;
-  border: 0;
+.credits-block { margin-bottom: 24px; }
+.credits-label {
+  font-family: var(--body);
+  font-size: 11px;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.credits-value {
+  font-size: 14px;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* ---------- "Window" (videos and players) ---------- */
+.window {
+  margin: 10px 0 34px;
+  border: 1px solid var(--ink);
+  box-shadow: 8px 8px 0 rgba(230, 57, 70, .55);
+  text-align: left;
+}
+.window-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--ink);
+  color: #000;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 1px;
+  padding: 2px 10px;
 }
 .video-wrap {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin: 30px 0;
-  border: 1px solid var(--ink);
-  box-shadow: 8px 8px 0 rgba(230, 57, 70, .55);
   background: #000;
 }
 .video-wrap iframe {
@@ -412,16 +439,11 @@ main {
   height: 100%;
   border: 0;
 }
-
-/* ---------- Credits list ---------- */
-.note-credits { margin-bottom: 20px; }
-.note-credits ul { list-style: none; }
-.note-credits li {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #aaa;
-  padding: 6px 0;
-  border-bottom: 1px dashed #2a2a2a;
+.embed-wrap { background: #000; }
+.embed-wrap iframe {
+  display: block;
+  width: 100%;
+  border: 0;
 }
 
 /* ---------- Footer ---------- */
@@ -640,7 +662,8 @@ footer {
   .note-gallery { grid-template-columns: 1fr; gap: 22px; margin-bottom: 28px; }
   .section-label { font-size: 24px; margin: 30px 0 18px; }
   .tracklist li { font-size: 22px; }
-  .video-wrap { box-shadow: 5px 5px 0 rgba(230, 57, 70, .55); }
+  .credits-grid { grid-template-columns: 1fr; }
+  .window { box-shadow: 5px 5px 0 rgba(230, 57, 70, .55); margin-bottom: 28px; }
 
   /* Footer: everything centered */
   footer { padding: 24px 15px 0; margin-top: 30px; text-align: center; }
@@ -736,25 +759,50 @@ footer {
     <li>Може я</li>
   </ol>
 
-  <div class="embed-wrap fade-in">
-    <iframe src="https://open.spotify.com/embed/album/2hAsGyQR0LDnDcHTrE3kqG?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  <div class="window fade-in">
+    <div class="window-bar" aria-hidden="true"><span>dodomu.mp3</span><span>[_][X]</span></div>
+    <div class="embed-wrap">
+      <iframe src="https://open.spotify.com/embed/album/2hAsGyQR0LDnDcHTrE3kqG?utm_source=generator" title="Додому — Spotify" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
   </div>
 
-  <div class="note-credits fade-in">
-    <h2 class="section-label">Credits</h2>
-    <ul>
-      <li>Валентин Федишен — вокал, клавішні, програмування</li>
-      <li>Єгор Литвиненко — гітара, програмування</li>
-      <li>Станіслав Дяченко — бас-гітара</li>
-      <li>Олександр Селезньов — барабани</li>
-      <li>Павло Сафонов — запис, зведення, клавішні</li>
-      <li>Андрій Тимошенков — запис, зведення</li>
-      <li>Олексій Рудюк — обкладинка</li>
-    </ul>
+  <h2 class="section-label fade-in">Credits</h2>
+  <div class="credits-grid fade-in">
+    <div class="credits-block">
+      <div class="credits-label">вокал, клавішні, програмування</div>
+      <div class="credits-value">Валентин Федишен</div>
+    </div>
+    <div class="credits-block">
+      <div class="credits-label">гітара, програмування</div>
+      <div class="credits-value">Єгор Литвиненко</div>
+    </div>
+    <div class="credits-block">
+      <div class="credits-label">бас-гітара</div>
+      <div class="credits-value">Станіслав Дяченко</div>
+    </div>
+    <div class="credits-block">
+      <div class="credits-label">барабани</div>
+      <div class="credits-value">Олександр Селезньов</div>
+    </div>
+    <div class="credits-block">
+      <div class="credits-label">запис, зведення, клавішні</div>
+      <div class="credits-value">Павло Сафонов</div>
+    </div>
+    <div class="credits-block">
+      <div class="credits-label">запис, зведення</div>
+      <div class="credits-value">Андрій Тимошенков</div>
+    </div>
+    <div class="credits-block">
+      <div class="credits-label">обкладинка</div>
+      <div class="credits-value">Олексій Рудюк</div>
+    </div>
   </div>
 
-  <div class="video-wrap fade-in">
-    <iframe src="https://www.youtube.com/embed/pEPpxA4FR9M" title="FRANCO - Додому" allowfullscreen></iframe>
+  <div class="window fade-in">
+    <div class="window-bar" aria-hidden="true"><span>pEPpxA4FR9M.mp4</span><span>[_][X]</span></div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/pEPpxA4FR9M" title="FRANCO - Додому" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
   </div>
 </main>
 <footer>
